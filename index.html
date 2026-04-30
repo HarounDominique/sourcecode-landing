@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sourcecode — Deterministic codebase context for AI coding agents</title>
-  <meta name="description" content="Turn repositories into structured, reproducible context optimized for LLM coding workflows. Built for AI coding agents." />
+  <meta name="description" content="Turn any repository into structured, reproducible context optimized for AI coding agents — in one command." />
   <meta property="og:title" content="sourcecode — Deterministic codebase context for AI coding agents" />
-  <meta property="og:description" content="Turn repositories into structured, reproducible context optimized for LLM coding workflows." />
+  <meta property="og:description" content="Turn any repository into structured, reproducible context optimized for AI coding agents — in one command." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourusername.github.io/sourcecode" />
+  <meta property="og:url" content="https://sourcecode-ai.github.io/sourcecode" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="sourcecode — Deterministic codebase context for AI coding agents" />
-  <meta name="twitter:description" content="Turn repositories into structured, reproducible context optimized for LLM coding workflows." />
+  <meta name="twitter:description" content="Turn any repository into structured, reproducible context optimized for AI coding agents — in one command." />
   <meta name="keywords" content="AI coding agents, repository context, context engineering, developer tooling, LLM infrastructure, codebase analysis" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -33,7 +33,7 @@
       --accent-blue: #4a9eff;
       --accent-purple: #a78bfa;
       --accent-green: #4ade80;
-      --font-display: 'Syne', sans-serif;
+      --font-display: 'Inter', sans-serif;
       --font-body: 'DM Sans', sans-serif;
       --font-mono: 'IBM Plex Mono', monospace;
     }
@@ -188,9 +188,9 @@
 
     h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.05;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
       letter-spacing: -0.03em;
       color: var(--text-primary);
       margin-bottom: 1.5rem;
@@ -205,12 +205,12 @@
 
     .hero-sub {
       font-family: var(--font-body);
-      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-size: clamp(1rem, 2vw, 1.1rem);
       color: var(--text-secondary);
       font-weight: 300;
-      max-width: 580px;
+      max-width: 560px;
       margin: 0 auto 2.5rem;
-      line-height: 1.7;
+      line-height: 1.75;
       opacity: 0;
       animation: fadeUp 0.6s ease 0.3s forwards;
     }
@@ -325,6 +325,8 @@
     .t-str { color: #f4a261; }
     .t-bracket { color: var(--text-muted); }
     .t-comment { color: var(--text-muted); font-style: italic; }
+    .t-indent { display: inline-block; width: 1.4rem; }
+    .t-indent2 { display: inline-block; width: 2.8rem; }
 
     .t-cursor {
       display: inline-block;
@@ -359,18 +361,18 @@
 
     h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-      font-weight: 700;
+      font-size: clamp(1.65rem, 3vw, 2.4rem);
+      font-weight: 600;
       letter-spacing: -0.025em;
-      line-height: 1.15;
+      line-height: 1.2;
       margin-bottom: 1rem;
       color: var(--text-primary);
     }
 
     h3 {
       font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 500;
       letter-spacing: -0.01em;
       color: var(--text-primary);
       margin-bottom: 0.4rem;
@@ -413,10 +415,11 @@
 
     .problem-icon {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--accent-cyan);
       margin-bottom: 0.75rem;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
+      opacity: 0.7;
     }
 
     /* SOLUTION SECTION */
@@ -467,7 +470,7 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      max-width: 640px;
+      max-width: 680px;
       margin-top: 3rem;
     }
 
@@ -507,6 +510,7 @@
     .code-block .cmd { color: var(--text-primary); }
     .code-block .flag { color: var(--accent-blue); }
     .code-block .pipe { color: var(--accent-purple); }
+    .code-block .comment { color: var(--text-muted); font-style: italic; }
 
     /* USE CASES */
     #usecases { background: var(--bg-1); }
@@ -560,10 +564,12 @@
 
     .feature-item:hover { background: var(--bg-2); }
 
-    .feature-icon {
+    .feature-field {
       font-family: var(--font-mono);
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
+      font-size: 0.72rem;
+      color: var(--accent-blue);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
       display: block;
     }
 
@@ -709,7 +715,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: gap;
+      flex-wrap: wrap;
       gap: 2rem;
     }
 
@@ -776,7 +782,7 @@
       .solution-grid { grid-template-columns: 1fr; gap: 2rem; }
       .oss-inner { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
-      h1 { font-size: 2.2rem; }
+      h1 { font-size: 2rem; }
     }
 
     @media (max-width: 520px) {
@@ -795,7 +801,7 @@
     <li><a href="#quickstart">Quickstart</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#principles">Principles</a></li>
-    <li><a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
+    <li><a href="https://github.com/sourcecode-ai/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
   </ul>
 </nav>
 
@@ -805,12 +811,12 @@
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-badge">
-      <span>Apache 2.0</span> · open source · AI-native tooling
+      <span>Apache 2.0</span> · open source · Python 3.9+
     </div>
     <h1>Deterministic codebase context<br>for <em>AI coding agents.</em></h1>
-    <p class="hero-sub">Turn repositories into structured, reproducible context optimized for LLM coding workflows. No guessing. No noise. Just signal.</p>
+    <p class="hero-sub">Turn any repository into structured, reproducible context optimized for AI coding agents — in one command. No API keys. No network calls. Runs locally.</p>
     <div class="hero-ctas">
-      <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary">
+      <a href="https://github.com/sourcecode-ai/sourcecode" target="_blank" rel="noopener" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         GitHub
       </a>
@@ -831,15 +837,18 @@
           <span class="terminal-title">bash · ~/projects/myapp</span>
         </div>
         <div class="terminal-body">
-          <div><span class="t-prompt">$</span> <span class="t-cmd">sourcecode <span class="t-key">--agent</span></span></div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">pip install sourcecode &amp;&amp; sourcecode . <span class="t-key">--agent</span></span></div>
           <div>&nbsp;</div>
           <div><span class="t-bracket">{</span></div>
-          <div>&nbsp;&nbsp;<span class="t-key">"project_type"</span>: <span class="t-str">"python_cli"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"architecture"</span>: <span class="t-str">"layered"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"entrypoints"</span>: <span class="t-bracket">[</span><span class="t-str">"src/main.py"</span>, <span class="t-str">"src/cli.py"</span><span class="t-bracket">]</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"dependencies"</span>: <span class="t-bracket">[</span><span class="t-val">43 packages resolved</span><span class="t-bracket">]</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"bounded_contexts"</span>: <span class="t-bracket">[</span><span class="t-str">"ingestion"</span>, <span class="t-str">"analysis"</span>, <span class="t-str">"output"</span><span class="t-bracket">]</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"operational_signals"</span>: <span class="t-bracket">[</span><span class="t-val">12 signals found</span><span class="t-bracket">]</span></div>
+          <div><span class="t-indent"></span><span class="t-key">"project"</span>: <span class="t-bracket">{</span></div>
+          <div><span class="t-indent2"></span><span class="t-key">"type"</span>: <span class="t-str">"api"</span>,</div>
+          <div><span class="t-indent2"></span><span class="t-key">"summary"</span>: <span class="t-str">"Python REST API built with FastAPI and SQLAlchemy."</span>,</div>
+          <div><span class="t-indent2"></span><span class="t-key">"primary_stack"</span>: <span class="t-str">"python"</span>,</div>
+          <div><span class="t-indent2"></span><span class="t-key">"frameworks"</span>: <span class="t-bracket">[</span><span class="t-str">"FastAPI"</span>, <span class="t-str">"SQLAlchemy"</span><span class="t-bracket">]</span></div>
+          <div><span class="t-indent"></span><span class="t-bracket">}</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"entry_points"</span>: <span class="t-bracket">[{</span> <span class="t-key">"path"</span>: <span class="t-str">"src/app/main.py"</span>, <span class="t-key">"kind"</span>: <span class="t-str">"server"</span> <span class="t-bracket">}]</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"architecture"</span>: <span class="t-str">"Clean Architecture. Hub modules: schema.py, models.py."</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"confidence_summary"</span>: <span class="t-bracket">{</span> <span class="t-key">"overall"</span>: <span class="t-val">"high"</span> <span class="t-bracket">}</span></div>
           <div><span class="t-bracket">}</span></div>
           <div>&nbsp;</div>
           <div><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
@@ -854,27 +863,32 @@
 <section id="problem">
   <div class="container fade-in">
     <p class="section-label">the problem</p>
-    <h2>AI agents break on real codebases.</h2>
+    <h2>AI agents are only as good as the context they receive.</h2>
     <div class="problem-grid">
       <div class="problem-item">
-        <div class="problem-icon">ERR_CONTEXT_OVERFLOW</div>
-        <h3>Too much noise</h3>
-        <p>Large repositories exceed token limits. Agents receive incomplete or arbitrarily truncated context, leading to inconsistent outputs.</p>
+        <div class="problem-icon">ERR_NO_CONTEXT</div>
+        <h3>Agents start blind</h3>
+        <p>Without repo structure, agents hallucinate imports, file paths, and architecture decisions from the first prompt.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">ERR_NOISE_OVERFLOW</div>
+        <h3>Context is noisy</h3>
+        <p>Raw file trees contain benchmark dirs, generated files, tooling configs, and docs that consume tokens without helping.</p>
       </div>
       <div class="problem-item">
         <div class="problem-icon">ERR_ARCH_UNKNOWN</div>
         <h3>Architecture is invisible</h3>
-        <p>LLMs cannot infer system boundaries, module responsibilities, or dependency relationships from raw file trees alone.</p>
+        <p>LLMs see files, not systems. They miss layers, plugin systems, entry points, and runtime topology.</p>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">ERR_NON_DETERMINISTIC</div>
-        <h3>Inconsistent context</h3>
-        <p>Running the same query twice on the same repo produces different results. No reproducibility means no reliability in CI or agent pipelines.</p>
+        <div class="problem-icon">ERR_CONTEXT_STALE</div>
+        <h3>Context decays</h3>
+        <p>What you paste today is stale tomorrow. There's no reproducible baseline agents or pipelines can depend on.</p>
       </div>
       <div class="problem-item">
         <div class="problem-icon">ERR_MANUAL_SCALE</div>
-        <h3>Manual engineering doesn't scale</h3>
-        <p>Writing custom context summaries for every project is error-prone, time-consuming, and impossible to maintain across teams.</p>
+        <h3>Manual context doesn't scale</h3>
+        <p>Handcrafting prompts per project is engineering debt that grows with every new agent, team, and task.</p>
       </div>
     </div>
   </div>
@@ -887,17 +901,17 @@
     <p class="section-label">the solution</p>
     <div class="solution-grid">
       <div>
-        <h2>Structured intelligence extracted from your repository.</h2>
-        <p style="margin-top: 1rem; margin-bottom: 2rem;">sourcecode analyzes your codebase and emits a compact, structured JSON document that captures everything an AI agent needs to reason effectively about your project.</p>
+        <h2>Structured, reproducible context extracted from your repository.</h2>
+        <p style="margin-top: 1rem; margin-bottom: 2rem;">sourcecode runs a local, static analysis pipeline on your repo and produces a compact structured document ready to inject into any AI coding agent — no LLM calls, no network requests, fully deterministic.</p>
         <a href="#quickstart" class="btn-primary" style="display:inline-flex">Get started →</a>
       </div>
       <ul class="solution-list">
-        <li><strong>Architecture inference</strong> — automatically identifies project structure, layers, and module boundaries from code patterns</li>
-        <li><strong>Deterministic outputs</strong> — same repository + same version = same output, every time. Safe for CI pipelines</li>
-        <li><strong>Dependency mapping</strong> — builds a complete graph of internal and external dependencies with resolution status</li>
-        <li><strong>Semantic entrypoints</strong> — identifies real entry points, not just filenames, with context on purpose and flow</li>
-        <li><strong>Agent-optimized format</strong> — output is compact, machine-readable JSON designed for LLM context windows</li>
-        <li><strong>Secret redaction</strong> — automatically strips credentials, tokens, and secrets before any output is written</li>
+        <li><strong>Stack &amp; framework detection</strong> — identifies language, frameworks, and package managers across 10+ languages without config</li>
+        <li><strong>Runtime topology inference</strong> — classifies packages as core, plugin, or noise based on how they're actually used</li>
+        <li><strong>Relevance ranking</strong> — scores files by git churn × runtime proximity × bootstrap signal, not alphabetical order</li>
+        <li><strong>Noise suppression by default</strong> — benchmarks, docs, tooling, and generated files are excluded unless explicitly requested</li>
+        <li><strong>Deterministic outputs</strong> — same repo, same version, same output every time. Safe for CI pipelines and caching</li>
+        <li><strong>Confidence-aware</strong> — every analysis reports detection quality and lists analysis gaps so agents know what they don't know</li>
       </ul>
     </div>
   </div>
@@ -914,21 +928,29 @@
       <div class="qs-step">
         <div class="qs-num">01</div>
         <div class="code-block">
-          <span class="prompt">$</span> <span class="cmd">pip install sourcecode</span>
+          <div><span class="prompt">$</span> <span class="cmd">pip install sourcecode</span></div>
         </div>
       </div>
       <div class="qs-step">
         <div class="qs-num">02</div>
         <div class="code-block">
-          <span class="prompt">$</span> <span class="cmd">cd your-repo && sourcecode <span class="flag">--agent</span> <span class="pipe">&gt;</span> context.json</span>
+          <div><span class="comment"># full agent-optimized analysis</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode . <span class="flag">--agent</span></span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># task-specific context</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode . prepare-context <span class="flag">explain</span></span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode . prepare-context <span class="flag">fix-bug</span></span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode . prepare-context <span class="flag">onboard</span></span></div>
         </div>
       </div>
       <div class="qs-step">
         <div class="qs-num">03</div>
         <div class="code-block">
-          <span class="prompt">$</span> <span class="cmd">claude "Analyze this repository" <span class="pipe">&lt;</span> context.json</span><br>
-          <span class="prompt">$</span> <span class="cmd">cursor chat context.json</span><br>
-          <span class="prompt">$</span> <span class="cmd">cat context.json <span class="pipe">|</span> llm prompt</span>
+          <div><span class="comment"># pipe directly into Claude Code</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode . <span class="flag">--agent</span> <span class="pipe">|</span> claude -p <span class="flag">"Review the architecture"</span></span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># write to file for session injection</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode . <span class="flag">--agent --output</span> context.json</span></div>
         </div>
       </div>
     </div>
@@ -944,33 +966,33 @@
     <div class="cards-grid">
       <div class="card">
         <div class="card-tag">claude code</div>
-        <h3>Claude Code integration</h3>
-        <p>Feed structured context directly into Claude Code sessions. Get accurate, architecture-aware responses on your first prompt.</p>
+        <h3>Claude Code</h3>
+        <p>Start every session with full context. Pipe structured output directly or append to <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent-cyan)">CLAUDE.md</code> for persistent architecture awareness.</p>
       </div>
       <div class="card">
-        <div class="card-tag">cursor</div>
-        <h3>Cursor workflows</h3>
-        <p>Pre-generate context snapshots and reference them in Cursor chats. Consistent understanding across the entire session.</p>
+        <div class="card-tag">cursor · windsurf · copilot</div>
+        <h3>IDE AI assistants</h3>
+        <p>Pre-generate context snapshots before starting a feature. Consistent, architecture-aware understanding across the entire session.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">openai · anthropic api</div>
+        <h3>Custom agents</h3>
+        <p>Load structured JSON into your system prompt programmatically. Give any LLM a complete, accurate picture of the codebase without manual effort.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">ci / cd</div>
+        <h3>CI pipelines</h3>
+        <p>Generate and version context snapshots as build artifacts. Diff them across commits. Integrate with AI-assisted code review steps.</p>
       </div>
       <div class="card">
         <div class="card-tag">onboarding</div>
-        <h3>Repository onboarding</h3>
-        <p>New engineers understand the architecture in minutes, not weeks. Generate a context file, ask any question.</p>
+        <h3>Engineer onboarding</h3>
+        <p>New engineers understand the architecture in minutes. Generate a context file, ask any question. Works for agents and humans alike.</p>
       </div>
       <div class="card">
-        <div class="card-tag">analysis</div>
-        <h3>Architecture analysis</h3>
-        <p>Identify circular dependencies, unmapped modules, and architectural debt with structured outputs built for analysis tooling.</p>
-      </div>
-      <div class="card">
-        <div class="card-tag">refactoring</div>
-        <h3>AI-assisted refactoring</h3>
-        <p>Give agents the full picture before asking for refactors. Avoid the "I only see this file" problem that causes partial, broken changes.</p>
-      </div>
-      <div class="card">
-        <div class="card-tag">ci / mcp</div>
-        <h3>CI pipelines &amp; MCP</h3>
-        <p>Run as part of your build. Version context snapshots. Integrate with MCP servers as a context provider for agent infrastructure.</p>
+        <div class="card-tag">architecture · mcp</div>
+        <h3>Architecture audits &amp; MCP</h3>
+        <p>Identify structural issues with <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent-cyan)">--graph-modules</code> and <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent-cyan)">--architecture</code>. Native MCP server integration on the roadmap.</p>
       </div>
     </div>
   </div>
@@ -980,48 +1002,48 @@
 <div class="divider"></div>
 <section id="features">
   <div class="container fade-in">
-    <p class="section-label">features</p>
-    <h2>Everything an agent needs to understand your code.</h2>
+    <p class="section-label">output fields</p>
+    <h2>Everything an agent needs to reason over your code.</h2>
     <div class="feature-grid">
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>Architecture inference</h3>
-        <p>Detects layered, hexagonal, monorepo, and other common patterns without config.</p>
+        <span class="feature-field">project_summary</span>
+        <h3>Project summary</h3>
+        <p>One-sentence natural language description of what the project does, its type, and primary stack.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>Semantic analysis</h3>
-        <p>Understands module purpose from code, not just file names or directory structure.</p>
+        <span class="feature-field">architecture_summary</span>
+        <h3>Architecture</h3>
+        <p>Runtime topology: layers, plugin systems, entry flows, and hub modules that agents need to navigate the codebase.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>Dependency mapping</h3>
-        <p>Full internal and external dependency graph with version resolution and conflict detection.</p>
+        <span class="feature-field">entry_points</span>
+        <h3>Entry points</h3>
+        <p>Where execution actually starts — production paths only, not benchmarks or docs. Each with kind and confidence.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>Git context</h3>
-        <p>Incorporates branch, commit history, and change frequency into the structured output.</p>
+        <span class="feature-field">key_dependencies</span>
+        <h3>Key dependencies</h3>
+        <p>Runtime dependencies with declared version and role classification (runtime / dev / build). Not just a flat list.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>Deterministic outputs</h3>
-        <p>Content-addressed output. Same input always yields the same JSON. Cache-safe and CI-ready.</p>
+        <span class="feature-field">relevant_files</span>
+        <h3>Relevant files</h3>
+        <p>Files ranked by usefulness for coding tasks: git churn × runtime proximity × bootstrap signal. Not folder position.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>Documentation extraction</h3>
-        <p>Pulls README, docstrings, and inline comments into the structured context layer.</p>
+        <span class="feature-field">confidence_summary</span>
+        <h3>Confidence summary</h3>
+        <p>Overall detection quality and gap list. Agents know exactly what they don't know — no silent hallucination.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>Secret redaction</h3>
-        <p>Pattern-based detection and removal of credentials, API keys, and tokens before output.</p>
+        <span class="feature-field">--git-context</span>
+        <h3>Git signals</h3>
+        <p>Recent commits, churn hotspots, and uncommitted changes layered into the context for change-aware tasks.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-icon">⬡</span>
-        <h3>AI agent mode</h3>
-        <p>Optimized output format with token budgeting and priority ranking for LLM consumption.</p>
+        <span class="feature-field">--code-notes</span>
+        <h3>Code annotations</h3>
+        <p>TODOs, FIXMEs, HACKs, and Architecture Decision Records surfaced as structured context, not buried in comments.</p>
       </div>
     </div>
   </div>
@@ -1031,38 +1053,38 @@
 <div class="divider"></div>
 <section id="principles" style="background: var(--bg-1);">
   <div class="container fade-in">
-    <p class="section-label">design principles</p>
+    <p class="section-label">design philosophy</p>
     <h2>Built on opinions. Held accountable to them.</h2>
     <div class="principles-grid">
       <div class="principle-item">
-        <div class="principle-key">deterministic</div>
-        <h3>Same input, same output.</h3>
-        <p>No randomness. No timestamp variance. Version-locked behavior so your pipelines stay stable.</p>
+        <div class="principle-key">determinism over approximation</div>
+        <h3>Same repo, same output.</h3>
+        <p>Every run on the same repository produces identical output. Agents, pipelines, and teams can cache it, diff it, and depend on it.</p>
       </div>
       <div class="principle-item">
-        <div class="principle-key">local-first</div>
-        <h3>Runs entirely on your machine.</h3>
-        <p>No cloud processing. No code leaves your environment. Works offline. Respects air-gapped setups.</p>
+        <div class="principle-key">runtime topology over file trees</div>
+        <h3>What runs matters, not what exists.</h3>
+        <p>What matters is where execution starts, what calls what, and which modules are actually critical — not alphabetical file lists.</p>
       </div>
       <div class="principle-item">
-        <div class="principle-key">privacy-aware</div>
-        <h3>Your code is not our product.</h3>
-        <p>Zero telemetry by default. Opt-in only. No repository contents are ever transmitted anywhere.</p>
+        <div class="principle-key">noise suppression by default</div>
+        <h3>Agents get signal, not inventory.</h3>
+        <p>Benchmark dirs, generated files, tooling configs, and docs are suppressed unless explicitly requested.</p>
       </div>
       <div class="principle-item">
-        <div class="principle-key">machine-readable</div>
-        <h3>Designed for consumers, not readers.</h3>
-        <p>Output is structured JSON first. Human-readable summaries are optional overlays, not the default.</p>
+        <div class="principle-key">local-first, privacy-respecting</div>
+        <h3>No code leaves your machine.</h3>
+        <p>No API keys required. No network requests. Fully offline. Analysis is entirely static and runs on your hardware.</p>
       </div>
       <div class="principle-item">
-        <div class="principle-key">composable</div>
-        <h3>Unix-native by design.</h3>
-        <p>Pipe it. Filter it. Transform it. Works with jq, llm, claude, cursor, and anything that reads stdin.</p>
+        <div class="principle-key">composable, not monolithic</div>
+        <h3>Output is infrastructure.</h3>
+        <p>Pipe it, transform it, inject it, cache it. Structured data that works with jq, claude, cursor, and anything that reads stdin.</p>
       </div>
       <div class="principle-item">
-        <div class="principle-key">reproducible</div>
-        <h3>Context you can version.</h3>
-        <p>Commit context snapshots alongside code. Diff them. Review them. Treat them as first-class artifacts.</p>
+        <div class="principle-key">confidence-aware</div>
+        <h3>Honest about what it doesn't know.</h3>
+        <p>Every analysis includes a confidence summary and gap list. Agents know what they don't know before they act.</p>
       </div>
     </div>
   </div>
@@ -1072,9 +1094,9 @@
 <div class="divider"></div>
 <section id="privacy">
   <div class="container fade-in">
-    <p class="section-label">privacy & telemetry</p>
+    <p class="section-label">privacy &amp; telemetry</p>
     <h2>Transparent by default.</h2>
-    <p style="max-width: 520px; margin-top: 0.5rem;">We document exactly what runs, what leaves your machine, and what doesn't. No surprises.</p>
+    <p style="max-width: 520px; margin-top: 0.5rem;">Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never code, paths, or content.</p>
     <div class="privacy-box">
       <div class="privacy-header">
         <div class="dot"></div>
@@ -1082,29 +1104,29 @@
       </div>
       <div class="privacy-rows">
         <div class="privacy-row">
-          <span class="privacy-status status-safe">NEVER collected</span>
+          <span class="privacy-status status-safe">NEVER</span>
           <span class="privacy-text">Source code contents, file bodies, or repository data</span>
         </div>
         <div class="privacy-row">
-          <span class="privacy-status status-safe">NEVER collected</span>
+          <span class="privacy-status status-safe">NEVER</span>
           <span class="privacy-text">Credentials, API keys, tokens, or secrets</span>
         </div>
         <div class="privacy-row">
-          <span class="privacy-status status-safe">NEVER collected</span>
+          <span class="privacy-status status-safe">NEVER</span>
           <span class="privacy-text">Repository names, paths, or directory structures</span>
         </div>
         <div class="privacy-row">
-          <span class="privacy-status status-optout">OPT-IN only</span>
+          <span class="privacy-status status-optout">OPT-IN</span>
           <span class="privacy-text">Anonymous usage metrics (invocation count, flags used, error types)</span>
         </div>
         <div class="privacy-row">
-          <span class="privacy-status status-optout">OPT-IN only</span>
+          <span class="privacy-status status-optout">OPT-IN</span>
           <span class="privacy-text">Aggregated performance telemetry (run duration, output size buckets)</span>
         </div>
       </div>
     </div>
     <p style="margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
-      Telemetry disabled by default. Enable with <span style="color: var(--accent-cyan);">SOURCECODE_TELEMETRY=1</span> or <span style="color: var(--accent-cyan);">--telemetry</span> flag.
+      Manage with: <span style="color: var(--accent-cyan);">sourcecode telemetry status</span> · <span style="color: var(--accent-cyan);">sourcecode telemetry enable</span> · <span style="color: var(--accent-cyan);">sourcecode telemetry disable</span>
     </p>
   </div>
 </section>
@@ -1118,10 +1140,10 @@
       <div>
         <h2>Built in the open. Owned by the community.</h2>
         <p style="margin-top: 1rem;">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
-        <p style="margin-top: 0.75rem;">Contributions are welcome. File issues, open PRs, or just drop a ⭐ if it's useful to you.</p>
+        <p style="margin-top: 0.75rem;">Focus is on adoption and utility. No monetization until the core is genuinely useful to the community.</p>
         <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-          <a href="https://github.com/yourusername/sourcecode" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
-          <a href="https://github.com/yourusername/sourcecode/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary">Contributing guide</a>
+          <a href="https://github.com/sourcecode-ai/sourcecode" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
+          <a href="https://github.com/sourcecode-ai/sourcecode/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary">Contributing guide</a>
         </div>
       </div>
       <div class="oss-stats">
@@ -1130,16 +1152,16 @@
           <span class="oss-stat-label">license · free for commercial use</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">★ —</span>
-          <span class="oss-stat-label">github stars · be the first</span>
-        </div>
-        <div class="oss-stat">
           <span class="oss-stat-val">PyPI</span>
           <span class="oss-stat-label">pip install sourcecode</span>
         </div>
         <div class="oss-stat">
           <span class="oss-stat-val">Python 3.9+</span>
-          <span class="oss-stat-label">runtime requirement</span>
+          <span class="oss-stat-label">no API keys · no network calls</span>
+        </div>
+        <div class="oss-stat">
+          <span class="oss-stat-val">10+ langs</span>
+          <span class="oss-stat-label">Python, Node, Go, Rust, Java, and more</span>
         </div>
       </div>
     </div>
@@ -1151,10 +1173,10 @@
   <div class="footer-inner">
     <a href="#" class="footer-logo">sourcecode</a>
     <ul class="footer-links">
-      <li><a href="https://github.com/yourusername/sourcecode" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/sourcecode-ai/sourcecode" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="https://pypi.org/project/sourcecode" target="_blank" rel="noopener">PyPI</a></li>
-      <li><a href="https://github.com/yourusername/sourcecode#readme" target="_blank" rel="noopener">Docs</a></li>
-      <li><a href="https://github.com/yourusername/sourcecode/blob/main/LICENSE" target="_blank" rel="noopener">Apache 2.0</a></li>
+      <li><a href="https://github.com/sourcecode-ai/sourcecode#readme" target="_blank" rel="noopener">Docs</a></li>
+      <li><a href="https://github.com/sourcecode-ai/sourcecode/blob/main/LICENSE" target="_blank" rel="noopener">Apache 2.0</a></li>
       <li><a href="#privacy">Privacy</a></li>
     </ul>
     <span class="footer-license">© 2025 sourcecode contributors</span>
@@ -1162,7 +1184,6 @@
 </footer>
 
 <script>
-  // Scroll fade-in
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
