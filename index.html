@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sourcecode — Deterministic codebase context for AI coding agents</title>
+  <meta name="description" content="Turn repositories into structured, reproducible context optimized for LLM coding workflows. Built for AI coding agents." />
+  <meta property="og:title" content="sourcecode — Deterministic codebase context for AI coding agents" />
+  <meta property="og:description" content="Turn repositories into structured, reproducible context optimized for LLM coding workflows." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourusername.github.io/sourcecode" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="sourcecode — Deterministic codebase context for AI coding agents" />
+  <meta name="twitter:description" content="Turn repositories into structured, reproducible context optimized for LLM coding workflows." />
+  <meta name="keywords" content="AI coding agents, repository context, context engineering, developer tooling, LLM infrastructure, codebase analysis" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-0: #080a0c;
+      --bg-1: #0d1117;
+      --bg-2: #13181f;
+      --bg-3: #1a2030;
+      --border: rgba(255,255,255,0.07);
+      --border-active: rgba(99,214,220,0.3);
+      --text-primary: #e8edf2;
+      --text-secondary: #8b96a5;
+      --text-muted: #4a5568;
+      --accent-cyan: #63d6dc;
+      --accent-blue: #4a9eff;
+      --accent-purple: #a78bfa;
+      --accent-green: #4ade80;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-0);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* NOISE TEXTURE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,10,12,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo::before {
+      content: '◆';
+      color: var(--accent-cyan);
+      font-size: 0.65rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .nav-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border-active);
+      border-radius: 3px;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .nav-badge:hover { background: rgba(99,214,220,0.08); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr;
+      place-items: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99,214,220,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,214,220,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(99,214,220,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+
+    .hero-badge span { color: var(--accent-cyan); }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent-cyan);
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.4s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.65rem 1.4rem;
+      background: var(--accent-cyan);
+      color: #080a0c;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.65rem 1.4rem;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s, border-color 0.15s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    /* TERMINAL */
+    .terminal-wrap {
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+
+    .terminal {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: left;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-2);
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .terminal-body {
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.75;
+    }
+
+    .t-prompt { color: var(--accent-cyan); }
+    .t-cmd { color: var(--text-primary); }
+    .t-key { color: var(--accent-blue); }
+    .t-val { color: var(--accent-green); }
+    .t-str { color: #f4a261; }
+    .t-bracket { color: var(--text-muted); }
+    .t-comment { color: var(--text-muted); font-style: italic; }
+
+    .t-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--accent-cyan);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '// ';
+      color: var(--accent-cyan);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* PROBLEM SECTION */
+    #problem { background: var(--bg-0); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .problem-item {
+      padding: 2rem;
+      background: var(--bg-1);
+      transition: background 0.2s;
+    }
+
+    .problem-item:hover { background: var(--bg-2); }
+
+    .problem-icon {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* SOLUTION SECTION */
+    #solution { background: var(--bg-1); }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: center;
+    }
+
+    .solution-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .solution-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .solution-list li::before {
+      content: '→';
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 0.05em;
+    }
+
+    .solution-list strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* QUICKSTART */
+    #quickstart { background: var(--bg-0); }
+
+    .qs-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 640px;
+      margin-top: 3rem;
+    }
+
+    .qs-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .qs-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      border: 1px solid var(--border-active);
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 2px;
+      margin-top: 0.85rem;
+    }
+
+    .code-block {
+      flex: 1;
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .code-block .prompt { color: var(--text-muted); }
+    .code-block .cmd { color: var(--text-primary); }
+    .code-block .flag { color: var(--accent-blue); }
+    .code-block .pipe { color: var(--accent-purple); }
+
+    /* USE CASES */
+    #usecases { background: var(--bg-1); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .card {
+      background: var(--bg-2);
+      padding: 1.75rem;
+      transition: background 0.2s;
+      cursor: default;
+    }
+
+    .card:hover { background: var(--bg-3); }
+
+    .card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent-cyan);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    /* FEATURE GRID */
+    #features { background: var(--bg-0); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .feature-item {
+      background: var(--bg-1);
+      padding: 1.75rem;
+      transition: background 0.2s;
+    }
+
+    .feature-item:hover { background: var(--bg-2); }
+
+    .feature-icon {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    /* PRINCIPLES */
+    #principles { background: var(--bg-1); }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .principle-item {
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+
+    .principle-item:hover { border-color: var(--border-active); }
+
+    .principle-key {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-cyan);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    /* PRIVACY */
+    #privacy { background: var(--bg-0); }
+
+    .privacy-box {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+
+    .privacy-header {
+      background: var(--bg-1);
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .privacy-header .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+    }
+
+    .privacy-rows { display: flex; flex-direction: column; }
+
+    .privacy-row {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.1rem 1.75rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .privacy-row:last-child { border-bottom: none; }
+    .privacy-row:hover { background: var(--bg-1); }
+
+    .privacy-status {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .status-safe {
+      background: rgba(74,222,128,0.1);
+      color: var(--accent-green);
+      border: 1px solid rgba(74,222,128,0.2);
+    }
+
+    .status-optout {
+      background: rgba(99,214,220,0.08);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(99,214,220,0.2);
+    }
+
+    .privacy-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* OSS */
+    #oss { background: var(--bg-1); }
+
+    .oss-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .oss-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .oss-stat {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      transition: border-color 0.2s;
+    }
+
+    .oss-stat:hover { border-color: var(--border-active); }
+
+    .oss-stat-val { color: var(--accent-cyan); font-size: 1rem; }
+    .oss-stat-label { color: var(--text-muted); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-logo::before { content: '◆'; color: var(--accent-cyan); font-size: 0.6rem; }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--text-secondary); }
+
+    .footer-license {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav .nav-links { display: none; }
+      .solution-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .oss-inner { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      h1 { font-size: 2.2rem; }
+    }
+
+    @media (max-width: 520px) {
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 7rem 1.25rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">sourcecode</a>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#quickstart">Quickstart</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span>Apache 2.0</span> · open source · AI-native tooling
+    </div>
+    <h1>Deterministic codebase context<br>for <em>AI coding agents.</em></h1>
+    <p class="hero-sub">Turn repositories into structured, reproducible context optimized for LLM coding workflows. No guessing. No noise. Just signal.</p>
+    <div class="hero-ctas">
+      <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 0C5.372 0 5.829 2.861 5.829 2.861L5.836 5.83h6.27v.86H3.664S0 6.229 0 12.914c0 6.687 3.953 6.45 3.953 6.45H6.26v-3.1s-.13-3.953 3.888-3.953h6.704s3.762.06 3.762-3.638V4.125S21.138 0 12.001 0zM8.991 2.377c.678 0 1.229.55 1.229 1.23 0 .678-.551 1.228-1.23 1.228-.677 0-1.228-.55-1.228-1.229 0-.678.551-1.229 1.229-1.229zm3.01 22.623C15.63 25 15.172 22.139 15.172 22.139l-.007-2.969H8.894v-.859h8.441S21 18.771 21 12.086c0-6.687-3.953-6.45-3.953-6.45H14.74v3.1s.13 3.953-3.888 3.953H4.148s-3.762-.06-3.762 3.638v7.549S1.862 25 11.001 25h1.001zm3.009-2.377c-.678 0-1.229-.55-1.229-1.23 0-.678.551-1.228 1.23-1.228.677 0 1.228.55 1.228 1.229 0 .678-.551 1.229-1.229 1.229z"/></svg>
+        PyPI
+      </a>
+      <a href="#quickstart" class="btn-secondary">Quickstart →</a>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="terminal-wrap">
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <span class="terminal-title">bash · ~/projects/myapp</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">$</span> <span class="t-cmd">sourcecode <span class="t-key">--agent</span></span></div>
+          <div>&nbsp;</div>
+          <div><span class="t-bracket">{</span></div>
+          <div>&nbsp;&nbsp;<span class="t-key">"project_type"</span>: <span class="t-str">"python_cli"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"architecture"</span>: <span class="t-str">"layered"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"entrypoints"</span>: <span class="t-bracket">[</span><span class="t-str">"src/main.py"</span>, <span class="t-str">"src/cli.py"</span><span class="t-bracket">]</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"dependencies"</span>: <span class="t-bracket">[</span><span class="t-val">43 packages resolved</span><span class="t-bracket">]</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"bounded_contexts"</span>: <span class="t-bracket">[</span><span class="t-str">"ingestion"</span>, <span class="t-str">"analysis"</span>, <span class="t-str">"output"</span><span class="t-bracket">]</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"operational_signals"</span>: <span class="t-bracket">[</span><span class="t-val">12 signals found</span><span class="t-bracket">]</span></div>
+          <div><span class="t-bracket">}</span></div>
+          <div>&nbsp;</div>
+          <div><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<div class="divider"></div>
+<section id="problem">
+  <div class="container fade-in">
+    <p class="section-label">the problem</p>
+    <h2>AI agents break on real codebases.</h2>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="problem-icon">ERR_CONTEXT_OVERFLOW</div>
+        <h3>Too much noise</h3>
+        <p>Large repositories exceed token limits. Agents receive incomplete or arbitrarily truncated context, leading to inconsistent outputs.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">ERR_ARCH_UNKNOWN</div>
+        <h3>Architecture is invisible</h3>
+        <p>LLMs cannot infer system boundaries, module responsibilities, or dependency relationships from raw file trees alone.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">ERR_NON_DETERMINISTIC</div>
+        <h3>Inconsistent context</h3>
+        <p>Running the same query twice on the same repo produces different results. No reproducibility means no reliability in CI or agent pipelines.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">ERR_MANUAL_SCALE</div>
+        <h3>Manual engineering doesn't scale</h3>
+        <p>Writing custom context summaries for every project is error-prone, time-consuming, and impossible to maintain across teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<div class="divider"></div>
+<section id="solution" style="background: var(--bg-1);">
+  <div class="container fade-in">
+    <p class="section-label">the solution</p>
+    <div class="solution-grid">
+      <div>
+        <h2>Structured intelligence extracted from your repository.</h2>
+        <p style="margin-top: 1rem; margin-bottom: 2rem;">sourcecode analyzes your codebase and emits a compact, structured JSON document that captures everything an AI agent needs to reason effectively about your project.</p>
+        <a href="#quickstart" class="btn-primary" style="display:inline-flex">Get started →</a>
+      </div>
+      <ul class="solution-list">
+        <li><strong>Architecture inference</strong> — automatically identifies project structure, layers, and module boundaries from code patterns</li>
+        <li><strong>Deterministic outputs</strong> — same repository + same version = same output, every time. Safe for CI pipelines</li>
+        <li><strong>Dependency mapping</strong> — builds a complete graph of internal and external dependencies with resolution status</li>
+        <li><strong>Semantic entrypoints</strong> — identifies real entry points, not just filenames, with context on purpose and flow</li>
+        <li><strong>Agent-optimized format</strong> — output is compact, machine-readable JSON designed for LLM context windows</li>
+        <li><strong>Secret redaction</strong> — automatically strips credentials, tokens, and secrets before any output is written</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUICKSTART -->
+<div class="divider"></div>
+<section id="quickstart">
+  <div class="container fade-in">
+    <p class="section-label">quickstart</p>
+    <h2>Up and running in 60 seconds.</h2>
+    <p style="margin-top: 0.5rem; max-width: 480px;">Install, run, pipe. No config files. No account required.</p>
+    <div class="qs-steps">
+      <div class="qs-step">
+        <div class="qs-num">01</div>
+        <div class="code-block">
+          <span class="prompt">$</span> <span class="cmd">pip install sourcecode</span>
+        </div>
+      </div>
+      <div class="qs-step">
+        <div class="qs-num">02</div>
+        <div class="code-block">
+          <span class="prompt">$</span> <span class="cmd">cd your-repo && sourcecode <span class="flag">--agent</span> <span class="pipe">&gt;</span> context.json</span>
+        </div>
+      </div>
+      <div class="qs-step">
+        <div class="qs-num">03</div>
+        <div class="code-block">
+          <span class="prompt">$</span> <span class="cmd">claude "Analyze this repository" <span class="pipe">&lt;</span> context.json</span><br>
+          <span class="prompt">$</span> <span class="cmd">cursor chat context.json</span><br>
+          <span class="prompt">$</span> <span class="cmd">cat context.json <span class="pipe">|</span> llm prompt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<div class="divider"></div>
+<section id="usecases" style="background: var(--bg-1);">
+  <div class="container fade-in">
+    <p class="section-label">use cases</p>
+    <h2>Fits where you already work.</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-tag">claude code</div>
+        <h3>Claude Code integration</h3>
+        <p>Feed structured context directly into Claude Code sessions. Get accurate, architecture-aware responses on your first prompt.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">cursor</div>
+        <h3>Cursor workflows</h3>
+        <p>Pre-generate context snapshots and reference them in Cursor chats. Consistent understanding across the entire session.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">onboarding</div>
+        <h3>Repository onboarding</h3>
+        <p>New engineers understand the architecture in minutes, not weeks. Generate a context file, ask any question.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">analysis</div>
+        <h3>Architecture analysis</h3>
+        <p>Identify circular dependencies, unmapped modules, and architectural debt with structured outputs built for analysis tooling.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">refactoring</div>
+        <h3>AI-assisted refactoring</h3>
+        <p>Give agents the full picture before asking for refactors. Avoid the "I only see this file" problem that causes partial, broken changes.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">ci / mcp</div>
+        <h3>CI pipelines &amp; MCP</h3>
+        <p>Run as part of your build. Version context snapshots. Integrate with MCP servers as a context provider for agent infrastructure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="divider"></div>
+<section id="features">
+  <div class="container fade-in">
+    <p class="section-label">features</p>
+    <h2>Everything an agent needs to understand your code.</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>Architecture inference</h3>
+        <p>Detects layered, hexagonal, monorepo, and other common patterns without config.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>Semantic analysis</h3>
+        <p>Understands module purpose from code, not just file names or directory structure.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>Dependency mapping</h3>
+        <p>Full internal and external dependency graph with version resolution and conflict detection.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>Git context</h3>
+        <p>Incorporates branch, commit history, and change frequency into the structured output.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>Deterministic outputs</h3>
+        <p>Content-addressed output. Same input always yields the same JSON. Cache-safe and CI-ready.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>Documentation extraction</h3>
+        <p>Pulls README, docstrings, and inline comments into the structured context layer.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>Secret redaction</h3>
+        <p>Pattern-based detection and removal of credentials, API keys, and tokens before output.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">⬡</span>
+        <h3>AI agent mode</h3>
+        <p>Optimized output format with token budgeting and priority ranking for LLM consumption.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<div class="divider"></div>
+<section id="principles" style="background: var(--bg-1);">
+  <div class="container fade-in">
+    <p class="section-label">design principles</p>
+    <h2>Built on opinions. Held accountable to them.</h2>
+    <div class="principles-grid">
+      <div class="principle-item">
+        <div class="principle-key">deterministic</div>
+        <h3>Same input, same output.</h3>
+        <p>No randomness. No timestamp variance. Version-locked behavior so your pipelines stay stable.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">local-first</div>
+        <h3>Runs entirely on your machine.</h3>
+        <p>No cloud processing. No code leaves your environment. Works offline. Respects air-gapped setups.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">privacy-aware</div>
+        <h3>Your code is not our product.</h3>
+        <p>Zero telemetry by default. Opt-in only. No repository contents are ever transmitted anywhere.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">machine-readable</div>
+        <h3>Designed for consumers, not readers.</h3>
+        <p>Output is structured JSON first. Human-readable summaries are optional overlays, not the default.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">composable</div>
+        <h3>Unix-native by design.</h3>
+        <p>Pipe it. Filter it. Transform it. Works with jq, llm, claude, cursor, and anything that reads stdin.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">reproducible</div>
+        <h3>Context you can version.</h3>
+        <p>Commit context snapshots alongside code. Diff them. Review them. Treat them as first-class artifacts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<div class="divider"></div>
+<section id="privacy">
+  <div class="container fade-in">
+    <p class="section-label">privacy & telemetry</p>
+    <h2>Transparent by default.</h2>
+    <p style="max-width: 520px; margin-top: 0.5rem;">We document exactly what runs, what leaves your machine, and what doesn't. No surprises.</p>
+    <div class="privacy-box">
+      <div class="privacy-header">
+        <div class="dot"></div>
+        data collection policy · v1.0
+      </div>
+      <div class="privacy-rows">
+        <div class="privacy-row">
+          <span class="privacy-status status-safe">NEVER collected</span>
+          <span class="privacy-text">Source code contents, file bodies, or repository data</span>
+        </div>
+        <div class="privacy-row">
+          <span class="privacy-status status-safe">NEVER collected</span>
+          <span class="privacy-text">Credentials, API keys, tokens, or secrets</span>
+        </div>
+        <div class="privacy-row">
+          <span class="privacy-status status-safe">NEVER collected</span>
+          <span class="privacy-text">Repository names, paths, or directory structures</span>
+        </div>
+        <div class="privacy-row">
+          <span class="privacy-status status-optout">OPT-IN only</span>
+          <span class="privacy-text">Anonymous usage metrics (invocation count, flags used, error types)</span>
+        </div>
+        <div class="privacy-row">
+          <span class="privacy-status status-optout">OPT-IN only</span>
+          <span class="privacy-text">Aggregated performance telemetry (run duration, output size buckets)</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+      Telemetry disabled by default. Enable with <span style="color: var(--accent-cyan);">SOURCECODE_TELEMETRY=1</span> or <span style="color: var(--accent-cyan);">--telemetry</span> flag.
+    </p>
+  </div>
+</section>
+
+<!-- OSS -->
+<div class="divider"></div>
+<section id="oss" style="background: var(--bg-1);">
+  <div class="container fade-in">
+    <p class="section-label">open source</p>
+    <div class="oss-inner">
+      <div>
+        <h2>Built in the open. Owned by the community.</h2>
+        <p style="margin-top: 1rem;">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
+        <p style="margin-top: 0.75rem;">Contributions are welcome. File issues, open PRs, or just drop a ⭐ if it's useful to you.</p>
+        <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <a href="https://github.com/yourusername/sourcecode" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
+          <a href="https://github.com/yourusername/sourcecode/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary">Contributing guide</a>
+        </div>
+      </div>
+      <div class="oss-stats">
+        <div class="oss-stat">
+          <span class="oss-stat-val">Apache 2.0</span>
+          <span class="oss-stat-label">license · free for commercial use</span>
+        </div>
+        <div class="oss-stat">
+          <span class="oss-stat-val">★ —</span>
+          <span class="oss-stat-label">github stars · be the first</span>
+        </div>
+        <div class="oss-stat">
+          <span class="oss-stat-val">PyPI</span>
+          <span class="oss-stat-label">pip install sourcecode</span>
+        </div>
+        <div class="oss-stat">
+          <span class="oss-stat-val">Python 3.9+</span>
+          <span class="oss-stat-label">runtime requirement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">sourcecode</a>
+    <ul class="footer-links">
+      <li><a href="https://github.com/yourusername/sourcecode" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://pypi.org/project/sourcecode" target="_blank" rel="noopener">PyPI</a></li>
+      <li><a href="https://github.com/yourusername/sourcecode#readme" target="_blank" rel="noopener">Docs</a></li>
+      <li><a href="https://github.com/yourusername/sourcecode/blob/main/LICENSE" target="_blank" rel="noopener">Apache 2.0</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+    </ul>
+    <span class="footer-license">© 2025 sourcecode contributors</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
