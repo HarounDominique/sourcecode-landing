@@ -264,7 +264,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto;
       text-align: left;
       box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.025);
@@ -298,11 +298,18 @@
     }
 
     .terminal-body {
-      padding: 1.5rem 1.75rem;
+      padding: 1.25rem 1.5rem 1.5rem;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       line-height: 1.85;
+      max-height: 540px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.08) transparent;
     }
+    .terminal-body::-webkit-scrollbar { width: 4px; }
+    .terminal-body::-webkit-scrollbar-track { background: transparent; }
+    .terminal-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
 
     .t-prompt { color: var(--accent); opacity: 0.6; }
     .t-cmd { color: var(--text-primary); }
@@ -322,6 +329,140 @@
       vertical-align: text-bottom;
       animation: blink 1.2s step-end infinite;
       opacity: 0.75;
+    }
+
+    /* ── INTERACTIVE TERMINAL SECTIONS ───────────────────────────── */
+    .t-done { color: var(--accent-green); display: flex; align-items: center; gap: 0.5rem; margin: 0.2rem 0 0.5rem; }
+
+    .t-sec {
+      margin: 0.15rem 0;
+      border-left: 1px solid var(--border);
+      padding-left: 0.75rem;
+    }
+    .t-sec > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.22rem 0;
+      user-select: none;
+    }
+    .t-sec > summary::-webkit-details-marker { display: none; }
+    .t-sec > summary::marker { display: none; }
+    .t-sec > summary:hover .t-sec-label { color: var(--text-secondary); }
+
+    .t-caret {
+      color: var(--text-muted);
+      font-size: 0.58rem;
+      transition: transform 0.15s ease;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    details.t-sec[open] > summary .t-caret { transform: rotate(90deg); }
+
+    .t-sec-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .t-count {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+    .t-badge-high {
+      margin-left: auto;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(255,95,87,0.1);
+      color: #ff5f57;
+      border: 1px solid rgba(255,95,87,0.2);
+      letter-spacing: 0.03em;
+    }
+    .t-sec-body {
+      padding: 0.35rem 0 0.55rem 0.2rem;
+      font-size: 0.74rem;
+    }
+
+    .t-kv { display: flex; gap: 0.75rem; line-height: 1.65; flex-wrap: wrap; }
+    .t-k  { color: var(--text-muted); min-width: 6rem; flex-shrink: 0; }
+    .t-v        { color: var(--text-primary); }
+    .t-v-yellow { color: #fcd34d; font-weight: 600; }
+    .t-v-green  { color: var(--accent-green); }
+    .t-v-accent { color: var(--accent); }
+    .t-v-blue   { color: #93c5fd; }
+    .t-v-red    { color: #ff5f57; }
+    .t-pkg      { color: var(--text-muted); }
+
+    .t-explain {
+      margin-top: 0.5rem;
+      padding: 0.55rem 0.7rem;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-size: 0.72rem;
+      line-height: 1.65;
+    }
+
+    /* Risk block */
+    .t-risk-row { display: flex; gap: 0.85rem; align-items: stretch; }
+    .t-risk-score {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(255,95,87,0.08); border: 1px solid rgba(255,95,87,0.15);
+      border-radius: 8px; padding: 0.7rem 1.1rem; min-width: 84px; flex-shrink: 0;
+    }
+    .t-risk-num  { font-size: 2.1rem; font-weight: 700; color: #ff5f57; line-height: 1; }
+    .t-risk-sub  { font-size: 0.56rem; color: rgba(255,95,87,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+    .t-stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.3rem; flex: 1; }
+    .t-stat { display: flex; flex-direction: column; background: var(--bg-2); border: 1px solid var(--border); border-radius: 5px; padding: 0.35rem 0.5rem; }
+    .t-stat-v { font-size: 0.85rem; font-weight: 700; line-height: 1.1; }
+    .t-stat-k { font-size: 0.55rem; color: var(--text-muted); margin-top: 0.18rem; line-height: 1; }
+
+    /* FQN list */
+    .t-caller-list { display: flex; flex-direction: column; }
+    .t-fqn { font-size: 0.7rem; line-height: 1.7; word-break: break-all; }
+    .t-note { margin-top: 0.4rem; font-size: 0.62rem; color: var(--text-muted); font-style: italic; opacity: 0.65; }
+
+    /* Endpoint rows */
+    .t-ep-list { display: flex; flex-direction: column; gap: 0; }
+    .t-ep-row {
+      display: flex; align-items: flex-start; gap: 0.55rem;
+      padding: 0.28rem 0; border-bottom: 1px solid var(--border);
+    }
+    .t-ep-row:last-child { border-bottom: none; }
+    .t-http {
+      flex-shrink: 0; font-size: 0.58rem; font-weight: 700;
+      padding: 0.13rem 0.3rem; border-radius: 3px;
+      min-width: 40px; text-align: center; border: 1px solid;
+    }
+    .t-http-GET  { color: #3dd68c; background: rgba(61,214,140,0.08);  border-color: rgba(61,214,140,0.2); }
+    .t-http-POST { color: #93c5fd; background: rgba(147,197,253,0.08); border-color: rgba(147,197,253,0.2); }
+    .t-ep-info { flex: 1; min-width: 0; }
+    .t-ep-path    { color: var(--text-primary); font-size: 0.72rem; word-break: break-all; }
+    .t-ep-handler { color: var(--text-muted);   font-size: 0.64rem; margin-top: 0.05rem; }
+
+    /* Module bars */
+    .t-mod-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .t-mod-header { display: flex; justify-content: space-between; margin-bottom: 0.18rem; }
+    .t-mod-name  { color: var(--text-primary); font-size: 0.72rem; }
+    .t-mod-count { color: var(--accent); font-size: 0.72rem; font-weight: 700; }
+    .t-mod-bar-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .t-mod-bar-fill  { height: 100%; background: var(--accent); opacity: 0.4; border-radius: 2px; }
+    .t-mod-pkg { color: var(--text-muted); font-size: 0.62rem; margin-top: 0.18rem; }
+
+    /* Raw JSON */
+    .t-raw-json {
+      font-size: 0.65rem; color: var(--text-muted); background: var(--bg-2);
+      border: 1px solid var(--border); border-radius: 6px; padding: 0.7rem;
+      max-height: 220px; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
+      line-height: 1.5; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.08) transparent;
     }
 
     /* SECTIONS */
@@ -968,22 +1109,244 @@
           <span class="terminal-title">bash · ~/projects/broadleaf-commerce</span>
         </div>
         <div class="terminal-body">
-          <div><span class="t-prompt">$</span> <span class="t-cmd">sourcecode impact <span class="t-key">OrderService</span> .</span></div>
-          <div>&nbsp;</div>
-          <div><span class="t-bracket">{</span></div>
-          <div><span class="t-indent"></span><span class="t-key">"target"</span>: <span class="t-str">"com.broadleafcommerce.order.service.OrderService"</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"risk_score"</span>: <span class="t-val">78</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"direct_callers"</span>: <span class="t-bracket">[</span><span class="t-str">"CheckoutService"</span>, <span class="t-str">"CartService"</span>, <span class="t-str">"AdminOrderController"</span><span class="t-bracket">]</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"endpoints_affected"</span>: <span class="t-bracket">[</span></div>
-          <div><span class="t-indent2"></span><span class="t-bracket">{</span> <span class="t-key">"method"</span>: <span class="t-str">"POST"</span>, <span class="t-key">"path"</span>: <span class="t-str">"/api/v1/orders"</span> <span class="t-bracket">}</span>,</div>
-          <div><span class="t-indent2"></span><span class="t-bracket">{</span> <span class="t-key">"method"</span>: <span class="t-str">"PUT"</span>, <span class="t-key">"path"</span>: <span class="t-str">"/api/v1/orders/{id}/status"</span> <span class="t-bracket">}</span></div>
-          <div><span class="t-indent"></span><span class="t-bracket">]</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"transactional_boundaries_touched"</span>: <span class="t-bracket">[</span><span class="t-str">"OrderService"</span>, <span class="t-str">"PaymentGatewayService"</span><span class="t-bracket">]</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"cross_module_impact"</span>: <span class="t-bracket">[</span><span class="t-str">"checkout"</span>, <span class="t-str">"payments"</span>, <span class="t-str">"admin"</span><span class="t-bracket">]</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"explanation"</span>: <span class="t-str">"High risk. 3 direct callers · 11 endpoints affected · 2 tx boundaries."</span></div>
-          <div><span class="t-bracket">}</span></div>
-          <div>&nbsp;</div>
-          <div><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
+
+          <!-- command line -->
+          <div><span class="t-prompt">❯</span> <span class="t-cmd">sourcecode impact <span class="t-key">OrderService</span> .</span></div>
+          <div class="t-done"><span class="t-val">✓</span> done (3.0s)</div>
+
+          <!-- ── summary ── -->
+          <details class="t-sec" open>
+            <summary><span class="t-caret">›</span><span class="t-sec-label">summary</span></summary>
+            <div class="t-sec-body">
+              <div class="t-kv"><span class="t-k">target</span><span class="t-v-yellow">OrderService</span></div>
+              <div class="t-kv"><span class="t-k">matched</span><span class="t-v"><span class="t-pkg">org.broadleafcommerce.core.order.service.</span>OrderService</span></div>
+              <div class="t-kv"><span class="t-k">resolution</span><span class="t-v-green">exact</span></div>
+              <div class="t-explain">Risk=HIGH: 74 direct callers; 180 indirect callers; 11 endpoints exposed; 20 persistence paths in blast cone; impact crosses 2 modules.</div>
+            </div>
+          </details>
+
+          <!-- ── risk_assessment ── -->
+          <details class="t-sec" open>
+            <summary>
+              <span class="t-caret">›</span>
+              <span class="t-sec-label">risk_assessment</span>
+              <span class="t-badge-high">HIGH · 100</span>
+            </summary>
+            <div class="t-sec-body">
+              <div class="t-risk-row">
+                <div class="t-risk-score">
+                  <span class="t-risk-num">100</span>
+                  <span class="t-risk-sub">risk score</span>
+                </div>
+                <div class="t-stats-grid">
+                  <div class="t-stat"><span class="t-stat-v t-v-yellow">74</span><span class="t-stat-k">direct callers</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-yellow">180</span><span class="t-stat-k">indirect callers</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-accent">11</span><span class="t-stat-k">endpoints</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-blue">20</span><span class="t-stat-k">mappers</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-blue">2</span><span class="t-stat-k">modules</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-green">100%</span><span class="t-stat-k">confidence</span></div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- ── direct_callers ── -->
+          <details class="t-sec">
+            <summary>
+              <span class="t-caret">›</span>
+              <span class="t-sec-label">direct_callers</span>
+              <span class="t-count">30/74</span>
+            </summary>
+            <div class="t-sec-body">
+              <div class="t-caller-list">
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.checkout.service.</span>CheckoutServiceImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.checkout.service.</span>CheckoutServiceImpl.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.checkout.service.gateway.</span>PassthroughPaymentRollbackServiceImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.checkout.service.gateway.</span>PassthroughPaymentRollbackServiceImpl.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.checkout.service.workflow.</span>ConfirmPaymentsRollbackHandler</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.checkout.service.workflow.</span>ConfirmPaymentsRollbackHandler.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.</span>OfferService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.</span>OfferServiceImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.</span>OfferServiceImpl.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.event.</span>NotificationOrderSubmittedEventListener</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.event.</span>NotificationOrderSubmittedEventListener.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.call.</span>OrderItemRequestDTO</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>AddWorkflowPriceOrderIfNecessaryActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>AddWorkflowPriceOrderIfNecessaryActivity.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.add.</span>AddOrderItemActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.add.</span>AddOrderItemActivity.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.add.</span>ValidateAddRequestActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.add.</span>ValidateAddRequestActivity.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.remove.</span>RemoveOrderItemActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.remove.</span>RemoveOrderItemActivity.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.</span>UpdateOrderItemActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.</span>UpdateOrderItemActivity.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.options.</span>UpdateProductOptionsOrderItemActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.options.</span>UpdateProductOptionsOrderItemActivity.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.strategy.</span>FulfillmentGroupItemStrategyImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.strategy.</span>FulfillmentGroupItemStrategyImpl.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.payment.service.</span>DefaultPaymentGatewayCheckoutService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.payment.service.</span>DefaultPaymentGatewayCheckoutService.orderService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.pricing.service.workflow.</span>AutoBundleActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.pricing.service.workflow.</span>AutoBundleActivity.orderService</span>
+              </div>
+              <div class="t-note">Showing 30/74 direct callers. Use --output to inspect full IR.</div>
+            </div>
+          </details>
+
+          <!-- ── indirect_callers ── -->
+          <details class="t-sec">
+            <summary>
+              <span class="t-caret">›</span>
+              <span class="t-sec-label">indirect_callers</span>
+              <span class="t-count">50/180</span>
+            </summary>
+            <div class="t-sec-body">
+              <div class="t-caller-list">
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.admin.web.controller.entity.</span>AdminOfferController</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.dao.</span>OfferAuditDao</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.workflow.</span>RecordOfferUsageActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.workflow.</span>VerifyCustomerMaxOfferUsesActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.</span>OrderServiceImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.pricing.service.workflow.</span>CountTotalOffersActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.pricing.service.workflow.</span>DetermineOfferChangeActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.admin.web.controller.entity.</span>AdminOfferController.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.workflow.</span>RecordOfferUsageActivity.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.workflow.</span>VerifyCustomerMaxOfferUsesActivity.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.</span>OrderServiceImpl.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.pricing.service.workflow.</span>CountTotalOffersActivity.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.pricing.service.workflow.</span>DetermineOfferChangeActivity.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.pricing.service.workflow.</span>OfferActivity.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.controller.cart.</span>AbstractCartController.offerService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.</span>OrderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.</span>OrderItemServiceImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.</span>OrderServiceExtensionHandler</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.</span>OrderServiceExtensionManager</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>CartOperationRequest</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>CheckAddAvailabilityActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>CheckUpdateAvailabilityActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.remove.</span>ValidateRemoveRequestActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.service.</span>OrderItemRequestValidationService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.service.</span>OrderItemRequestValidationServiceImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.</span>ValidateUpdateRequestActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.options.</span>ValidateUpdateProductOptionsRequestActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.controller.account.</span>BroadleafManageWishlistController</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.controller.cart.</span>BroadleafCartController</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.service.</span>UpdateCartService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.service.</span>UpdateCartServiceExtensionHandler</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.controller.checkout.</span>BroadleafCheckoutController</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.order.</span>CartState</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.admin.web.controller.extension.</span>AdminOfferControllerExtensionHandler</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.</span>OfferAuditServiceImpl</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.offer.service.</span>OfferAuditServiceImpl.offerAuditDao</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.remove.</span>RemoveOrderMultishipOptionActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.</span>UpdateOrderMultishipOptionActivity</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.controller.catalog.</span>BroadleafProductController</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.web.controller.catalog.</span>BroadleafProductController.ResourceNotFoundException</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>AddWorkflowPriceOrderIfNecessaryActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>CheckAddAvailabilityActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.</span>CheckUpdateAvailabilityActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.add.</span>AddOrderItemActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.add.</span>ValidateAddRequestActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.remove.</span>RemoveOrderItemActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.remove.</span>RemoveOrderMultishipOptionActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.remove.</span>ValidateRemoveRequestActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.</span>UpdateOrderMultishipOptionActivity.orderItemService</span>
+                <span class="t-fqn"><span class="t-pkg">org.broadleafcommerce.core.order.service.workflow.update.</span>ValidateUpdateRequestActivity.orderItemService</span>
+              </div>
+              <div class="t-note">Showing 50/180 indirect callers. Use --output to inspect full IR.</div>
+            </div>
+          </details>
+
+          <!-- ── endpoints_affected ── -->
+          <details class="t-sec" open>
+            <summary>
+              <span class="t-caret">›</span>
+              <span class="t-sec-label">endpoints_affected</span>
+              <span class="t-count">11</span>
+            </summary>
+            <div class="t-sec-body">
+              <div class="t-ep-list">
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/offer</div><div class="t-ep-handler">viewEntityList · AdminOfferController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-POST">POST</span><div class="t-ep-info"><div class="t-ep-path">/offer/add</div><div class="t-ep-handler">addEntity · AdminOfferController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/offer/add</div><div class="t-ep-handler">viewAddEntityForm · AdminOfferController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/offer/{id}</div><div class="t-ep-handler">viewEntityForm · AdminOfferController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-POST">POST</span><div class="t-ep-info"><div class="t-ep-path">/offer/{id}/duplicate</div><div class="t-ep-handler">duplicateEntity · AdminOfferController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/product/{id}</div><div class="t-ep-handler">viewEntityForm · AdminProductController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/product/{id}/{collectionField:[^0-9].*}/{collectionItemId}</div><div class="t-ep-handler">showUpdateCollectionItem · AdminProductController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/product/{id}/{collectionField}/add</div><div class="t-ep-handler">showAddCollectionItem · AdminProductController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/com.broadleafcommerce.inventory.advanced.domain.InventoryImpl/{collectionField:.*}/select</div><div class="t-ep-handler">showSelectCollectionItem · AdminInventoryBasicOperationsController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/</div><div class="t-ep-handler">register · BroadleafOauthRegisterController</div></div></div>
+                <div class="t-ep-row"><span class="t-http t-http-GET">GET</span><div class="t-ep-info"><div class="t-ep-path">/action=register</div><div class="t-ep-handler">processRegister · BroadleafOauthRegisterController</div></div></div>
+              </div>
+            </div>
+          </details>
+
+          <!-- ── cross_module_impact ── -->
+          <details class="t-sec" open>
+            <summary>
+              <span class="t-caret">›</span>
+              <span class="t-sec-label">cross_module_impact</span>
+              <span class="t-count">2 modules</span>
+            </summary>
+            <div class="t-sec-body">
+              <div class="t-mod-list">
+                <div class="t-mod-row">
+                  <div class="t-mod-header">
+                    <span class="t-mod-name">broadleafcommerce.core</span>
+                    <span class="t-mod-count">290 symbols</span>
+                  </div>
+                  <div class="t-mod-bar-track"><div class="t-mod-bar-fill" style="width:100%"></div></div>
+                  <div class="t-mod-pkg">org.broadleafcommerce.core</div>
+                </div>
+                <div class="t-mod-row">
+                  <div class="t-mod-header">
+                    <span class="t-mod-name">broadleafcommerce.admin</span>
+                    <span class="t-mod-count">25 symbols</span>
+                  </div>
+                  <div class="t-mod-bar-track"><div class="t-mod-bar-fill" style="width:8.6%"></div></div>
+                  <div class="t-mod-pkg">org.broadleafcommerce.admin</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- ── raw_json ── -->
+          <details class="t-sec">
+            <summary>
+              <span class="t-caret">›</span>
+              <span class="t-sec-label">raw_json</span>
+            </summary>
+            <div class="t-sec-body">
+              <pre class="t-raw-json">{
+  "target": "OrderService",
+  "matched_fqns": ["org.broadleafcommerce.core.order.service.OrderService"],
+  "resolution": "exact",
+  "risk_score": 100.0,
+  "risk_level": "high",
+  "confidence_score": 1.0,
+  "confidence_level": "high",
+  "explanation": "Risk=HIGH: 74 direct callers; 180 indirect callers; 11 endpoints exposed; 20 persistence paths in blast cone; impact crosses 2 modules.",
+  "stats": {
+    "direct_caller_count": 74,
+    "indirect_caller_count": 180,
+    "indirect_callers_computed": true,
+    "indirect_callers_sampled": false,
+    "endpoints_affected_count": 11,
+    "transactional_boundaries_count": 0,
+    "mappers_affected_count": 20,
+    "modules_affected_count": 2,
+    "security_surface_count": 0
+  },
+  "depth_reached": 4,
+  "bfs_truncated": false,
+  "direct_callers_note": "Showing 30/74 direct callers. Use --output to inspect full IR.",
+  "indirect_callers_note": "Showing 50/180 indirect callers. Use --output to inspect full IR."
+}</pre>
+            </div>
+          </details>
+
+          <div style="margin-top:0.9rem"><span class="t-prompt">❯</span> <span class="t-cursor"></span></div>
         </div>
       </div>
     </div>
