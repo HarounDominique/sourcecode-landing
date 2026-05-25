@@ -963,6 +963,25 @@
       color: var(--text-muted);
     }
 
+    .pricing-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.63rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      opacity: 0.7;
+      margin-top: -0.8rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-early-note {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      opacity: 0.65;
+      margin-top: -0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
     .pricing-plan-row {
       display: flex;
       align-items: center;
@@ -1745,8 +1764,8 @@
 <section id="pricing">
   <div class="container fade-in">
     <p class="section-label">pricing</p>
-    <h2>Start free. Go Pro when your team needs it.</h2>
-    <p style="max-width:520px; margin-top:0.5rem;">sourcecode is open source and free forever for local use. Pro brings cloud sync, team context sharing, and CI-native context management — launching soon.</p>
+    <h2>Start free. Upgrade when monolith complexity becomes team complexity.</h2>
+    <p style="max-width:560px; margin-top:0.5rem;">sourcecode is open source and free forever for local analysis. Pro adds team-scale risk intelligence, shared context, and CI-native workflows.</p>
     <div class="pricing-grid">
 
       <!-- FREE -->
@@ -1754,21 +1773,24 @@
         <div class="pricing-plan-row">
           <span class="pricing-plan">Free</span>
         </div>
+        <p class="pricing-tagline">individual developer intelligence</p>
         <div class="pricing-price">
           <span class="pricing-amount">€0</span>
           <span class="pricing-period"> / forever</span>
         </div>
-        <p class="pricing-desc">Full OSS core. No account, no API keys, no usage limits. Runs entirely on your machine — offline, static analysis only.</p>
+        <p class="pricing-desc">Analyze Java/Spring monoliths locally — deterministic, offline, and no lock-in.</p>
         <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary pricing-cta">
           pip install sourcecode
         </a>
         <ul class="pricing-features">
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode impact</code> — blast-radius analysis</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode onboard</code> — codebase orientation</li>
-          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode endpoints</code> — REST surface</li>
-          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--compact</code> &amp; <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--agent</code> AI context modes</li>
-          <li>Content-hash cache (13–33× speedup)</li>
-          <li>Apache 2.0 — commercial use OK</li>
+          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode endpoints</code> — REST surface mapping</li>
+          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--compact</code> &amp; <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--agent</code> — AI-ready context modes</li>
+          <li>Content-hash cache (13–33× faster repeat runs)</li>
+          <li>No account, no API keys, no usage limits</li>
+          <li>Runs fully offline</li>
+          <li>Apache 2.0 — commercial use allowed</li>
         </ul>
       </div>
 
@@ -1776,24 +1798,28 @@
       <div class="pricing-card pricing-card-pro">
         <div class="pricing-plan-row">
           <span class="pricing-plan">Pro</span>
-          <span class="pricing-soon">Coming soon</span>
+          <span class="pricing-soon">Launching soon</span>
         </div>
+        <p class="pricing-tagline">team &amp; workflow intelligence</p>
         <div class="pricing-price">
           <span class="pricing-amount pricing-amount-pro">€20</span>
           <span class="pricing-period"> / month</span>
         </div>
-        <p class="pricing-desc">Advanced analysis commands for teams working on production Java/Spring monoliths. Early access pricing — locked in at launch.</p>
+        <p class="pricing-early-note">Early-access pricing locked in at launch.</p>
+        <p class="pricing-desc">Team-scale risk intelligence for production Java/Spring monoliths.</p>
         <a href="mailto:haroundominique@gmail.com?subject=sourcecode%20Pro%20%E2%80%94%20waitlist" class="btn-primary pricing-cta">
           Join the waitlist →
         </a>
         <ul class="pricing-features">
           <li>Everything in Free</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode review-pr</code> — PR risk ranking</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode fix-bug</code> — symptom-driven triage</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode modernize</code> — coupling &amp; dead zones</li>
-          <li class="feat-pro">CI/CD gate via <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">ci_decision</code> field</li>
-          <li class="feat-pro">MCP server integration (roadmap)</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">review-pr</code> — PR risk ranking</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">fix-bug</code> — symptom-driven bug triage</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">modernize</code> — coupling &amp; dead-zone detection</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">ci_decision</code> — CI/CD merge gating</li>
+          <li class="feat-pro">Shared team context</li>
+          <li class="feat-pro">Cloud sync</li>
           <li class="feat-pro">Priority support</li>
+          <li class="feat-pro">MCP server integration <span style="color:var(--text-muted);font-size:0.85em">(roadmap)</span></li>
         </ul>
       </div>
 
