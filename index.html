@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sourcecode — Deterministic codebase context for AI coding agents</title>
-  <meta name="description" content="Turn any repository into structured, reproducible context optimized for AI coding agents — in one command." />
-  <meta property="og:title" content="sourcecode — Deterministic codebase context for AI coding agents" />
-  <meta property="og:description" content="Turn any repository into structured, reproducible context optimized for AI coding agents — in one command." />
+  <title>sourcecode — AI-ready change intelligence for Java/Spring monoliths</title>
+  <meta name="description" content="Know what breaks before you touch it. sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds." />
+  <meta property="og:title" content="sourcecode — AI-ready change intelligence for Java/Spring monoliths" />
+  <meta property="og:description" content="Know what breaks before you touch it. sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://github.com/HarounDominique/sourcecode" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="sourcecode — Deterministic codebase context for AI coding agents" />
-  <meta name="twitter:description" content="Turn any repository into structured, reproducible context optimized for AI coding agents — in one command." />
-  <meta name="keywords" content="AI coding agents, repository context, context engineering, developer tooling, LLM infrastructure, codebase analysis" />
+  <meta name="twitter:title" content="sourcecode — AI-ready change intelligence for Java/Spring monoliths" />
+  <meta name="twitter:description" content="Know what breaks before you touch it. sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds." />
+  <meta name="keywords" content="Java Spring blast radius analysis, AI coding agents, impact analysis, Spring Boot, enterprise Java, codebase context, developer tooling, LLM infrastructure" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -783,11 +783,137 @@
       transform: translateY(0);
     }
 
+    /* PRICING */
+    #pricing { background: var(--bg-0); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      max-width: 760px;
+    }
+
+    .pricing-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      background: var(--bg-1);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .pricing-card:hover { border-color: var(--border-hover); }
+
+    .pricing-card-pro {
+      border-color: var(--border-active);
+      background: var(--bg-2);
+    }
+
+    .pricing-card-pro:hover { border-color: rgba(110,231,247,0.4); }
+
+    .pricing-plan {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .pricing-plan-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .pricing-soon {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(110,231,247,0.08);
+      border: 1px solid rgba(110,231,247,0.18);
+      border-radius: 9999px;
+      padding: 0.2rem 0.65rem;
+      letter-spacing: 0.02em;
+    }
+
+    .pricing-price { margin-bottom: 1rem; }
+
+    .pricing-amount {
+      font-family: var(--font-sans);
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+    }
+
+    .pricing-amount-pro {
+      background: linear-gradient(135deg, #6ee7f7 20%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pricing-period {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .pricing-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .pricing-cta {
+      width: 100%;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      flex: 1;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      line-height: 1.55;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--accent-green);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      flex-shrink: 0;
+      margin-top: 0.15em;
+    }
+
+    .pricing-features li.feat-pro { color: var(--text-primary); }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav .nav-links { display: none; }
       .solution-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .oss-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       h1 { font-size: 2.2rem; }
     }
@@ -806,8 +932,9 @@
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
     <li><a href="#quickstart">Quickstart</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#principles">Principles</a></li>
+    <li><a href="#commands">Commands</a></li>
+    <li><a href="#benchmarks">Benchmarks</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
   </ul>
 </nav>
@@ -818,20 +945,17 @@
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-badge">
-      <span>Apache 2.0</span> · open source · Python 3.9+
+      <span>v1.31.24</span> · Java/Spring · Python 3.10+
     </div>
-    <h1>Deterministic codebase context<br>for <em>AI coding agents.</em></h1>
-    <p class="hero-sub">Turn any repository into structured, reproducible context optimized for AI coding agents — in one command. No API keys. No network calls. Runs locally.</p>
+    <h1>Know what breaks<br>before you <em>touch it.</em></h1>
+    <p class="hero-sub">sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds, not hours.</p>
     <div class="hero-ctas">
-      <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary">
+      <a href="#quickstart" class="btn-primary">Get started →</a>
+      <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-secondary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         GitHub
       </a>
-      <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 0C5.372 0 5.829 2.861 5.829 2.861L5.836 5.83h6.27v.86H3.664S0 6.229 0 12.914c0 6.687 3.953 6.45 3.953 6.45H6.26v-3.1s-.13-3.953 3.888-3.953h6.704s3.762.06 3.762-3.638V4.125S21.138 0 12.001 0zM8.991 2.377c.678 0 1.229.55 1.229 1.23 0 .678-.551 1.228-1.23 1.228-.677 0-1.228-.55-1.228-1.229 0-.678.551-1.229 1.229-1.229zm3.01 22.623C15.63 25 15.172 22.139 15.172 22.139l-.007-2.969H8.894v-.859h8.441S21 18.771 21 12.086c0-6.687-3.953-6.45-3.953-6.45H14.74v3.1s.13 3.953-3.888 3.953H4.148s-3.762-.06-3.762 3.638v7.549S1.862 25 11.001 25h1.001zm3.009-2.377c-.678 0-1.229-.55-1.229-1.23 0-.678.551-1.228 1.23-1.228.677 0 1.228.55 1.228 1.229 0 .678-.551 1.229-1.229 1.229z"/></svg>
-        PyPI
-      </a>
-      <a href="#quickstart" class="btn-secondary">Quickstart →</a>
+      <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary">PyPI</a>
     </div>
 
     <!-- TERMINAL -->
@@ -841,21 +965,22 @@
           <div class="terminal-dot"></div>
           <div class="terminal-dot"></div>
           <div class="terminal-dot"></div>
-          <span class="terminal-title">bash · ~/projects/myapp</span>
+          <span class="terminal-title">bash · ~/projects/broadleaf-commerce</span>
         </div>
         <div class="terminal-body">
-          <div><span class="t-prompt">$</span> <span class="t-cmd">pip install sourcecode &amp;&amp; sourcecode . <span class="t-key">--agent</span></span></div>
+          <div><span class="t-prompt">$</span> <span class="t-cmd">sourcecode impact <span class="t-key">OrderService</span> .</span></div>
           <div>&nbsp;</div>
           <div><span class="t-bracket">{</span></div>
-          <div><span class="t-indent"></span><span class="t-key">"project"</span>: <span class="t-bracket">{</span></div>
-          <div><span class="t-indent2"></span><span class="t-key">"type"</span>: <span class="t-str">"api"</span>,</div>
-          <div><span class="t-indent2"></span><span class="t-key">"summary"</span>: <span class="t-str">"Python REST API built with FastAPI and SQLAlchemy."</span>,</div>
-          <div><span class="t-indent2"></span><span class="t-key">"primary_stack"</span>: <span class="t-str">"python"</span>,</div>
-          <div><span class="t-indent2"></span><span class="t-key">"frameworks"</span>: <span class="t-bracket">[</span><span class="t-str">"FastAPI"</span>, <span class="t-str">"SQLAlchemy"</span><span class="t-bracket">]</span></div>
-          <div><span class="t-indent"></span><span class="t-bracket">}</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"entry_points"</span>: <span class="t-bracket">[{</span> <span class="t-key">"path"</span>: <span class="t-str">"src/app/main.py"</span>, <span class="t-key">"kind"</span>: <span class="t-str">"server"</span> <span class="t-bracket">}]</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"architecture"</span>: <span class="t-str">"Clean Architecture. Hub modules: schema.py, models.py."</span>,</div>
-          <div><span class="t-indent"></span><span class="t-key">"confidence_summary"</span>: <span class="t-bracket">{</span> <span class="t-key">"overall"</span>: <span class="t-val">"high"</span> <span class="t-bracket">}</span></div>
+          <div><span class="t-indent"></span><span class="t-key">"target"</span>: <span class="t-str">"com.broadleafcommerce.order.service.OrderService"</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"risk_score"</span>: <span class="t-val">78</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"direct_callers"</span>: <span class="t-bracket">[</span><span class="t-str">"CheckoutService"</span>, <span class="t-str">"CartService"</span>, <span class="t-str">"AdminOrderController"</span><span class="t-bracket">]</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"endpoints_affected"</span>: <span class="t-bracket">[</span></div>
+          <div><span class="t-indent2"></span><span class="t-bracket">{</span> <span class="t-key">"method"</span>: <span class="t-str">"POST"</span>, <span class="t-key">"path"</span>: <span class="t-str">"/api/v1/orders"</span> <span class="t-bracket">}</span>,</div>
+          <div><span class="t-indent2"></span><span class="t-bracket">{</span> <span class="t-key">"method"</span>: <span class="t-str">"PUT"</span>, <span class="t-key">"path"</span>: <span class="t-str">"/api/v1/orders/{id}/status"</span> <span class="t-bracket">}</span></div>
+          <div><span class="t-indent"></span><span class="t-bracket">]</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"transactional_boundaries_touched"</span>: <span class="t-bracket">[</span><span class="t-str">"OrderService"</span>, <span class="t-str">"PaymentGatewayService"</span><span class="t-bracket">]</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"cross_module_impact"</span>: <span class="t-bracket">[</span><span class="t-str">"checkout"</span>, <span class="t-str">"payments"</span>, <span class="t-str">"admin"</span><span class="t-bracket">]</span>,</div>
+          <div><span class="t-indent"></span><span class="t-key">"explanation"</span>: <span class="t-str">"High risk. 3 direct callers · 11 endpoints affected · 2 tx boundaries."</span></div>
           <div><span class="t-bracket">}</span></div>
           <div>&nbsp;</div>
           <div><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
@@ -870,32 +995,32 @@
 <section id="problem">
   <div class="container fade-in">
     <p class="section-label">the problem</p>
-    <h2>AI agents are only as good as the context they receive.</h2>
+    <h2>Enterprise Java monoliths resist change.</h2>
     <div class="problem-grid">
       <div class="problem-item">
-        <div class="problem-icon">ERR_NO_CONTEXT</div>
-        <h3>Agents start blind</h3>
-        <p>Without repo structure, agents hallucinate imports, file paths, and architecture decisions from the first prompt.</p>
+        <div class="problem-icon">ERR_CHANGE_BLINDNESS</div>
+        <h3>Spring DI hides real callers</h3>
+        <p>Callers inject interfaces via <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">@Autowired</code>. Grep returns zero results. The actual blast radius is invisible until prod breaks.</p>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">ERR_NOISE_OVERFLOW</div>
-        <h3>Context is noisy</h3>
-        <p>Raw file trees contain benchmark dirs, generated files, tooling configs, and docs that consume tokens without helping.</p>
+        <div class="problem-icon">ERR_MANUAL_HOURS</div>
+        <h3>Impact analysis takes hours</h3>
+        <p>Tracing a change through 3,000–8,000 Java files across service layers, DAO boundaries, and HTTP endpoints is a day's work — done manually.</p>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">ERR_ARCH_UNKNOWN</div>
-        <h3>Architecture is invisible</h3>
-        <p>LLMs see files, not systems. They miss layers, plugin systems, entry points, and runtime topology.</p>
+        <div class="problem-icon">ERR_ONBOARD_DEBT</div>
+        <h3>Monoliths are opaque</h3>
+        <p>New engineers and AI agents face the same wall: no orientation, no entry points, no architecture map. Onboarding a large Spring codebase takes weeks.</p>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">ERR_CONTEXT_STALE</div>
-        <h3>Context decays</h3>
-        <p>What you paste today is stale tomorrow. There's no reproducible baseline agents or pipelines can depend on.</p>
+        <div class="problem-icon">ERR_PR_BLIND</div>
+        <h3>PR reviews miss blast radius</h3>
+        <p>Reviewers see diffs, not transitive dependencies. A one-line change to a core service can silently break 11 endpoints and 2 transactional boundaries.</p>
       </div>
       <div class="problem-item">
-        <div class="problem-icon">ERR_MANUAL_SCALE</div>
-        <h3>Manual context doesn't scale</h3>
-        <p>Handcrafting prompts per project is engineering debt that grows with every new agent, team, and task.</p>
+        <div class="problem-icon">ERR_AI_NO_CONTEXT</div>
+        <h3>AI agents start from nothing</h3>
+        <p>Claude and GPT-4 can write Spring code fluently — but without structured context about <em>your</em> codebase, they hallucinate class names, paths, and architectural decisions.</p>
       </div>
     </div>
   </div>
@@ -908,17 +1033,17 @@
     <p class="section-label">the solution</p>
     <div class="solution-grid">
       <div>
-        <h2>Structured, reproducible context extracted from your repository.</h2>
-        <p style="margin-top: 1rem; margin-bottom: 2rem;">sourcecode runs a local, static analysis pipeline on your repo and produces a compact structured document ready to inject into any AI coding agent — no LLM calls, no network requests, fully deterministic.</p>
+        <h2>Two hard problems. One command each.</h2>
+        <p style="margin-top: 1rem; margin-bottom: 2rem;">sourcecode builds a deterministic symbol graph of your Spring repository — locally, statically, no LLM calls — and answers the two questions that matter most before touching production code.</p>
         <a href="#quickstart" class="btn-primary" style="display:inline-flex">Get started →</a>
       </div>
       <ul class="solution-list">
-        <li><strong>Stack &amp; framework detection</strong> — identifies language, frameworks, and package managers across 10+ languages without config</li>
-        <li><strong>Runtime topology inference</strong> — classifies packages as core, plugin, or noise based on how they're actually used</li>
-        <li><strong>Relevance ranking</strong> — scores files by git churn × runtime proximity × bootstrap signal, not alphabetical order</li>
-        <li><strong>Noise suppression by default</strong> — benchmarks, docs, tooling, and generated files are excluded unless explicitly requested</li>
-        <li><strong>Deterministic outputs</strong> — same repo, same version, same output every time. Safe for CI pipelines and caching</li>
-        <li><strong>Confidence-aware</strong> — every analysis reports detection quality and lists analysis gaps so agents know what they don't know</li>
+        <li><strong>What breaks if I change X?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact ClassName /repo</code> traverses the reverse dependency graph and returns every HTTP endpoint, transactional boundary, and downstream module in the blast cone</li>
+        <li><strong>What does this codebase do?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> produces a bounded, AI-ready context bundle: entry points, architecture, key files, confidence, and gaps. Feed directly to Claude or GPT-4</li>
+        <li><strong>Spring DI-aware traversal</strong> — understands interface injection patterns. Targets interfaces, not impls. Returns real blast radius where grep returns zero</li>
+        <li><strong>Content-hash cache</strong> — second run on unchanged repo is 13–33× faster. Safe for CI pipelines</li>
+        <li><strong>Bounded token output</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> is 2,500–4,000 tokens; <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> is 4,500–5,500. Never blows your context window</li>
+        <li><strong>Confidence-aware</strong> — every analysis includes detection quality and gap list. Agents know what they don't know before they act</li>
       </ul>
     </div>
   </div>
@@ -930,34 +1055,45 @@
   <div class="container fade-in">
     <p class="section-label">quickstart</p>
     <h2>Up and running in 60 seconds.</h2>
-    <p style="margin-top: 0.5rem; max-width: 480px;">Install, run, pipe. No config files. No account required.</p>
+    <p style="margin-top: 0.5rem; max-width: 480px;">No config files. No account required. Works on any Java/Spring repo.</p>
     <div class="qs-steps">
       <div class="qs-step">
         <div class="qs-num">01</div>
         <div class="code-block">
+          <div><span class="comment"># macOS / Linux via Homebrew</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">brew tap haroundominique/sourcecode <span class="pipe">&amp;&amp;</span> brew install sourcecode</span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># or pip / pipx</span></div>
           <div><span class="prompt">$</span> <span class="cmd">pip install sourcecode</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode version</span></div>
+          <div><span class="comment"># sourcecode 1.31.24</span></div>
         </div>
       </div>
       <div class="qs-step">
         <div class="qs-num">02</div>
         <div class="code-block">
-          <div><span class="comment"># full agent-optimized analysis</span></div>
-          <div><span class="prompt">$</span> <span class="cmd">sourcecode . <span class="flag">--agent</span></span></div>
+          <div><span class="comment"># blast-radius: what breaks if OrderService changes?</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode impact <span class="flag">OrderService</span> /path/to/repo</span></div>
           <div>&nbsp;</div>
-          <div><span class="comment"># task-specific context</span></div>
-          <div><span class="prompt">$</span> <span class="cmd">sourcecode . prepare-context <span class="flag">explain</span></span></div>
-          <div><span class="prompt">$</span> <span class="cmd">sourcecode . prepare-context <span class="flag">fix-bug</span></span></div>
-          <div><span class="prompt">$</span> <span class="cmd">sourcecode . prepare-context <span class="flag">onboard</span></span></div>
+          <div><span class="comment"># REST endpoint surface</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode endpoints /path/to/repo</span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># bounded AI-agent context (2,500–5,500 tokens)</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode /repo <span class="flag">--compact</span></span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode /repo <span class="flag">--agent</span></span></div>
         </div>
       </div>
       <div class="qs-step">
         <div class="qs-num">03</div>
         <div class="code-block">
-          <div><span class="comment"># pipe directly into Claude Code</span></div>
-          <div><span class="prompt">$</span> <span class="cmd">sourcecode . <span class="flag">--agent</span> <span class="pipe">|</span> claude -p <span class="flag">"Review the architecture"</span></span></div>
+          <div><span class="comment"># onboard to an unfamiliar codebase</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode onboard /path/to/repo</span></div>
           <div>&nbsp;</div>
-          <div><span class="comment"># write to file for session injection</span></div>
-          <div><span class="prompt">$</span> <span class="cmd">sourcecode . <span class="flag">--agent --output</span> context.json</span></div>
+          <div><span class="comment"># pipe directly into Claude / GPT-4</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode /repo <span class="flag">--agent</span> <span class="pipe">|</span> claude -p <span class="flag">"Review the architecture"</span></span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># PR review risk + blast radius [Pro]</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode review-pr /repo <span class="flag">--since main</span></span></div>
         </div>
       </div>
     </div>
@@ -969,88 +1105,151 @@
 <section id="usecases" style="background: var(--bg-1);">
   <div class="container fade-in">
     <p class="section-label">use cases</p>
-    <h2>Fits where you already work.</h2>
+    <h2>Fits every stage of the engineering lifecycle.</h2>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-tag">claude code</div>
-        <h3>Claude Code</h3>
-        <p>Start every session with full context. Pipe structured output directly or append to <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">CLAUDE.md</code> for persistent architecture awareness.</p>
+        <div class="card-tag">pre-refactor</div>
+        <h3>Before touching a class</h3>
+        <p>Run <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact OrderService /repo</code> before any refactor. Know exactly how many endpoints, transactional boundaries, and modules are in the blast cone — before writing a line.</p>
       </div>
       <div class="card">
-        <div class="card-tag">cursor · windsurf · copilot</div>
-        <h3>IDE AI assistants</h3>
-        <p>Pre-generate context snapshots before starting a feature. Consistent, architecture-aware understanding across the entire session.</p>
+        <div class="card-tag">pr review</div>
+        <h3>Risk-aware PR reviews</h3>
+        <p>Generate a structured risk summary for every PR: changed modules, test coverage gaps, blast radius of changed classes, and a CI decision field for automated gates. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>
       </div>
       <div class="card">
-        <div class="card-tag">openai · anthropic api</div>
-        <h3>Custom agents</h3>
-        <p>Load structured JSON into your system prompt programmatically. Give any LLM a complete, accurate picture of the codebase without manual effort.</p>
+        <div class="card-tag">bug triage</div>
+        <h3>Symptom-driven bug triage</h3>
+        <p>Feed a symptom string and get a risk-ranked file list correlated by keyword, path, content, and git history. Cut triage time from hours to minutes. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>
+      </div>
+      <div class="card">
+        <div class="card-tag">claude · gpt-4</div>
+        <h3>AI agent context injection</h3>
+        <p>Start every agent session with bounded, accurate context. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> outputs fit in 2,500–5,500 tokens. No hallucinated class names.</p>
       </div>
       <div class="card">
         <div class="card-tag">ci / cd</div>
-        <h3>CI pipelines</h3>
-        <p>Generate and version context snapshots as build artifacts. Diff them across commits. Integrate with AI-assisted code review steps.</p>
+        <h3>CI/CD integration</h3>
+        <p>Content-hash cache makes reruns 13–33× faster. Parse <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">test_coverage_risk</code> fields for automated PR gates with zero extra tooling.</p>
       </div>
       <div class="card">
-        <div class="card-tag">onboarding</div>
-        <h3>Engineer onboarding</h3>
-        <p>New engineers understand the architecture in minutes. Generate a context file, ask any question. Works for agents and humans alike.</p>
-      </div>
-      <div class="card">
-        <div class="card-tag">architecture · mcp</div>
-        <h3>Architecture audits &amp; MCP</h3>
-        <p>Identify structural issues with <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--graph-modules</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--architecture</code>. Native MCP server integration on the roadmap.</p>
+        <div class="card-tag">onboarding · modernize</div>
+        <h3>Codebase onboarding</h3>
+        <p>New engineers and AI agents get entry points, architecture summary, key files, and gap list in one command. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> — then ask anything.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
+<!-- COMMANDS -->
 <div class="divider"></div>
-<section id="features">
+<section id="commands">
   <div class="container fade-in">
-    <p class="section-label">output fields</p>
-    <h2>Everything an agent needs to reason over your code.</h2>
+    <p class="section-label">commands</p>
+    <h2>Six commands. Each answers a specific engineering question.</h2>
     <div class="feature-grid">
       <div class="feature-item">
-        <span class="feature-field">project_summary</span>
-        <h3>Project summary</h3>
-        <p>One-sentence natural language description of what the project does, its type, and primary stack.</p>
+        <span class="feature-field">sourcecode impact</span>
+        <h3>Blast-radius analysis</h3>
+        <p>Traverse the reverse dependency graph for any class. Returns direct callers, transitive callers, affected HTTP endpoints, transactional boundaries, cross-module impact, and a 0–100 risk score.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-field">architecture_summary</span>
-        <h3>Architecture</h3>
-        <p>Runtime topology: layers, plugin systems, entry flows, and hub modules that agents need to navigate the codebase.</p>
+        <span class="feature-field">sourcecode onboard</span>
+        <h3>Codebase orientation <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3>
+        <p>Bounded AI-ready context bundle: entry points, architecture summary, key files, confidence level, and gaps. Designed for injection as agent system prompt at session start.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-field">entry_points</span>
-        <h3>Entry points</h3>
-        <p>Where execution actually starts — production paths only, not benchmarks or docs. Each with kind and confidence.</p>
+        <span class="feature-field">sourcecode endpoints</span>
+        <h3>REST API surface</h3>
+        <p>Extracts all Spring MVC and JAX-RS endpoint methods. Returns HTTP method, path, controller, and handler. Useful for auditing API surface before migrations or security reviews.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-field">key_dependencies</span>
-        <h3>Key dependencies</h3>
-        <p>Runtime dependencies with declared version and role classification (runtime / dev / build). Not just a flat list.</p>
+        <span class="feature-field">sourcecode review-pr</span>
+        <h3>PR risk assessment <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <p>Changed files, risk ranking, test coverage gaps, affected modules, and blast radius of changed classes. Returns a <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> field for CI/CD gates.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-field">relevant_files</span>
-        <h3>Relevant files</h3>
-        <p>Files ranked by usefulness for coding tasks: git churn × runtime proximity × bootstrap signal. Not folder position.</p>
+        <span class="feature-field">sourcecode fix-bug</span>
+        <h3>Bug triage context <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <p>Feed a symptom string, get a risk-ranked file list correlated by keyword extraction, path matching, content analysis, and git commit correlation. Full evidence chain in <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">symptom_explain</code>.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-field">confidence_summary</span>
-        <h3>Confidence summary</h3>
-        <p>Overall detection quality and gap list. Agents know exactly what they don't know — no silent hallucination.</p>
+        <span class="feature-field">sourcecode modernize</span>
+        <h3>Modernization planning <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <p>Identifies high-coupling nodes (risky to change), dead zone candidates (safe to remove), and subsystem tangles. Quantified by fan-in degree across the symbol graph.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-field">--git-context</span>
-        <h3>Git signals</h3>
-        <p>Recent commits, churn hotspots, and uncommitted changes layered into the context for change-aware tasks.</p>
+        <span class="feature-field">--compact / --agent</span>
+        <h3>AI context modes</h3>
+        <p><code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> gives a 2,500–4,000 token summary with <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">transactional_boundaries</code> for Spring. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> adds file relevance and architecture detail at 4,500–5,500 tokens.</p>
       </div>
       <div class="feature-item">
-        <span class="feature-field">--code-notes</span>
-        <h3>Code annotations</h3>
-        <p>TODOs, FIXMEs, HACKs, and Architecture Decision Records surfaced as structured context, not buried in comments.</p>
+        <span class="feature-field">sourcecode repo-ir</span>
+        <h3>Symbol-level IR</h3>
+        <p>Deterministic symbol graph: classes, methods, import/injection edges, Spring roles, subsystems. Use <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--summary-only</code> (~20K tokens) unless you need the full graph for downstream tooling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARKS -->
+<div class="divider"></div>
+<section id="benchmarks">
+  <div class="container fade-in">
+    <p class="section-label">benchmarks</p>
+    <h2>Measured on real enterprise Java repos.</h2>
+    <p style="max-width:520px; margin-top:0.5rem;">Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on file content hashes — invalidated only when source changes.</p>
+
+    <div style="margin-top:3.5rem; display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:10px; overflow:hidden;">
+      <!-- Header row -->
+      <div style="display:grid; grid-template-columns:1.4fr 0.8fr 1.1fr 0.8fr 1fr 1.1fr; gap:0; background:var(--bg-2); padding:0.75rem 1.5rem;">
+        <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;">Repo</span>
+        <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;">Java files</span>
+        <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;">Cold scan</span>
+        <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;">Cache hit</span>
+        <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;">Speedup</span>
+        <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;">Endpoints found</span>
+      </div>
+      <!-- BroadleafCommerce -->
+      <div style="display:grid; grid-template-columns:1.4fr 0.8fr 1.1fr 0.8fr 1fr 1.1fr; gap:0; background:var(--bg-1); padding:1rem 1.5rem; transition:background 0.15s;" onmouseenter="this.style.background='var(--bg-2)'" onmouseleave="this.style.background='var(--bg-1)'">
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-primary);">BroadleafCommerce</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">2,985</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">2.9s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">0.20s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">~13×</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">130</span>
+      </div>
+      <!-- Keycloak -->
+      <div style="display:grid; grid-template-columns:1.4fr 0.8fr 1.1fr 0.8fr 1fr 1.1fr; gap:0; background:var(--bg-1); padding:1rem 1.5rem; transition:background 0.15s;" onmouseenter="this.style.background='var(--bg-2)'" onmouseleave="this.style.background='var(--bg-1)'">
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-primary);">Keycloak</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">7,885</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">9.0s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">0.27s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">~33×</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">693</span>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem; display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:1px; background:var(--border); border-radius:10px; overflow:hidden;">
+      <div style="background:var(--bg-1); padding:1.5rem;">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.75rem;">--compact tokens</div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Broadleaf: <span style="color:var(--text-primary);">~2,900</span></div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Keycloak: <span style="color:var(--text-primary);">~4,000</span></div>
+      </div>
+      <div style="background:var(--bg-1); padding:1.5rem;">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.75rem;">--agent tokens</div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Broadleaf: <span style="color:var(--text-primary);">~4,800</span></div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Keycloak: <span style="color:var(--text-primary);">~5,500</span></div>
+      </div>
+      <div style="background:var(--bg-1); padding:1.5rem;">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.75rem;">onboard tokens</div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Broadleaf: <span style="color:var(--text-primary);">~2,600</span></div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Fits any context window</div>
+      </div>
+      <div style="background:var(--bg-1); padding:1.5rem;">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.75rem;">impact speed</div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Cold: <span style="color:var(--text-primary);">seconds</span></div>
+        <div style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">Cached: <span style="color:var(--accent-green);">sub-second</span></div>
       </div>
     </div>
   </div>
@@ -1069,14 +1268,14 @@
         <p>Every run on the same repository produces identical output. Agents, pipelines, and teams can cache it, diff it, and depend on it.</p>
       </div>
       <div class="principle-item">
-        <div class="principle-key">runtime topology over file trees</div>
-        <h3>What runs matters, not what exists.</h3>
-        <p>What matters is where execution starts, what calls what, and which modules are actually critical — not alphabetical file lists.</p>
+        <div class="principle-key">interface-aware traversal</div>
+        <h3>Spring DI is not a black box.</h3>
+        <p>The dependency graph understands interface injection patterns. Query <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">OrderService</code> (interface), not <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">OrderServiceImpl</code>. Real blast radius, not grep results.</p>
       </div>
       <div class="principle-item">
-        <div class="principle-key">noise suppression by default</div>
-        <h3>Agents get signal, not inventory.</h3>
-        <p>Benchmark dirs, generated files, tooling configs, and docs are suppressed unless explicitly requested.</p>
+        <div class="principle-key">bounded by default</div>
+        <h3>Output fits in a context window.</h3>
+        <p>Every AI-facing output mode (<code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code>, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code>, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">onboard</code>) is size-bounded. No silent context window overflow.</p>
       </div>
       <div class="principle-item">
         <div class="principle-key">local-first, privacy-respecting</div>
@@ -1086,12 +1285,12 @@
       <div class="principle-item">
         <div class="principle-key">composable, not monolithic</div>
         <h3>Output is infrastructure.</h3>
-        <p>Pipe it, transform it, inject it, cache it. Structured data that works with jq, claude, cursor, and anything that reads stdin.</p>
+        <p>Pipe it, parse it with <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">jq</code>, inject it, gate on it. Structured JSON that works with any tool that reads stdin.</p>
       </div>
       <div class="principle-item">
         <div class="principle-key">confidence-aware</div>
         <h3>Honest about what it doesn't know.</h3>
-        <p>Every analysis includes a confidence summary and gap list. Agents know what they don't know before they act.</p>
+        <p>Every analysis includes a confidence summary and gap list. JAX-RS subresource patterns, SPI architectures, and programmatic security are flagged — not silently wrong.</p>
       </div>
     </div>
   </div>
@@ -1103,7 +1302,7 @@
   <div class="container fade-in">
     <p class="section-label">privacy &amp; telemetry</p>
     <h2>Transparent by default.</h2>
-    <p style="max-width: 520px; margin-top: 0.5rem;">Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never code, paths, or content.</p>
+    <p style="max-width: 520px; margin-top: 0.5rem;">Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Runs fully offline.</p>
     <div class="privacy-box">
       <div class="privacy-header">
         <div class="dot"></div>
@@ -1147,7 +1346,7 @@
       <div>
         <h2>Built in the open. Owned by the community.</h2>
         <p style="margin-top: 1rem;">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
-        <p style="margin-top: 0.75rem;">Focus is on adoption and utility. No monetization until the core is genuinely useful to the community.</p>
+        <p style="margin-top: 0.75rem;">The OSS core — impact analysis, onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds cloud-native and team features. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
         <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
           <a href="https://github.com/HarounDominique/sourcecode/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary">Contributing guide</a>
@@ -1159,18 +1358,79 @@
           <span class="oss-stat-label">license · free for commercial use</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">PyPI</span>
-          <span class="oss-stat-label">pip install sourcecode</span>
+          <span class="oss-stat-val">v1.31.24</span>
+          <span class="oss-stat-label">pip install sourcecode · brew install sourcecode</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">Python 3.9+</span>
+          <span class="oss-stat-val">Python 3.10+</span>
           <span class="oss-stat-label">no API keys · no network calls</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">10+ langs</span>
-          <span class="oss-stat-label">Python, Node, Go, Rust, Java, and more</span>
+          <span class="oss-stat-val">Java/Spring</span>
+          <span class="oss-stat-label">Spring Boot · Spring MVC · JAX-RS</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<div class="divider"></div>
+<section id="pricing">
+  <div class="container fade-in">
+    <p class="section-label">pricing</p>
+    <h2>Start free. Go Pro when your team needs it.</h2>
+    <p style="max-width:520px; margin-top:0.5rem;">sourcecode is open source and free forever for local use. Pro brings cloud sync, team context sharing, and CI-native context management — launching soon.</p>
+    <div class="pricing-grid">
+
+      <!-- FREE -->
+      <div class="pricing-card">
+        <div class="pricing-plan-row">
+          <span class="pricing-plan">Free</span>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-amount">$0</span>
+          <span class="pricing-period"> / forever</span>
+        </div>
+        <p class="pricing-desc">Full OSS core. No account, no API keys, no usage limits. Runs entirely on your machine — offline, static analysis only.</p>
+        <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary pricing-cta">
+          pip install sourcecode
+        </a>
+        <ul class="pricing-features">
+          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode impact</code> — blast-radius analysis</li>
+          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode onboard</code> — codebase orientation</li>
+          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode endpoints</code> — REST surface</li>
+          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--compact</code> &amp; <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--agent</code> AI context modes</li>
+          <li>Content-hash cache (13–33× speedup)</li>
+          <li>Apache 2.0 — commercial use OK</li>
+        </ul>
+      </div>
+
+      <!-- PRO -->
+      <div class="pricing-card pricing-card-pro">
+        <div class="pricing-plan-row">
+          <span class="pricing-plan">Pro</span>
+          <span class="pricing-soon">Coming soon</span>
+        </div>
+        <div class="pricing-price">
+          <span class="pricing-amount pricing-amount-pro">$20</span>
+          <span class="pricing-period"> / month</span>
+        </div>
+        <p class="pricing-desc">Advanced analysis commands for teams working on production Java/Spring monoliths. Early access pricing — locked in at launch.</p>
+        <a href="mailto:haroundominique@gmail.com?subject=sourcecode%20Pro%20%E2%80%94%20waitlist" class="btn-primary pricing-cta">
+          Join the waitlist →
+        </a>
+        <ul class="pricing-features">
+          <li>Everything in Free</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode review-pr</code> — PR risk ranking</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode fix-bug</code> — symptom-driven triage</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode modernize</code> — coupling &amp; dead zones</li>
+          <li class="feat-pro">CI/CD gate via <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">ci_decision</code> field</li>
+          <li class="feat-pro">MCP server integration (roadmap)</li>
+          <li class="feat-pro">Priority support</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
