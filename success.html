@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sourcecode Pro — Payment Successful</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-0: #000000;
+      --bg-1: #0a0a0a;
+      --bg-2: #111111;
+      --border: rgba(255,255,255,0.07);
+      --border-active: rgba(110,231,247,0.25);
+      --text-primary: #ededed;
+      --text-secondary: #888888;
+      --text-muted: #444444;
+      --accent: #6ee7f7;
+      --accent-green: #3dd68c;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg-0);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .container {
+      max-width: 520px;
+      width: 100%;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    .success-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(61,214,140,0.1);
+      border: 1px solid rgba(61,214,140,0.25);
+      margin-bottom: 1.75rem;
+      font-size: 1.5rem;
+    }
+    h1 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+    .sub {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    /* License key box */
+    .license-box {
+      border: 1px solid var(--border-active);
+      border-radius: 10px;
+      background: var(--bg-1);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .license-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .license-key {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      word-break: break-all;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .copy-btn {
+      flex-shrink: 0;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .copy-btn:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.15); }
+    /* Retrieve form */
+    .retrieve-section {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-1);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .retrieve-section h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .retrieve-section p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .input-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    input[type="email"] {
+      flex: 1;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.55rem 0.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type="email"]:focus { border-color: rgba(110,231,247,0.4); }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.55rem 1.1rem;
+      background: var(--text-primary);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+    .error-msg {
+      font-size: 0.8rem;
+      color: #ff5f57;
+      margin-top: 0.6rem;
+      display: none;
+    }
+    .status-msg {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+      display: none;
+    }
+    /* Fallback */
+    .fallback {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .fallback p {
+      font-size: 0.825rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .fallback a { color: var(--accent); text-decoration: none; opacity: 0.85; }
+    .fallback a:hover { opacity: 1; }
+    .back-link {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--text-secondary); }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spinner {
+      display: inline-block;
+      width: 12px; height: 12px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">sourcecode</a>
+</nav>
+
+<div class="container">
+  <div class="success-icon">✓</div>
+  <h1>Payment successful.</h1>
+  <p class="sub">Welcome to sourcecode Pro. Your license key unlocks <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent)">review-pr</code>, <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent)">fix-bug</code>, <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent)">modernize</code>, and MCP integration.</p>
+
+  <!-- License key display — shown after retrieval -->
+  <div class="license-box" id="license-box" style="display:none">
+    <div class="license-label">license key</div>
+    <div class="license-key">
+      <span id="license-key-value"></span>
+      <button class="copy-btn" onclick="copyKey()">copy</button>
+    </div>
+  </div>
+
+  <!-- Retrieve form -->
+  <div class="retrieve-section" id="retrieve-section">
+    <h3>Get your license key</h3>
+    <p>Enter the email you used at checkout to retrieve your key.</p>
+    <div class="input-row">
+      <input type="email" id="email-input" placeholder="you@company.com" autocomplete="email" />
+      <button class="btn-primary" id="retrieve-btn" onclick="retrieveLicense()">Retrieve</button>
+    </div>
+    <div class="error-msg" id="error-msg"></div>
+    <div class="status-msg" id="status-msg"></div>
+  </div>
+
+  <!-- Fallback instructions -->
+  <div class="fallback">
+    <p>
+      Can't find your key? Check your email from <strong style="color:var(--text-primary)">Lemon Squeezy</strong> —
+      it contains your license key and receipt. If you need help, email
+      <a href="mailto:haroundominique@gmail.com">haroundominique@gmail.com</a>.
+    </p>
+  </div>
+
+  <a href="/" class="back-link">← Back to sourcecode</a>
+</div>
+
+<script>
+  // ── Config ─────────────────────────────────────────────────────────────────
+  // Replace with your Supabase project URL and anon key
+  const SUPABASE_URL = 'SUPABASE_PROJECT_URL';
+  const GET_LICENSE_FN = `${SUPABASE_URL}/functions/v1/get-license`;
+
+  // ── Auto-fill email from URL params ────────────────────────────────────────
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('checkout[email]') || params.get('email');
+    if (email) {
+      document.getElementById('email-input').value = email;
+    }
+  })();
+
+  // ── Retrieve license ────────────────────────────────────────────────────────
+  async function retrieveLicense() {
+    const emailEl = document.getElementById('email-input');
+    const btn = document.getElementById('retrieve-btn');
+    const errorEl = document.getElementById('error-msg');
+    const statusEl = document.getElementById('status-msg');
+    const email = emailEl.value.trim();
+
+    // Reset UI
+    errorEl.style.display = 'none';
+    statusEl.style.display = 'none';
+
+    if (!email || !email.includes('@')) {
+      errorEl.textContent = 'Enter a valid email address.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Looking up…';
+    statusEl.textContent = 'Checking your account…';
+    statusEl.style.display = 'block';
+
+    try {
+      const res = await fetch(GET_LICENSE_FN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'License not found for this email.');
+      }
+
+      // Show license key
+      document.getElementById('license-key-value').textContent = data.license_key;
+      document.getElementById('license-box').style.display = 'block';
+      document.getElementById('retrieve-section').style.display = 'none';
+      statusEl.style.display = 'none';
+
+    } catch (err) {
+      errorEl.textContent = err.message || 'Something went wrong. Try again or check your email.';
+      errorEl.style.display = 'block';
+      statusEl.style.display = 'none';
+      btn.disabled = false;
+      btn.textContent = 'Retrieve';
+    }
+  }
+
+  // Allow Enter key in email field
+  document.getElementById('email-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') retrieveLicense();
+  });
+
+  // ── Copy license key ────────────────────────────────────────────────────────
+  function copyKey() {
+    const key = document.getElementById('license-key-value').textContent;
+    navigator.clipboard.writeText(key).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'copied!';
+      setTimeout(() => { btn.textContent = 'copy'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
