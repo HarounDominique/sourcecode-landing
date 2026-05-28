@@ -1094,6 +1094,7 @@
     <li><a href="#quickstart">Quickstart</a></li>
     <li><a href="#commands">Commands</a></li>
     <li><a href="#benchmarks">Benchmarks</a></li>
+    <li><a href="#why">Why</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
   </ul>
@@ -1105,10 +1106,10 @@
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-badge">
-      <span>v1.31.24</span> · Java/Spring · Python 3.10+
+      <span>v1.31.32</span> · Java/Spring · Python 3.10+
     </div>
     <h1>Know what breaks<br>before you <em>touch it.</em></h1>
-    <p class="hero-sub">sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds, not hours.</p>
+    <p class="hero-sub">sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds. Deterministic, local, no API keys required.</p>
     <div class="hero-ctas">
       <a href="#quickstart" class="btn-primary">Get started →</a>
       <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-secondary">
@@ -1494,7 +1495,7 @@
     <div class="cards-grid">
       <div class="card">
         <div class="card-tag">pre-refactor</div>
-        <h3>Before touching a class</h3>
+        <h3>Before touching a class <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3>
         <p>Run <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact OrderService /repo</code> before any refactor. Know exactly how many endpoints, transactional boundaries, and modules are in the blast cone — before writing a line.</p>
       </div>
       <div class="card">
@@ -1518,9 +1519,14 @@
         <p>Content-hash cache makes reruns 13–33× faster. Parse <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">test_coverage_risk</code> fields for automated PR gates with zero extra tooling.</p>
       </div>
       <div class="card">
-        <div class="card-tag">onboarding · modernize</div>
+        <div class="card-tag">onboarding</div>
         <h3>Codebase onboarding</h3>
-        <p>New engineers and AI agents get entry points, architecture summary, key files, and gap list in one command. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> — then ask anything.</p>
+        <p>New engineers and AI agents get entry points, architecture summary, key files, and gap list in one command. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> — then ask anything. Free.</p>
+      </div>
+      <div class="card">
+        <div class="card-tag">mcp · cursor · claude</div>
+        <h3>Live agent context server <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3>
+        <p>Run <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode mcp init</code> once. Claude Desktop and Cursor get live access to impact analysis, endpoint surface, and codebase context without manual CLI calls.</p>
       </div>
     </div>
   </div>
@@ -1531,12 +1537,12 @@
 <section id="commands">
   <div class="container fade-in">
     <p class="section-label">commands</p>
-    <h2>Six commands. Each answers a specific engineering question.</h2>
+    <h2>Eight commands. Each answers a specific engineering question.</h2>
     <div class="feature-grid">
       <div class="feature-item">
         <span class="feature-field">sourcecode impact</span>
-        <h3>Blast-radius analysis</h3>
-        <p>Traverse the reverse dependency graph for any class. Returns direct callers, transitive callers, affected HTTP endpoints, transactional boundaries, cross-module impact, and a 0–100 risk score.</p>
+        <h3>Blast-radius analysis <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <p>Traverse the reverse dependency graph for any class. Returns direct callers, transitive callers, affected HTTP endpoints, transactional boundaries, cross-module impact, and a 0–100 risk score. Always target the interface in Spring Boot — not the implementation.</p>
       </div>
       <div class="feature-item">
         <span class="feature-field">sourcecode onboard</span>
@@ -1572,6 +1578,11 @@
         <span class="feature-field">sourcecode repo-ir</span>
         <h3>Symbol-level IR</h3>
         <p>Deterministic symbol graph: classes, methods, import/injection edges, Spring roles, subsystems. Use <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--summary-only</code> (~20K tokens) unless you need the full graph for downstream tooling.</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-field">sourcecode mcp</span>
+        <h3>MCP server integration <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <p>Run sourcecode as a live MCP server for Claude Desktop and Cursor. AI agents can query impact, endpoints, and context through the protocol — no manual CLI calls, no token-stuffing. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode mcp init</code> to set up.</p>
       </div>
     </div>
   </div>
@@ -1731,7 +1742,7 @@
       <div>
         <h2>Built in the open. Owned by the community.</h2>
         <p style="margin-top: 1rem;">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
-        <p style="margin-top: 0.75rem;">The OSS core — impact analysis, onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds cloud-native and team features. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
+        <p style="margin-top: 0.75rem;">The OSS core — onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds impact analysis, PR review, bug triage, modernization planning, and MCP integration. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
         <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
           <a href="https://github.com/HarounDominique/sourcecode/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary">Contributing guide</a>
@@ -1743,7 +1754,7 @@
           <span class="oss-stat-label">license · free for commercial use</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">v1.31.24</span>
+          <span class="oss-stat-val">v1.31.32</span>
           <span class="oss-stat-label">pip install sourcecode · brew install sourcecode</span>
         </div>
         <div class="oss-stat">
@@ -1759,13 +1770,54 @@
   </div>
 </section>
 
+<!-- DIFFERENTIATION -->
+<div class="divider"></div>
+<section id="why" style="background: var(--bg-1);">
+  <div class="container fade-in">
+    <p class="section-label">why it's different</p>
+    <h2>What nothing else gives you.</h2>
+    <div class="principles-grid">
+      <div class="principle-item">
+        <div class="principle-key">Spring DI-aware traversal</div>
+        <h3>Real blast radius, not grep results.</h3>
+        <p>Spring callers inject via <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">@Autowired</code> on the interface. Grep returns zero. sourcecode traverses the injection graph and returns the actual callers — 74 where grep finds none.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">sub-second at 7,000+ files</div>
+        <h3>Cached in 0.17s. No other tool does this.</h3>
+        <p>Content-hash cache. Cold scan: 9s for Keycloak (7,885 Java files). Cache hit: 0.17s. Safe to run in CI on every commit.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">token-bounded output</div>
+        <h3>Fits in any context window.</h3>
+        <p><code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> is 2,500–4,000 tokens. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> is 4,500–5,500. Deterministic — same repo, same output. Pipe directly to Claude or GPT-4 without overflow risk.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">no cloud, no API key</div>
+        <h3>Fully local. Source code never leaves.</h3>
+        <p><code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">pip install sourcecode</code> and it works offline. No accounts, no usage limits, no network calls during analysis. Enterprise privacy requirements satisfied by default.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">honest confidence signals</div>
+        <h3>Every output says what it doesn't know.</h3>
+        <p>Each analysis includes a <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">confidence_summary</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">analysis_gaps</code> list. JAX-RS patterns, SPI architectures, and programmatic security are flagged — not silently wrong.</p>
+      </div>
+      <div class="principle-item">
+        <div class="principle-key">evidence chain, not heuristics</div>
+        <h3>Every file ranking shows its evidence.</h3>
+        <p>Bug triage returns a full evidence chain per file: keyword match → path match → content match → git commit correlation. You can audit why each file ranked high — not a black box score.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <div class="divider"></div>
 <section id="pricing">
   <div class="container fade-in">
     <p class="section-label">pricing</p>
-    <h2>Start free. Upgrade when monolith complexity becomes team complexity.</h2>
-    <p style="max-width:560px; margin-top:0.5rem;">sourcecode is open source and free forever for local analysis. Pro adds team-scale risk intelligence, shared context, and CI-native workflows.</p>
+    <h2>Start free. Upgrade when the blast radius matters.</h2>
+    <p style="max-width:560px; margin-top:0.5rem;">sourcecode is open source and free for onboarding, endpoint mapping, and AI context. Pro adds impact analysis, PR review, bug triage, modernization, and MCP integration.</p>
     <div class="pricing-grid">
 
       <!-- FREE -->
@@ -1773,17 +1825,16 @@
         <div class="pricing-plan-row">
           <span class="pricing-plan">Free</span>
         </div>
-        <p class="pricing-tagline">individual developer intelligence</p>
+        <p class="pricing-tagline">local analysis &amp; AI context</p>
         <div class="pricing-price">
           <span class="pricing-amount">€0</span>
           <span class="pricing-period"> / forever</span>
         </div>
-        <p class="pricing-desc">Analyze Java/Spring monoliths locally — deterministic, offline, and no lock-in.</p>
+        <p class="pricing-desc">Onboard to any Java/Spring codebase, map its API surface, and feed structured context to AI agents — deterministic, offline, no lock-in.</p>
         <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary pricing-cta">
           pip install sourcecode
         </a>
         <ul class="pricing-features">
-          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode impact</code> — blast-radius analysis</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode onboard</code> — codebase orientation</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode endpoints</code> — REST surface mapping</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--compact</code> &amp; <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--agent</code> — AI-ready context modes</li>
@@ -1799,26 +1850,26 @@
         <div class="pricing-plan-row">
           <span class="pricing-plan">Pro</span>
         </div>
-        <p class="pricing-tagline">team &amp; workflow intelligence</p>
+        <p class="pricing-tagline">blast-radius &amp; workflow intelligence</p>
         <div class="pricing-price">
           <span class="pricing-amount pricing-amount-pro">€20</span>
           <span class="pricing-period"> / month</span>
         </div>
         <p class="pricing-early-note">Early-access pricing locked in at launch.</p>
-        <p class="pricing-desc">Team-scale risk intelligence for production Java/Spring monoliths.</p>
+        <p class="pricing-desc">Impact analysis, PR review, bug triage, and MCP integration for Java/Spring monoliths.</p>
         <a href="LEMON_SQUEEZY_CHECKOUT_URL" class="btn-primary pricing-cta" id="pro-checkout-btn">
           Upgrade to Pro →
         </a>
         <ul class="pricing-features">
           <li>Everything in Free</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">review-pr</code> — PR risk ranking</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">impact</code> — blast-radius analysis</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">review-pr</code> — PR risk ranking &amp; test gap detection</li>
           <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">fix-bug</code> — symptom-driven bug triage</li>
           <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">modernize</code> — coupling &amp; dead-zone detection</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">generate-tests</code> — test gap analysis</li>
           <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">ci_decision</code> — CI/CD merge gating</li>
-          <li class="feat-pro">Shared team context</li>
-          <li class="feat-pro">Cloud sync</li>
+          <li class="feat-pro">MCP server — live agent integration (Claude Desktop, Cursor)</li>
           <li class="feat-pro">Priority support</li>
-          <li class="feat-pro">MCP server integration <span style="color:var(--text-muted);font-size:0.85em">(roadmap)</span></li>
         </ul>
       </div>
 
