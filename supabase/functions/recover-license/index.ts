@@ -23,7 +23,7 @@ serve(async (req: Request) => {
     );
   }
 
-  let body: { license_key?: string };
+  let body: { email?: string };
   try {
     body = await req.json();
   } catch {
@@ -33,11 +33,11 @@ serve(async (req: Request) => {
     );
   }
 
-  const licenseKey = (body.license_key ?? "").trim().toUpperCase();
+  const email = (body.email ?? "").trim().toLowerCase();
 
-  if (!licenseKey || !licenseKey.startsWith("SC-")) {
+  if (!email || !email.includes("@")) {
     return new Response(
-      JSON.stringify({ error: "Valid license_key required" }),
+      JSON.stringify({ error: "Valid email required" }),
       { status: 400, headers: CORS_HEADERS },
     );
   }
@@ -46,8 +46,8 @@ serve(async (req: Request) => {
 
   const { data: user, error } = await supabase
     .from("users")
-    .select("id, email, plan, status, features")
-    .eq("license_key", licenseKey)
+    .select("id, license_key, status")
+    .eq("email", email)
     .maybeSingle();
 
   if (error) {
@@ -58,17 +58,11 @@ serve(async (req: Request) => {
     );
   }
 
-  if (!user) {
+  // Always return generic error — don't reveal whether email exists
+  if (!user || user.status !== "active") {
     return new Response(
-      JSON.stringify({ valid: false, error: "License not found" }),
+      JSON.stringify({ error: "No active license found for this email" }),
       { status: 404, headers: CORS_HEADERS },
-    );
-  }
-
-  if (user.status !== "active") {
-    return new Response(
-      JSON.stringify({ valid: false, error: "License inactive" }),
-      { status: 403, headers: CORS_HEADERS },
     );
   }
 
@@ -81,29 +75,24 @@ serve(async (req: Request) => {
 
   if (!subscription) {
     return new Response(
-      JSON.stringify({ valid: false, error: "No active subscription" }),
-      { status: 403, headers: CORS_HEADERS },
+      JSON.stringify({ error: "No active license found for this email" }),
+      { status: 404, headers: CORS_HEADERS },
     );
   }
 
-  // Cancelled subscriptions: check grace period hasn't ended
+  // Cancelled with expired grace period
   if (subscription.status === "cancelled" && subscription.current_period_end) {
     const periodEnd = new Date(subscription.current_period_end);
     if (periodEnd < new Date()) {
       return new Response(
-        JSON.stringify({ valid: false, error: "Subscription expired" }),
-        { status: 403, headers: CORS_HEADERS },
+        JSON.stringify({ error: "No active license found for this email" }),
+        { status: 404, headers: CORS_HEADERS },
       );
     }
   }
 
   return new Response(
-    JSON.stringify({
-      valid: true,
-      plan: user.plan,
-      features: user.features ?? [],
-      email: user.email,
-    }),
+    JSON.stringify({ license_key: user.license_key }),
     { status: 200, headers: CORS_HEADERS },
   );
 });

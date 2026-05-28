@@ -1,14 +1,12 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// ── Env vars (set in Supabase dashboard → Edge Functions → Secrets) ──────────
 const LEMON_SQUEEZY_WEBHOOK_SECRET = Deno.env.get("LEMON_SQUEEZY_WEBHOOK_SECRET")!;
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 const PRO_FEATURES = ["impact", "review-pr", "generate-tests", "mcp"];
 
-// ── HMAC-SHA256 signature verification ──────────────────────────────────────
 async function verifySignature(rawBody: string, signature: string): Promise<boolean> {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
@@ -30,15 +28,42 @@ function hexToBytes(hex: string): Uint8Array {
   return bytes;
 }
 
-// ── License key generator ────────────────────────────────────────────────────
 function generateLicenseKey(): string {
-  // Format: SC-XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX
-  const seg = () =>
-    Math.random().toString(36).slice(2, 10).toUpperCase().padEnd(8, "X");
-  return `SC-${seg()}-${seg()}-${seg()}-${seg()}`;
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  const hex = Array.from(bytes).map((b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+  return `SC-${hex.slice(0, 8)}-${hex.slice(8, 16)}-${hex.slice(16, 24)}-${hex.slice(24, 32)}`;
 }
 
-// ── Main handler ─────────────────────────────────────────────────────────────
+// Maps Lemon Squeezy subscription status → our DB status fields
+function mapStatus(lsStatus: string): { userStatus: string; subStatus: string } {
+  switch (lsStatus) {
+    case "active":
+    case "past_due":
+    case "on_trial":
+      return { userStatus: "active", subStatus: "active" };
+    case "cancelled":
+      // Grace period: user keeps access until period end
+      return { userStatus: "active", subStatus: "cancelled" };
+    case "expired":
+    case "unpaid":
+      return { userStatus: "inactive", subStatus: "expired" };
+    default:
+      return { userStatus: "active", subStatus: "active" };
+  }
+}
+
+const HANDLED_EVENTS = new Set([
+  "order_created",
+  "subscription_created",
+  "subscription_updated",
+  "subscription_resumed",
+  "subscription_cancelled",
+  "subscription_expired",
+  "subscription_payment_failed",
+  "subscription_payment_success",
+]);
+
 serve(async (req: Request) => {
   if (req.method !== "POST") {
     return new Response("Method not allowed", { status: 405 });
@@ -47,7 +72,6 @@ serve(async (req: Request) => {
   const rawBody = await req.text();
   const signature = req.headers.get("X-Signature") ?? "";
 
-  // Validate signature
   const valid = await verifySignature(rawBody, signature);
   if (!valid) {
     console.error("Invalid webhook signature");
@@ -66,14 +90,7 @@ serve(async (req: Request) => {
   const eventName = meta?.event_name as string;
   const eventId = meta?.event_id as string | undefined;
 
-  // Only process relevant events
-  const HANDLED_EVENTS = [
-    "order_created",
-    "subscription_created",
-    "subscription_updated",
-    "subscription_resumed",
-  ];
-  if (!HANDLED_EVENTS.includes(eventName)) {
+  if (!HANDLED_EVENTS.has(eventName)) {
     return new Response(JSON.stringify({ received: true, skipped: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
@@ -81,16 +98,16 @@ serve(async (req: Request) => {
   }
 
   const attributes = data?.attributes as Record<string, unknown>;
-  const email = (attributes?.user_email ?? attributes?.user_name) as string;
+  const email = (attributes?.user_email ?? attributes?.customer_email) as string;
 
   if (!email || !email.includes("@")) {
-    console.error("No valid email in payload", { eventName, attributes });
+    console.error("No valid email in payload", { eventName });
     return new Response("Bad request: no email", { status: 400 });
   }
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-  // ── Idempotency: skip if event already processed ─────────────────────────
+  // Idempotency: skip already-processed events
   if (eventId) {
     const { data: existingEvent } = await supabase
       .from("license_events")
@@ -106,8 +123,31 @@ serve(async (req: Request) => {
     }
   }
 
-  // ── Upsert user ──────────────────────────────────────────────────────────
-  // Fetch existing user first to preserve license_key if already set
+  // Parse subscription period end from LS payload
+  const renewsAt = attributes?.renews_at as string | null ?? null;
+  const endsAt = attributes?.ends_at as string | null ?? null;
+  const currentPeriodEnd = renewsAt ?? endsAt ?? null;
+
+  // Determine status from event type and LS subscription status field
+  const lsSubStatus = attributes?.status as string | undefined;
+
+  let userStatus = "active";
+  let subStatus = "active";
+
+  if (eventName === "subscription_cancelled") {
+    userStatus = "active"; // grace period until expiry
+    subStatus = "cancelled";
+  } else if (eventName === "subscription_expired") {
+    userStatus = "inactive";
+    subStatus = "expired";
+  } else if (eventName === "subscription_updated" && lsSubStatus) {
+    const mapped = mapStatus(lsSubStatus);
+    userStatus = mapped.userStatus;
+    subStatus = mapped.subStatus;
+  }
+  // order_created, subscription_created, subscription_resumed, payment_success → active
+
+  // Fetch existing user to preserve license_key
   const { data: existingUser } = await supabase
     .from("users")
     .select("id, license_key")
@@ -115,15 +155,21 @@ serve(async (req: Request) => {
     .maybeSingle();
 
   const licenseKey = existingUser?.license_key ?? generateLicenseKey();
+  const isNewUser = !existingUser;
 
-  const userPayload = {
+  const userPayload: Record<string, unknown> = {
     email: email.toLowerCase(),
-    plan: "pro",
-    status: "active",
-    features: PRO_FEATURES,
+    plan: userStatus === "inactive" ? "free" : "pro",
+    status: userStatus,
+    features: userStatus === "inactive" ? [] : PRO_FEATURES,
     license_key: licenseKey,
     updated_at: new Date().toISOString(),
   };
+
+  // Set upgraded_at only when activating for the first time
+  if (isNewUser || (userStatus === "active" && !existingUser)) {
+    userPayload.upgraded_at = new Date().toISOString();
+  }
 
   const { data: upsertedUser, error: upsertError } = await supabase
     .from("users")
@@ -141,7 +187,16 @@ serve(async (req: Request) => {
 
   const userId = upsertedUser?.id ?? existingUser?.id;
 
-  // ── Insert license event ─────────────────────────────────────────────────
+  await supabase.from("subscriptions").upsert(
+    {
+      user_id: userId,
+      provider: "lemonsqueezy",
+      status: subStatus,
+      current_period_end: currentPeriodEnd,
+    },
+    { onConflict: "user_id" },
+  );
+
   const { error: eventError } = await supabase.from("license_events").insert({
     user_id: userId,
     event_type: eventName,
@@ -150,13 +205,12 @@ serve(async (req: Request) => {
   });
 
   if (eventError) {
-    // Non-fatal — log but don't fail the webhook
     console.error("Failed to insert license_event", eventError);
   }
 
-  console.log(`Processed ${eventName} for ${email}`);
+  console.log(`Processed ${eventName} for ${email} → user:${userStatus} sub:${subStatus}`);
 
-  return new Response(JSON.stringify({ received: true, email }), {
+  return new Response(JSON.stringify({ received: true }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
   });
