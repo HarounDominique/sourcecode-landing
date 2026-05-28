@@ -86,10 +86,9 @@ serve(async (req: Request) => {
     );
   }
 
-  // Cancelled subscriptions: check grace period hasn't ended
-  if (subscription.status === "cancelled" && subscription.current_period_end) {
-    const periodEnd = new Date(subscription.current_period_end);
-    if (periodEnd < new Date()) {
+  // Cancelled subscriptions: block if period ended or period_end unknown
+  if (subscription.status === "cancelled") {
+    if (!subscription.current_period_end || new Date(subscription.current_period_end) < new Date()) {
       return new Response(
         JSON.stringify({ valid: false, error: "Subscription expired" }),
         { status: 403, headers: CORS_HEADERS },

@@ -80,10 +80,9 @@ serve(async (req: Request) => {
     );
   }
 
-  // Cancelled with expired grace period
-  if (subscription.status === "cancelled" && subscription.current_period_end) {
-    const periodEnd = new Date(subscription.current_period_end);
-    if (periodEnd < new Date()) {
+  // Cancelled with expired or missing grace period
+  if (subscription.status === "cancelled") {
+    if (!subscription.current_period_end || new Date(subscription.current_period_end) < new Date()) {
       return new Response(
         JSON.stringify({ error: "No active license found for this email" }),
         { status: 404, headers: CORS_HEADERS },
