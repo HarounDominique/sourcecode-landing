@@ -1524,12 +1524,12 @@
         <h3>Impact analysis takes hours</h3>
         <p>Tracing a change through 3,000–8,000 Java files across service layers, DAO boundaries, and HTTP endpoints is a day's work — done manually.</p>
       </div>
-      <div class="problem-item">
+      <div class="problem-item" data-i18n-block="problem.onboard">
         <div class="problem-icon">ERR_ONBOARD_DEBT</div>
         <h3>Monoliths are opaque to new agents</h3>
         <p>No orientation, no entry points, no architecture map. Every new agent session starts cold against the same codebase it already analyzed yesterday.</p>
       </div>
-      <div class="problem-item">
+      <div class="problem-item" data-i18n-block="problem.pr">
         <div class="problem-icon">ERR_PR_BLIND</div>
         <h3>PR reviews miss blast radius</h3>
         <p>Reviewers see diffs, not transitive dependencies. A one-line change to a core service can silently break 11 endpoints and 2 transactional boundaries.</p>
@@ -1542,20 +1542,20 @@
 <div class="divider"></div>
 <section id="solution" style="background: var(--bg-1);">
   <div class="container fade-in">
-    <p class="section-label">the solution</p>
+    <p class="section-label" data-i18n="label.solution">the solution</p>
     <div class="solution-grid">
       <div>
-        <h2>Two hard problems. One command each.</h2>
-        <p style="margin-top: 1rem; margin-bottom: 2rem;">sourcecode builds a deterministic symbol graph of your Spring repository — locally, statically, no LLM calls — and answers the two questions that matter most before touching production code.</p>
-        <a href="#quickstart" class="btn-primary" style="display:inline-flex">Get started →</a>
+        <h2 data-i18n="solution.h2">Two hard problems. One command each.</h2>
+        <p style="margin-top: 1rem; margin-bottom: 2rem;" data-i18n="solution.p">sourcecode builds a deterministic symbol graph of your Spring repository — locally, statically, no LLM calls — and answers the two questions that matter most before touching production code.</p>
+        <a href="#quickstart" class="btn-primary" style="display:inline-flex" data-i18n="hero.cta">Get started →</a>
       </div>
       <ul class="solution-list">
-        <li><strong>What breaks if I change X?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact ClassName /repo</code> traverses the reverse dependency graph and returns every HTTP endpoint, transactional boundary, and downstream module in the blast cone</li>
-        <li><strong>What does this codebase do?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> produces a bounded, AI-ready context bundle: entry points, architecture, key files, confidence, and gaps. Feed directly to Claude or GPT-4</li>
-        <li><strong>Spring DI-aware traversal</strong> — understands interface injection patterns. Targets interfaces, not impls. Returns real blast radius where grep returns zero</li>
-        <li><strong>Persistent structural cache</strong> — second run is ~9–17× faster. At 0.3s per call, sourcecode becomes constant infrastructure inside agent loops, not an occasional tool</li>
-        <li><strong>Bounded token output</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> is 2,500–4,000 tokens; <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> is 4,500–5,500. Never blows your context window</li>
-        <li><strong>Confidence-aware</strong> — every analysis includes detection quality and gap list. Agents know what they don't know before they act</li>
+        <li data-i18n-block="solution.li1"><strong>What breaks if I change X?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact ClassName /repo</code> traverses the reverse dependency graph and returns every HTTP endpoint, transactional boundary, and downstream module in the blast cone</li>
+        <li data-i18n-block="solution.li2"><strong>What does this codebase do?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> produces a bounded, AI-ready context bundle: entry points, architecture, key files, confidence, and gaps. Feed directly to Claude or GPT-4</li>
+        <li data-i18n-block="solution.li3"><strong>Spring DI-aware traversal</strong> — understands interface injection patterns. Targets interfaces, not impls. Returns real blast radius where grep returns zero</li>
+        <li data-i18n-block="solution.li4"><strong>Persistent structural cache</strong> — second run is ~9–17× faster. At 0.3s per call, sourcecode becomes constant infrastructure inside agent loops, not an occasional tool</li>
+        <li data-i18n-block="solution.li5"><strong>Bounded token output</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> is 2,500–4,000 tokens; <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> is 4,500–5,500. Never blows your context window</li>
+        <li data-i18n-block="solution.li6"><strong>Confidence-aware</strong> — every analysis includes detection quality and gap list. Agents know what they don't know before they act</li>
       </ul>
     </div>
   </div>
@@ -1565,9 +1565,9 @@
 <div class="divider"></div>
 <section id="quickstart">
   <div class="container fade-in">
-    <p class="section-label">quickstart</p>
-    <h2>Up and running in 60 seconds.</h2>
-    <p style="margin-top: 0.5rem; max-width: 480px;">No config files. No account required. Works on any Java/Spring repo.</p>
+    <p class="section-label" data-i18n="label.quickstart">quickstart</p>
+    <h2 data-i18n="quickstart.h2">Up and running in 60 seconds.</h2>
+    <p style="margin-top: 0.5rem; max-width: 480px;" data-i18n="quickstart.p">No config files. No account required. Works on any Java/Spring repo.</p>
     <div class="qs-steps">
       <div class="qs-step">
         <div class="qs-num">01</div>
@@ -1616,22 +1616,22 @@
 <div class="divider"></div>
 <section id="cache" style="background: var(--bg-1);">
   <div class="container fade-in">
-    <p class="section-label">cache system</p>
-    <h2>The cache is not a performance optimization.<br>It is what makes sourcecode infrastructure.</h2>
-    <p style="max-width:620px; margin-top:0.5rem;">At 2.7s per call, you use sourcecode occasionally. At 0.3s, you call it before every edit, before every PR review, before every test run — without batching manually. Sub-second context retrieval changes the cost model for agent workflows.</p>
+    <p class="section-label" data-i18n="label.cache">cache system</p>
+    <h2 data-i18n="cache.h2">The cache is not a performance optimization.<br>It is what makes sourcecode infrastructure.</h2>
+    <p style="max-width:620px; margin-top:0.5rem;" data-i18n="cache.p">At 2.7s per call, you use sourcecode occasionally. At 0.3s, you call it before every edit, before every PR review, before every test run — without batching manually. Sub-second context retrieval changes the cost model for agent workflows.</p>
 
     <div style="margin-top:3.5rem; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
       <div>
-        <h3 style="margin-bottom:1.25rem; font-size:1rem; font-weight:600;">Two cache layers</h3>
+        <h3 style="margin-bottom:1.25rem; font-size:1rem; font-weight:600;" data-i18n="cache.layers.h3">Two cache layers</h3>
         <ul class="solution-list">
-          <li><strong>L1 — core cache:</strong> analysis result keyed by <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">(git_sha, analysis_flags)</code>. Survives format changes — regenerate <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> or <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> views from the same core without re-scanning.</li>
-          <li><strong>L2 — view cache:</strong> rendered output keyed by <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">(core_hash, view_flags)</code>. Exact output match — zero recomputation on hit.</li>
-          <li><strong>Invalidation:</strong> keyed on git commit SHA. Any commit invalidates the core for that repo. Uncommitted changes are not cached.</li>
-          <li><strong>Lookup order:</strong> L2 exact hit → L1 hit + view rebuild → full cold scan.</li>
+          <li data-i18n-block="cache.li1"><strong>L1 — core cache:</strong> analysis result keyed by <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">(git_sha, analysis_flags)</code>. Survives format changes — regenerate <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> or <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> views from the same core without re-scanning.</li>
+          <li data-i18n-block="cache.li2"><strong>L2 — view cache:</strong> rendered output keyed by <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">(core_hash, view_flags)</code>. Exact output match — zero recomputation on hit.</li>
+          <li data-i18n-block="cache.li3"><strong>Invalidation:</strong> keyed on git commit SHA. Any commit invalidates the core for that repo. Uncommitted changes are not cached.</li>
+          <li data-i18n-block="cache.li4"><strong>Lookup order:</strong> L2 exact hit → L1 hit + view rebuild → full cold scan.</li>
         </ul>
       </div>
       <div>
-        <h3 style="margin-bottom:1.25rem; font-size:1rem; font-weight:600;">Cache commands</h3>
+        <h3 style="margin-bottom:1.25rem; font-size:1rem; font-weight:600;" data-i18n="cache.cmds.h3">Cache commands</h3>
         <div class="code-block">
           <div><span class="comment"># Inspect cache state</span></div>
           <div><span class="prompt">$</span> <span class="cmd">sourcecode cache status</span></div>
@@ -1677,40 +1677,40 @@
 <div class="divider"></div>
 <section id="usecases" style="background: var(--bg-0);">
   <div class="container fade-in">
-    <p class="section-label">use cases</p>
-    <h2>Fits every stage of the engineering lifecycle.</h2>
+    <p class="section-label" data-i18n="label.usecases">use cases</p>
+    <h2 data-i18n="usecases.h2">Fits every stage of the engineering lifecycle.</h2>
     <div class="cards-grid">
-      <div class="card">
+      <div class="card" data-i18n-block="card.prerefactor">
         <div class="card-tag">pre-refactor</div>
         <h3>Before touching a class <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3>
         <p>Run <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact OrderService /repo</code> before any refactor. Know exactly how many endpoints, transactional boundaries, and modules are in the blast cone — before writing a line.</p>
       </div>
-      <div class="card">
+      <div class="card" data-i18n-block="card.pr">
         <div class="card-tag">pr review</div>
         <h3>Risk-aware PR reviews</h3>
         <p>Generate a structured risk summary for every PR: changed modules, test coverage gaps, blast radius of changed classes, and a CI decision field for automated gates. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>
       </div>
-      <div class="card">
+      <div class="card" data-i18n-block="card.bug">
         <div class="card-tag">bug triage</div>
         <h3>Symptom-driven bug triage</h3>
         <p>Feed a symptom string and get a risk-ranked file list correlated by keyword, path, content, and git history. Cut triage time from hours to minutes. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>
       </div>
-      <div class="card">
+      <div class="card" data-i18n-block="card.agent">
         <div class="card-tag">claude · gpt-4</div>
         <h3>AI agent context injection</h3>
         <p>Start every agent session with bounded, accurate context. After the first cold scan, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> return in ~0.3s from cache — cheap enough to call before every edit, not just once per session.</p>
       </div>
-      <div class="card">
+      <div class="card" data-i18n-block="card.ci">
         <div class="card-tag">ci / cd</div>
         <h3>CI/CD integration</h3>
         <p>Content-hash cache makes reruns ~9–17× faster. Parse <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">test_coverage_risk</code> fields for automated PR gates with zero extra tooling.</p>
       </div>
-      <div class="card">
+      <div class="card" data-i18n-block="card.onboard">
         <div class="card-tag">onboarding</div>
         <h3>Codebase onboarding</h3>
         <p>New engineers and AI agents get entry points, architecture summary, key files, and gap list in one command. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> — then ask anything. Free.</p>
       </div>
-      <div class="card">
+      <div class="card" data-i18n-block="card.mcp">
         <div class="card-tag">mcp · cursor · claude</div>
         <h3>Live agent context server <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3>
         <p>Run <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode mcp init</code> once. Claude Desktop and Cursor get live access to impact analysis, endpoint surface, and codebase context without manual CLI calls.</p>
@@ -1723,50 +1723,50 @@
 <div class="divider"></div>
 <section id="commands">
   <div class="container fade-in">
-    <p class="section-label">commands</p>
-    <h2>Eight commands. Each answers a specific engineering question.</h2>
+    <p class="section-label" data-i18n="label.commands">commands</p>
+    <h2 data-i18n="commands.h2">Eight commands. Each answers a specific engineering question.</h2>
     <div class="feature-grid">
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.impact">
         <span class="feature-field">sourcecode impact</span>
         <h3>Blast-radius analysis <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
         <p>Traverse the reverse dependency graph for any class. Returns direct callers, transitive callers, affected HTTP endpoints, transactional boundaries, cross-module impact, and a 0–100 risk score. Always target the interface in Spring Boot — not the implementation.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.onboard">
         <span class="feature-field">sourcecode onboard</span>
         <h3>Codebase orientation <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3>
         <p>Bounded AI-ready context bundle: entry points, architecture summary, key files, confidence level, and gaps. Designed for injection as agent system prompt at session start.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.endpoints">
         <span class="feature-field">sourcecode endpoints</span>
         <h3>REST API surface</h3>
         <p>Extracts all Spring MVC and JAX-RS endpoint methods. Returns HTTP method, path, controller, and handler. Useful for auditing API surface before migrations or security reviews.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.reviewpr">
         <span class="feature-field">sourcecode review-pr</span>
         <h3>PR risk assessment <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
         <p>Changed files, risk ranking, test coverage gaps, affected modules, and blast radius of changed classes. Returns a <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> field for CI/CD gates.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.fixbug">
         <span class="feature-field">sourcecode fix-bug</span>
         <h3>Bug triage context <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
         <p>Feed a symptom string, get a risk-ranked file list correlated by keyword extraction, path matching, content analysis, and git commit correlation. Full evidence chain in <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">symptom_explain</code>.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.modernize">
         <span class="feature-field">sourcecode modernize</span>
         <h3>Modernization planning <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
         <p>Identifies high-coupling nodes (risky to change), dead zone candidates (safe to remove), and subsystem tangles. Quantified by fan-in degree across the symbol graph.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.context">
         <span class="feature-field">--compact / --agent</span>
         <h3>AI context modes</h3>
         <p><code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> gives a 2,500–4,000 token summary with <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">transactional_boundaries</code> for Spring. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> adds file relevance and architecture detail at 4,500–5,500 tokens.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.repoIR">
         <span class="feature-field">sourcecode repo-ir</span>
         <h3>Symbol-level IR</h3>
         <p>Deterministic symbol graph: classes, methods, import/injection edges, Spring roles, subsystems. Use <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--summary-only</code> (~20K tokens) unless you need the full graph for downstream tooling.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item" data-i18n-block="cmd.mcp">
         <span class="feature-field">sourcecode mcp</span>
         <h3>MCP server integration <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
         <p>Run sourcecode as a live MCP server for Claude Desktop and Cursor. AI agents can query impact, endpoints, and context through the protocol — no manual CLI calls, no token-stuffing. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode mcp init</code> to set up.</p>
@@ -1779,9 +1779,9 @@
 <div class="divider"></div>
 <section id="benchmarks">
   <div class="container fade-in">
-    <p class="section-label">benchmarks</p>
-    <h2>Cache performance — measured on real repos.</h2>
-    <p style="max-width:520px; margin-top:0.5rem;">Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on content hashes — invalidated only when source changes. On repeated agent sessions against the same codebase, nearly every invocation is a cache hit.</p>
+    <p class="section-label" data-i18n="label.benchmarks">benchmarks</p>
+    <h2 data-i18n="benchmarks.h2">Cache performance — measured on real repos.</h2>
+    <p style="max-width:520px; margin-top:0.5rem;" data-i18n="benchmarks.p">Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on content hashes — invalidated only when source changes. On repeated agent sessions against the same codebase, nearly every invocation is a cache hit.</p>
 
     <div style="margin-top:3.5rem; display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:10px; overflow:hidden;">
       <!-- Header row -->
@@ -1842,35 +1842,35 @@
 <div class="divider"></div>
 <section id="principles" style="background: var(--bg-1);">
   <div class="container fade-in">
-    <p class="section-label">design philosophy</p>
-    <h2>Built on opinions. Held accountable to them.</h2>
+    <p class="section-label" data-i18n="label.principles">design philosophy</p>
+    <h2 data-i18n="principles.h2">Built on opinions. Held accountable to them.</h2>
     <div class="principles-grid">
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="principle.determinism">
         <div class="principle-key">determinism over approximation</div>
         <h3>Same repo, same output.</h3>
         <p>Every run on the same repository produces identical output. Agents, pipelines, and teams can cache it, diff it, and depend on it.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="principle.di">
         <div class="principle-key">interface-aware traversal</div>
         <h3>Spring DI is not a black box.</h3>
         <p>The dependency graph understands interface injection patterns. Query <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">OrderService</code> (interface), not <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">OrderServiceImpl</code>. Real blast radius, not grep results.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="principle.bounded">
         <div class="principle-key">bounded by default</div>
         <h3>Output fits in a context window.</h3>
         <p>Every AI-facing output mode (<code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code>, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code>, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">onboard</code>) is size-bounded. No silent context window overflow.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="principle.local">
         <div class="principle-key">local-first, privacy-respecting</div>
         <h3>No code leaves your machine.</h3>
         <p>No API keys required. No network requests. Fully offline. Analysis is entirely static and runs on your hardware.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="principle.composable">
         <div class="principle-key">composable, not monolithic</div>
         <h3>Output is infrastructure.</h3>
         <p>Pipe it, parse it with <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">jq</code>, inject it, gate on it. Structured JSON that works with any tool that reads stdin.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="principle.confidence">
         <div class="principle-key">confidence-aware</div>
         <h3>Honest about what it doesn't know.</h3>
         <p>Every analysis includes a confidence summary and gap list. JAX-RS subresource patterns, SPI architectures, and programmatic security are flagged — not silently wrong.</p>
@@ -1883,9 +1883,9 @@
 <div class="divider"></div>
 <section id="privacy">
   <div class="container fade-in">
-    <p class="section-label">privacy &amp; telemetry</p>
-    <h2>Transparent by default.</h2>
-    <p style="max-width: 520px; margin-top: 0.5rem;">Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Runs fully offline.</p>
+    <p class="section-label" data-i18n="label.privacy">privacy &amp; telemetry</p>
+    <h2 data-i18n="privacy.h2">Transparent by default.</h2>
+    <p style="max-width: 520px; margin-top: 0.5rem;" data-i18n="privacy.p">Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Runs fully offline.</p>
     <div class="privacy-box">
       <div class="privacy-header">
         <div class="dot"></div>
@@ -1894,23 +1894,23 @@
       <div class="privacy-rows">
         <div class="privacy-row">
           <span class="privacy-status status-safe">NEVER</span>
-          <span class="privacy-text">Source code contents, file bodies, or repository data</span>
+          <span class="privacy-text" data-i18n="privacy.row1">Source code contents, file bodies, or repository data</span>
         </div>
         <div class="privacy-row">
           <span class="privacy-status status-safe">NEVER</span>
-          <span class="privacy-text">Credentials, API keys, tokens, or secrets</span>
+          <span class="privacy-text" data-i18n="privacy.row2">Credentials, API keys, tokens, or secrets</span>
         </div>
         <div class="privacy-row">
           <span class="privacy-status status-safe">NEVER</span>
-          <span class="privacy-text">Repository names, paths, or directory structures</span>
+          <span class="privacy-text" data-i18n="privacy.row3">Repository names, paths, or directory structures</span>
         </div>
         <div class="privacy-row">
           <span class="privacy-status status-optout">OPT-IN</span>
-          <span class="privacy-text">Anonymous usage metrics (invocation count, flags used, error types)</span>
+          <span class="privacy-text" data-i18n="privacy.row4">Anonymous usage metrics (invocation count, flags used, error types)</span>
         </div>
         <div class="privacy-row">
           <span class="privacy-status status-optout">OPT-IN</span>
-          <span class="privacy-text">Aggregated performance telemetry (run duration, output size buckets)</span>
+          <span class="privacy-text" data-i18n="privacy.row5">Aggregated performance telemetry (run duration, output size buckets)</span>
         </div>
       </div>
     </div>
@@ -1924,21 +1924,21 @@
 <div class="divider"></div>
 <section id="oss" style="background: var(--bg-1);">
   <div class="container fade-in">
-    <p class="section-label">open source</p>
+    <p class="section-label" data-i18n="label.oss">open source</p>
     <div class="oss-inner">
       <div>
-        <h2>Built in the open. Owned by the community.</h2>
-        <p style="margin-top: 1rem;">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
-        <p style="margin-top: 0.75rem;">The OSS core — onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds impact analysis, PR review, bug triage, modernization planning, and MCP integration. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
+        <h2 data-i18n="oss.h2">Built in the open. Owned by the community.</h2>
+        <p style="margin-top: 1rem;" data-i18n="oss.p1">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
+        <p style="margin-top: 0.75rem;" data-i18n="oss.p2">The OSS core — onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds impact analysis, PR review, bug triage, modernization planning, and MCP integration. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
         <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-          <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary">View on GitHub →</a>
-          <a href="https://github.com/HarounDominique/sourcecode/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary">Contributing guide</a>
+          <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary" data-i18n="oss.cta1">View on GitHub →</a>
+          <a href="https://github.com/HarounDominique/sourcecode/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary" data-i18n="oss.cta2">Contributing guide</a>
         </div>
       </div>
       <div class="oss-stats">
         <div class="oss-stat">
           <span class="oss-stat-val">Apache 2.0</span>
-          <span class="oss-stat-label">license · free for commercial use</span>
+          <span class="oss-stat-label" data-i18n="oss.stat1">license · free for commercial use</span>
         </div>
         <div class="oss-stat">
           <span class="oss-stat-val">v1.33.0</span>
@@ -1946,7 +1946,7 @@
         </div>
         <div class="oss-stat">
           <span class="oss-stat-val">Python 3.10+</span>
-          <span class="oss-stat-label">no API keys · no network calls</span>
+          <span class="oss-stat-label" data-i18n="oss.stat3">no API keys · no network calls</span>
         </div>
         <div class="oss-stat">
           <span class="oss-stat-val">Java/Spring</span>
@@ -1961,35 +1961,35 @@
 <div class="divider"></div>
 <section id="why" style="background: var(--bg-1);">
   <div class="container fade-in">
-    <p class="section-label">why it's different</p>
-    <h2>What nothing else gives you.</h2>
+    <p class="section-label" data-i18n="label.why">why it's different</p>
+    <h2 data-i18n="why.h2">What nothing else gives you.</h2>
     <div class="principles-grid">
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="why.di">
         <div class="principle-key">Spring DI-aware traversal</div>
         <h3>Real blast radius, not grep results.</h3>
         <p>Spring callers inject via <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">@Autowired</code> on the interface. Grep returns zero. sourcecode traverses the injection graph and returns the actual callers — 74 where grep finds none.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="why.speed">
         <div class="principle-key">sub-second at 7,000+ files</div>
         <h3>0.3s on Broadleaf. 0.6s on Keycloak.</h3>
         <p>Content-hash cache. Cold scan: 10.5s for Keycloak (7,885 Java files), 2.7s for BroadleafCommerce (2,985 files). Cache hit: 0.6s and 0.3s respectively. Safe to run in CI on every commit.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="why.tokens">
         <div class="principle-key">token-bounded output</div>
         <h3>Fits in any context window.</h3>
         <p><code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> is 2,500–4,000 tokens. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> is 4,500–5,500. Deterministic — same repo, same output. Pipe directly to Claude or GPT-4 without overflow risk.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="why.local">
         <div class="principle-key">no cloud, no API key</div>
         <h3>Fully local. Source code never leaves.</h3>
         <p><code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">pip install sourcecode</code> and it works offline. No accounts, no usage limits, no network calls during analysis. Enterprise privacy requirements satisfied by default.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="why.confidence">
         <div class="principle-key">honest confidence signals</div>
         <h3>Every output says what it doesn't know.</h3>
         <p>Each analysis includes a <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">confidence_summary</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">analysis_gaps</code> list. JAX-RS patterns, SPI architectures, and programmatic security are flagged — not silently wrong.</p>
       </div>
-      <div class="principle-item">
+      <div class="principle-item" data-i18n-block="why.evidence">
         <div class="principle-key">evidence chain, not heuristics</div>
         <h3>Every file ranking shows its evidence.</h3>
         <p>Bug triage returns a full evidence chain per file: keyword match → path match → content match → git commit correlation. You can audit why each file ranked high — not a black box score.</p>
@@ -2002,9 +2002,9 @@
 <div class="divider"></div>
 <section id="pricing">
   <div class="container fade-in">
-    <p class="section-label">pricing</p>
-    <h2>Start free. Upgrade when the blast radius matters.</h2>
-    <p style="max-width:560px; margin-top:0.5rem;">sourcecode is open source and free for onboarding, endpoint mapping, and AI context. Pro adds impact analysis, PR review, bug triage, modernization, and MCP integration.</p>
+    <p class="section-label" data-i18n="label.pricing">pricing</p>
+    <h2 data-i18n="pricing.h2">Start free. Upgrade when the blast radius matters.</h2>
+    <p style="max-width:560px; margin-top:0.5rem;" data-i18n="pricing.p">sourcecode is open source and free for onboarding, endpoint mapping, and AI context. Pro adds impact analysis, PR review, bug triage, modernization, and MCP integration.</p>
     <div class="pricing-grid">
 
       <!-- FREE -->
@@ -2012,16 +2012,16 @@
         <div class="pricing-plan-row">
           <span class="pricing-plan">Free</span>
         </div>
-        <p class="pricing-tagline">local analysis &amp; AI context</p>
+        <p class="pricing-tagline" data-i18n="pricing.free.tagline">local analysis &amp; AI context</p>
         <div class="pricing-price">
           <span class="pricing-amount">€0</span>
-          <span class="pricing-period"> / forever</span>
+          <span class="pricing-period" data-i18n="pricing.free.period"> / forever</span>
         </div>
-        <p class="pricing-desc">Onboard to any Java/Spring codebase, map its API surface, and feed structured context to AI agents — deterministic, offline, no lock-in.</p>
+        <p class="pricing-desc" data-i18n="pricing.free.desc">Onboard to any Java/Spring codebase, map its API surface, and feed structured context to AI agents — deterministic, offline, no lock-in.</p>
         <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary pricing-cta">
           pip install sourcecode
         </a>
-        <ul class="pricing-features">
+        <ul class="pricing-features" data-i18n-block="pricing.free.features">
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode onboard</code> — codebase orientation</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode endpoints</code> — REST surface mapping</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--compact</code> &amp; <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--agent</code> — AI-ready context modes</li>
@@ -2037,17 +2037,17 @@
         <div class="pricing-plan-row">
           <span class="pricing-plan">Pro</span>
         </div>
-        <p class="pricing-tagline">blast-radius &amp; workflow intelligence</p>
+        <p class="pricing-tagline" data-i18n="pricing.pro.tagline">blast-radius &amp; workflow intelligence</p>
         <div class="pricing-price">
           <span class="pricing-amount pricing-amount-pro">€29.99</span>
-          <span class="pricing-period"> / month</span>
+          <span class="pricing-period" data-i18n="pricing.pro.period"> / month</span>
         </div>
-        <p class="pricing-early-note">Early-access pricing locked in at launch.</p>
-        <p class="pricing-desc">Impact analysis, PR review, bug triage, and MCP integration for Java/Spring monoliths.</p>
-        <a href="https://sourcecodecli.lemonsqueezy.com/checkout/buy/99c8675f-b0e4-410e-b849-cf0f0c97f009" class="btn-primary pricing-cta" id="pro-checkout-btn">
+        <p class="pricing-early-note" data-i18n="pricing.pro.early">Early-access pricing locked in at launch.</p>
+        <p class="pricing-desc" data-i18n="pricing.pro.desc">Impact analysis, PR review, bug triage, and MCP integration for Java/Spring monoliths.</p>
+        <a href="https://sourcecodecli.lemonsqueezy.com/checkout/buy/99c8675f-b0e4-410e-b849-cf0f0c97f009" class="btn-primary pricing-cta" id="pro-checkout-btn" data-i18n="pricing.pro.cta">
           Upgrade to Pro →
         </a>
-        <ul class="pricing-features">
+        <ul class="pricing-features" data-i18n-block="pricing.pro.features">
           <li>Everything in Free</li>
           <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">impact</code> — blast-radius analysis</li>
           <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">review-pr</code> — PR risk ranking &amp; test gap detection</li>
@@ -2073,7 +2073,7 @@
       <li><a href="https://pypi.org/project/sourcecode" target="_blank" rel="noopener">PyPI</a></li>
       <li><a href="https://github.com/HarounDominique/sourcecode/blob/master/README.md" target="_blank" rel="noopener">Docs</a></li>
       <li><a href="https://github.com/HarounDominique/sourcecode/blob/master/LICENSE" target="_blank" rel="noopener">Apache 2.0</a></li>
-      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#privacy" data-i18n="footer.privacy">Privacy</a></li>
     </ul>
     <span class="footer-license">© 2025 sourcecode contributors</span>
   </div>
@@ -2096,6 +2096,161 @@
         root.setAttribute('data-theme', 'light');
         localStorage.setItem('sc-theme', 'light');
       }
+    });
+  })();
+
+  // ---- I18N ----
+  (function() {
+    var CS = 'style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)"';
+    var CP = 'style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)"';
+
+    var t = {
+      'nav.problem': { en: 'Problem', es: 'Problema' },
+      'nav.quickstart': { en: 'Quickstart', es: 'Inicio rápido' },
+      'nav.cache': { en: 'Cache', es: 'Caché' },
+      'nav.commands': { en: 'Commands', es: 'Comandos' },
+      'nav.benchmarks': { en: 'Benchmarks', es: 'Benchmarks' },
+      'nav.why': { en: 'Why', es: 'Por qué' },
+      'nav.pricing': { en: 'Pricing', es: 'Precios' },
+      'hero.h1': { en: 'Persistent structural context<br>for AI agent <em>workflows.</em>', es: 'Contexto estructural persistente<br>para <em>workflows</em> de agentes IA.' },
+      'hero.sub': { en: 'sourcecode builds and caches a structural model of your Java/Spring repository. Cold scan: 2–10s. Every subsequent call: sub-second. At 0.3s per call, it becomes constant infrastructure inside agent loops — not an occasional analysis tool.', es: 'sourcecode construye y cachea un modelo estructural de tu repositorio Java/Spring. Análisis en frío: 2–10s. Cada llamada posterior: sub-segundo. A 0.3s por llamada, se convierte en infraestructura constante dentro de bucles de agentes — no una herramienta de análisis ocasional.' },
+      'hero.cta': { en: 'Get started →', es: 'Comenzar →' },
+      'terminal.sub': { en: '↳ structured interpretation of real CLI output — as understood by an agent', es: '↳ interpretación estructurada de salida CLI real — tal como la entiende un agente' },
+      'label.problem': { en: 'the problem', es: 'el problema' },
+      'problem.h2': { en: 'Enterprise codebases slow AI agents down.', es: 'Las bases de código empresariales ralentizan a los agentes de IA.' },
+      'label.solution': { en: 'the solution', es: 'la solución' },
+      'solution.h2': { en: 'Two hard problems. One command each.', es: 'Dos problemas difíciles. Un comando cada uno.' },
+      'solution.p': { en: 'sourcecode builds a deterministic symbol graph of your Spring repository — locally, statically, no LLM calls — and answers the two questions that matter most before touching production code.', es: 'sourcecode construye un grafo de símbolos determinista de tu repositorio Spring — localmente, estáticamente, sin llamadas LLM — y responde las dos preguntas que más importan antes de tocar código en producción.' },
+      'label.quickstart': { en: 'quickstart', es: 'inicio rápido' },
+      'quickstart.h2': { en: 'Up and running in 60 seconds.', es: 'En marcha en 60 segundos.' },
+      'quickstart.p': { en: 'No config files. No account required. Works on any Java/Spring repo.', es: 'Sin archivos de configuración. Sin cuenta requerida. Funciona con cualquier repo Java/Spring.' },
+      'label.cache': { en: 'cache system', es: 'sistema de caché' },
+      'cache.h2': { en: 'The cache is not a performance optimization.<br>It is what makes sourcecode infrastructure.', es: 'La caché no es una optimización de rendimiento.<br>Es lo que convierte sourcecode en infraestructura.' },
+      'cache.p': { en: 'At 2.7s per call, you use sourcecode occasionally. At 0.3s, you call it before every edit, before every PR review, before every test run — without batching manually. Sub-second context retrieval changes the cost model for agent workflows.', es: 'A 2.7s por llamada, usas sourcecode ocasionalmente. A 0.3s, lo llamas antes de cada edición, cada revisión de PR, cada ejecución de tests — sin agrupar manualmente. La recuperación de contexto sub-segundo cambia el modelo de coste para los workflows de agentes.' },
+      'cache.layers.h3': { en: 'Two cache layers', es: 'Dos capas de caché' },
+      'cache.cmds.h3': { en: 'Cache commands', es: 'Comandos de caché' },
+      'label.usecases': { en: 'use cases', es: 'casos de uso' },
+      'usecases.h2': { en: 'Fits every stage of the engineering lifecycle.', es: 'Se adapta a cada fase del ciclo de vida de ingeniería.' },
+      'label.commands': { en: 'commands', es: 'comandos' },
+      'commands.h2': { en: 'Eight commands. Each answers a specific engineering question.', es: 'Ocho comandos. Cada uno responde una pregunta de ingeniería específica.' },
+      'label.benchmarks': { en: 'benchmarks', es: 'benchmarks' },
+      'benchmarks.h2': { en: 'Cache performance — measured on real repos.', es: 'Rendimiento de caché — medido en repos reales.' },
+      'benchmarks.p': { en: 'Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on content hashes — invalidated only when source changes. On repeated agent sessions against the same codebase, nearly every invocation is a cache hit.', es: 'Tiempos de análisis en frío y caché contra monolitos Spring de escala productiva open-source. Caché indexada por hashes de contenido — solo se invalida cuando cambia el código. En sesiones de agente repetidas contra el mismo codebase, prácticamente cada invocación es un cache hit.' },
+      'label.principles': { en: 'design philosophy', es: 'filosofía de diseño' },
+      'principles.h2': { en: 'Built on opinions. Held accountable to them.', es: 'Construido sobre principios. Responsable de ellos.' },
+      'label.privacy': { en: 'privacy &amp; telemetry', es: 'privacidad y telemetría' },
+      'privacy.h2': { en: 'Transparent by default.', es: 'Transparente por defecto.' },
+      'privacy.p': { en: 'Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Runs fully offline.', es: 'La telemetría es solo opt-in y está desactivada por defecto. Solo se recopilan metadatos de uso anónimos — nunca código fuente, rutas ni contenido de salida. Se ejecuta completamente offline.' },
+      'privacy.row1': { en: 'Source code contents, file bodies, or repository data', es: 'Contenidos de código fuente, cuerpos de archivo o datos del repositorio' },
+      'privacy.row2': { en: 'Credentials, API keys, tokens, or secrets', es: 'Credenciales, claves API, tokens o secretos' },
+      'privacy.row3': { en: 'Repository names, paths, or directory structures', es: 'Nombres de repositorio, rutas o estructuras de directorios' },
+      'privacy.row4': { en: 'Anonymous usage metrics (invocation count, flags used, error types)', es: 'Métricas de uso anónimas (invocaciones, flags usados, tipos de error)' },
+      'privacy.row5': { en: 'Aggregated performance telemetry (run duration, output size buckets)', es: 'Telemetría de rendimiento agregada (duración de ejecución, rangos de tamaño de salida)' },
+      'label.oss': { en: 'open source', es: 'código abierto' },
+      'oss.h2': { en: 'Built in the open. Owned by the community.', es: 'Construido en abierto. Propiedad de la comunidad.' },
+      'oss.p1': { en: 'sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.', es: 'sourcecode tiene licencia Apache 2.0. Úsalo en proyectos comerciales, haz fork, extiéndelo, construye sobre él. Sin restricciones, sin CLAs, sin trampas.' },
+      'oss.p2': { en: 'The OSS core — onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds impact analysis, PR review, bug triage, modernization planning, and MCP integration. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.', es: 'El núcleo OSS — contexto de onboarding, superficie de endpoints y modos de agente IA — permanece gratuito para siempre. Pro añade análisis de impacto, revisión de PR, triaje de bugs, planificación de modernización e integración MCP. Ver <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Precios</a>.' },
+      'oss.cta1': { en: 'View on GitHub →', es: 'Ver en GitHub →' },
+      'oss.cta2': { en: 'Contributing guide', es: 'Guía de contribución' },
+      'oss.stat1': { en: 'license · free for commercial use', es: 'licencia · gratis para uso comercial' },
+      'oss.stat3': { en: 'no API keys · no network calls', es: 'sin claves API · sin llamadas de red' },
+      'label.why': { en: "why it's different", es: 'por qué es diferente' },
+      'why.h2': { en: 'What nothing else gives you.', es: 'Lo que nada más te ofrece.' },
+      'label.pricing': { en: 'pricing', es: 'precios' },
+      'pricing.h2': { en: 'Start free. Upgrade when the blast radius matters.', es: 'Empieza gratis. Actualiza cuando el blast radius importa.' },
+      'pricing.p': { en: 'sourcecode is open source and free for onboarding, endpoint mapping, and AI context. Pro adds impact analysis, PR review, bug triage, modernization, and MCP integration.', es: 'sourcecode es open source y gratuito para onboarding, mapeo de endpoints y contexto IA. Pro añade análisis de impacto, revisión de PR, triaje de bugs, modernización e integración MCP.' },
+      'pricing.free.tagline': { en: 'local analysis &amp; AI context', es: 'análisis local y contexto IA' },
+      'pricing.free.period': { en: ' / forever', es: ' / siempre' },
+      'pricing.free.desc': { en: 'Onboard to any Java/Spring codebase, map its API surface, and feed structured context to AI agents — deterministic, offline, no lock-in.', es: 'Haz onboarding a cualquier codebase Java/Spring, mapea su superficie de API e inyecta contexto estructurado a agentes IA — determinista, offline, sin lock-in.' },
+      'pricing.pro.tagline': { en: 'blast-radius &amp; workflow intelligence', es: 'inteligencia de blast-radius y workflow' },
+      'pricing.pro.period': { en: ' / month', es: ' / mes' },
+      'pricing.pro.early': { en: 'Early-access pricing locked in at launch.', es: 'Precio de acceso anticipado bloqueado en el lanzamiento.' },
+      'pricing.pro.desc': { en: 'Impact analysis, PR review, bug triage, and MCP integration for Java/Spring monoliths.', es: 'Análisis de impacto, revisión de PR, triaje de bugs e integración MCP para monolitos Java/Spring.' },
+      'pricing.pro.cta': { en: 'Upgrade to Pro →', es: 'Actualizar a Pro →' },
+      'footer.privacy': { en: 'Privacy', es: 'Privacidad' }
+    };
+
+    var esBlocks = {
+      'problem.cold': '<div class="problem-icon">ERR_COLD_START</div><h3>Los agentes re-analizan en cada sesión</h3><p>Para un monolito grande de Java o TypeScript, la adquisición de contexto en frío tarda 5–15 segundos por invocación. Multiplicado por docenas de turnos de agente por hora — ese es tu cuello de botella de iteración, no el modelo.</p>',
+      'problem.di': '<div class="problem-icon">ERR_CHANGE_BLINDNESS</div><h3>Spring DI oculta los callers reales</h3><p>Los callers inyectan interfaces vía <code ' + CS + '>@Autowired</code>. Grep devuelve cero resultados. El blast radius real es invisible hasta que prod se rompe.</p>',
+      'problem.hours': '<div class="problem-icon">ERR_MANUAL_HOURS</div><h3>El análisis de impacto tarda horas</h3><p>Rastrear un cambio a través de 3.000–8.000 archivos Java entre capas de servicio, límites DAO y endpoints HTTP es el trabajo de un día — hecho manualmente.</p>',
+      'problem.onboard': '<div class="problem-icon">ERR_ONBOARD_DEBT</div><h3>Los monolitos son opacos para nuevos agentes</h3><p>Sin orientación, sin puntos de entrada, sin mapa de arquitectura. Cada nueva sesión de agente empieza en frío contra el mismo codebase que ya analizó ayer.</p>',
+      'problem.pr': '<div class="problem-icon">ERR_PR_BLIND</div><h3>Las revisiones de PR ignoran el blast radius</h3><p>Los revisores ven diffs, no dependencias transitivas. Un cambio de una línea en un servicio core puede silenciosamente romper 11 endpoints y 2 límites transaccionales.</p>',
+      'solution.li1': '<strong>¿Qué se rompe si cambio X?</strong> — <code ' + CS + '>sourcecode impact ClassName /repo</code> recorre el grafo de dependencias inverso y devuelve cada endpoint HTTP, límite transaccional y módulo downstream en el cono de impacto',
+      'solution.li2': '<strong>¿Qué hace este codebase?</strong> — <code ' + CS + '>sourcecode onboard /repo</code> produce un bundle de contexto acotado listo para IA: puntos de entrada, arquitectura, archivos clave, confianza y gaps. Inyecta directamente a Claude o GPT-4',
+      'solution.li3': '<strong>Traversal con conocimiento de Spring DI</strong> — entiende patrones de inyección de interfaces. Apunta a interfaces, no impls. Devuelve blast radius real donde grep devuelve cero',
+      'solution.li4': '<strong>Caché estructural persistente</strong> — la segunda ejecución es ~9–17× más rápida. A 0.3s por llamada, sourcecode se convierte en infraestructura constante dentro de bucles de agentes, no una herramienta ocasional',
+      'solution.li5': '<strong>Salida de tokens acotada</strong> — <code ' + CS + '>--compact</code> son 2.500–4.000 tokens; <code ' + CS + '>--agent</code> son 4.500–5.500. Nunca desborda tu ventana de contexto',
+      'solution.li6': '<strong>Confianza explícita</strong> — cada análisis incluye calidad de detección y lista de gaps. Los agentes saben lo que no saben antes de actuar',
+      'cache.li1': '<strong>L1 — caché core:</strong> resultado de análisis indexado por <code ' + CS + '>(git_sha, analysis_flags)</code>. Sobrevive cambios de formato — regenera vistas <code ' + CS + '>--compact</code> o <code ' + CS + '>--agent</code> del mismo core sin re-escanear.',
+      'cache.li2': '<strong>L2 — caché de vista:</strong> salida renderizada indexada por <code ' + CS + '>(core_hash, view_flags)</code>. Coincidencia exacta de salida — cero recomputación en cache hit.',
+      'cache.li3': '<strong>Invalidación:</strong> indexada por git commit SHA. Cualquier commit invalida el core de ese repo. Los cambios sin commit no se cachean.',
+      'cache.li4': '<strong>Orden de búsqueda:</strong> L2 hit exacto → L1 hit + reconstrucción de vista → análisis en frío completo.',
+      'card.prerefactor': '<div class="card-tag">pre-refactor</div><h3>Antes de tocar una clase <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3><p>Ejecuta <code ' + CS + '>sourcecode impact OrderService /repo</code> antes de cualquier refactor. Conoce exactamente cuántos endpoints, límites transaccionales y módulos están en el cono de impacto — antes de escribir una línea.</p>',
+      'card.pr': '<div class="card-tag">pr review</div><h3>Revisiones de PR con conciencia de riesgo</h3><p>Genera un resumen de riesgo estructurado para cada PR: módulos modificados, gaps de cobertura de tests, blast radius de las clases cambiadas, y un campo de decisión CI para gates automatizados. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>',
+      'card.bug': '<div class="card-tag">bug triage</div><h3>Triaje de bugs guiado por síntomas</h3><p>Proporciona una cadena de síntoma y obtén una lista de archivos ordenada por riesgo, correlacionada por keyword, ruta, contenido e historial git. Reduce el tiempo de triaje de horas a minutos. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>',
+      'card.agent': '<div class="card-tag">claude · gpt-4</div><h3>Inyección de contexto para agentes IA</h3><p>Inicia cada sesión de agente con contexto acotado y preciso. Tras el primer análisis en frío, <code ' + CS + '>--compact</code> y <code ' + CS + '>--agent</code> retornan en ~0.3s desde caché — suficientemente barato para llamar antes de cada edición, no solo una vez por sesión.</p>',
+      'card.ci': '<div class="card-tag">ci / cd</div><h3>Integración con CI/CD</h3><p>La caché por hash de contenido hace que las re-ejecuciones sean ~9–17× más rápidas. Parsea los campos <code ' + CS + '>ci_decision</code> y <code ' + CS + '>test_coverage_risk</code> para gates automatizados de PR sin herramientas adicionales.</p>',
+      'card.onboard': '<div class="card-tag">onboarding</div><h3>Onboarding de codebase</h3><p>Los nuevos ingenieros y agentes IA obtienen puntos de entrada, resumen de arquitectura, archivos clave y lista de gaps en un comando. <code ' + CS + '>sourcecode onboard /repo</code> — luego pregunta lo que quieras. Gratis.</p>',
+      'card.mcp': '<div class="card-tag">mcp · cursor · claude</div><h3>Servidor de contexto en vivo <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3><p>Ejecuta <code ' + CS + '>sourcecode mcp init</code> una vez. Claude Desktop y Cursor obtienen acceso en vivo al análisis de impacto, superficie de endpoints y contexto del codebase sin llamadas CLI manuales.</p>',
+      'cmd.impact': '<span class="feature-field">sourcecode impact</span><h3>Análisis de blast-radius <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Recorre el grafo de dependencias inverso para cualquier clase. Devuelve callers directos, callers transitivos, endpoints HTTP afectados, límites transaccionales, impacto cross-módulo y una puntuación de riesgo de 0–100. Apunta siempre a la interfaz en Spring Boot — no a la implementación.</p>',
+      'cmd.onboard': '<span class="feature-field">sourcecode onboard</span><h3>Orientación de codebase <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3><p>Bundle de contexto acotado listo para IA: puntos de entrada, resumen de arquitectura, archivos clave, nivel de confianza y gaps. Diseñado para inyección como system prompt de agente al inicio de sesión.</p>',
+      'cmd.endpoints': '<span class="feature-field">sourcecode endpoints</span><h3>Superficie de API REST</h3><p>Extrae todos los métodos de endpoint de Spring MVC y JAX-RS. Devuelve método HTTP, ruta, controlador y handler. Útil para auditar la superficie de API antes de migraciones o revisiones de seguridad.</p>',
+      'cmd.reviewpr': '<span class="feature-field">sourcecode review-pr</span><h3>Evaluación de riesgo de PR <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Archivos modificados, ranking de riesgo, gaps de cobertura de tests, módulos afectados y blast radius de clases modificadas. Devuelve un campo <code ' + CS + '>ci_decision</code> para gates de CI/CD.</p>',
+      'cmd.fixbug': '<span class="feature-field">sourcecode fix-bug</span><h3>Contexto para triaje de bugs <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Proporciona una cadena de síntoma, obtén una lista de archivos ordenada por riesgo correlacionada por extracción de keywords, coincidencia de rutas, análisis de contenido y correlación de commits git. Cadena de evidencia completa en <code ' + CS + '>symptom_explain</code>.</p>',
+      'cmd.modernize': '<span class="feature-field">sourcecode modernize</span><h3>Planificación de modernización <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Identifica nodos de alto acoplamiento (arriesgados de cambiar), candidatos a zona muerta (seguros de eliminar) y enredos de subsistemas. Cuantificado por grado de fan-in en el grafo de símbolos.</p>',
+      'cmd.context': '<span class="feature-field">--compact / --agent</span><h3>Modos de contexto IA</h3><p><code ' + CS + '>--compact</code> genera un resumen de 2.500–4.000 tokens con <code ' + CS + '>transactional_boundaries</code> para Spring. <code ' + CS + '>--agent</code> añade relevancia de archivos y detalle de arquitectura a 4.500–5.500 tokens.</p>',
+      'cmd.repoIR': '<span class="feature-field">sourcecode repo-ir</span><h3>IR a nivel de símbolos</h3><p>Grafo de símbolos determinista: clases, métodos, aristas de importación/inyección, roles Spring, subsistemas. Usa <code ' + CS + '>--summary-only</code> (~20K tokens) a menos que necesites el grafo completo para herramientas downstream.</p>',
+      'cmd.mcp': '<span class="feature-field">sourcecode mcp</span><h3>Integración con servidor MCP <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Ejecuta sourcecode como servidor MCP en vivo para Claude Desktop y Cursor. Los agentes IA pueden consultar impacto, endpoints y contexto mediante el protocolo — sin llamadas CLI manuales, sin relleno de tokens. <code ' + CS + '>sourcecode mcp init</code> para configurar.</p>',
+      'principle.determinism': '<div class="principle-key">determinismo sobre aproximación</div><h3>Mismo repo, misma salida.</h3><p>Cada ejecución sobre el mismo repositorio produce salida idéntica. Agentes, pipelines y equipos pueden cachearla, diferenciarla y depender de ella.</p>',
+      'principle.di': '<div class="principle-key">traversal con conocimiento de interfaces</div><h3>Spring DI no es una caja negra.</h3><p>El grafo de dependencias entiende los patrones de inyección de interfaces. Consulta <code ' + CS + '>OrderService</code> (interfaz), no <code ' + CS + '>OrderServiceImpl</code>. Blast radius real, no resultados de grep.</p>',
+      'principle.bounded': '<div class="principle-key">acotado por defecto</div><h3>La salida cabe en una ventana de contexto.</h3><p>Cada modo de salida orientado a IA (<code ' + CS + '>--compact</code>, <code ' + CS + '>--agent</code>, <code ' + CS + '>onboard</code>) está acotado en tamaño. Sin desbordamiento silencioso de ventana de contexto.</p>',
+      'principle.local': '<div class="principle-key">local primero, respetuoso con la privacidad</div><h3>Ningún código sale de tu máquina.</h3><p>Sin claves API. Sin peticiones de red. Totalmente offline. El análisis es completamente estático y se ejecuta en tu hardware.</p>',
+      'principle.composable': '<div class="principle-key">composable, no monolítico</div><h3>La salida es infraestructura.</h3><p>Pipéalo, parsea con <code ' + CS + '>jq</code>, inyéctalo, haz gates con él. JSON estructurado que funciona con cualquier herramienta que lea stdin.</p>',
+      'principle.confidence': '<div class="principle-key">consciente de la confianza</div><h3>Honesto sobre lo que no sabe.</h3><p>Cada análisis incluye un resumen de confianza y lista de gaps. Los patrones de subrecursos JAX-RS, arquitecturas SPI y seguridad programática se marcan explícitamente — no son silenciosamente incorrectos.</p>',
+      'why.di': '<div class="principle-key">Spring DI-aware traversal</div><h3>Blast radius real, no resultados de grep.</h3><p>Los callers de Spring inyectan vía <code ' + CS + '>@Autowired</code> sobre la interfaz. Grep devuelve cero. sourcecode recorre el grafo de inyección y devuelve los callers reales — 74 donde grep no encuentra ninguno.</p>',
+      'why.speed': '<div class="principle-key">sub-segundo con 7.000+ archivos</div><h3>0.3s en Broadleaf. 0.6s en Keycloak.</h3><p>Caché por hash de contenido. Análisis en frío: 10.5s para Keycloak (7.885 archivos Java), 2.7s para BroadleafCommerce (2.985 archivos). Cache hit: 0.6s y 0.3s respectivamente. Seguro para ejecutar en CI en cada commit.</p>',
+      'why.tokens': '<div class="principle-key">salida de tokens acotada</div><h3>Cabe en cualquier ventana de contexto.</h3><p><code ' + CS + '>--compact</code> son 2.500–4.000 tokens. <code ' + CS + '>--agent</code> son 4.500–5.500. Determinista — mismo repo, misma salida. Pipéalo directamente a Claude o GPT-4 sin riesgo de desbordamiento.</p>',
+      'why.local': '<div class="principle-key">sin cloud, sin clave API</div><h3>Completamente local. El código fuente nunca sale.</h3><p><code ' + CS + '>pip install sourcecode</code> y funciona offline. Sin cuentas, sin límites de uso, sin llamadas de red durante el análisis. Requisitos de privacidad empresarial satisfechos por defecto.</p>',
+      'why.confidence': '<div class="principle-key">señales de confianza honestas</div><h3>Cada salida dice lo que no sabe.</h3><p>Cada análisis incluye una <code ' + CS + '>confidence_summary</code> y lista <code ' + CS + '>analysis_gaps</code>. Los patrones JAX-RS, arquitecturas SPI y seguridad programática se marcan — no son silenciosamente incorrectos.</p>',
+      'why.evidence': '<div class="principle-key">cadena de evidencia, no heurísticas</div><h3>Cada ranking de archivos muestra su evidencia.</h3><p>El triaje de bugs devuelve una cadena de evidencia completa por archivo: coincidencia de keyword → coincidencia de ruta → coincidencia de contenido → correlación de commit git. Puedes auditar por qué cada archivo tiene puntuación alta — no es una puntuación de caja negra.</p>',
+      'pricing.free.features': '<li><code ' + CP + '>sourcecode onboard</code> — orientación del codebase</li><li><code ' + CP + '>sourcecode endpoints</code> — mapeo de superficie REST</li><li><code ' + CP + '>--compact</code> &amp; <code ' + CP + '>--agent</code> — modos de contexto para IA</li><li>Caché persistente por hash de contenido (~9–17× más rápido)</li><li>Sin cuenta, sin claves API, sin límites de uso</li><li>Se ejecuta completamente offline</li><li>Apache 2.0 — uso comercial permitido</li>',
+      'pricing.pro.features': '<li>Todo lo de Free</li><li class="feat-pro"><code ' + CP + '>impact</code> — análisis de blast-radius</li><li class="feat-pro"><code ' + CP + '>review-pr</code> — ranking de riesgo de PR y detección de gaps de tests</li><li class="feat-pro"><code ' + CP + '>fix-bug</code> — triaje de bugs guiado por síntomas</li><li class="feat-pro"><code ' + CP + '>modernize</code> — detección de acoplamiento y zonas muertas</li><li class="feat-pro"><code ' + CP + '>generate-tests</code> — análisis de gaps de tests</li><li class="feat-pro"><code ' + CP + '>ci_decision</code> — gating de merges en CI/CD</li><li class="feat-pro">Servidor MCP — integración de agentes en vivo (Claude Desktop, Cursor)</li><li class="feat-pro">Soporte prioritario</li>'
+    };
+
+    var enBlocks = {};
+    document.querySelectorAll('[data-i18n-block]').forEach(function(el) {
+      enBlocks[el.dataset.i18nBlock] = el.innerHTML;
+    });
+
+    function applyLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.dataset.i18n;
+        if (t[key] && t[key][lang]) el.innerHTML = t[key][lang];
+      });
+      document.querySelectorAll('[data-i18n-block]').forEach(function(el) {
+        var key = el.dataset.i18nBlock;
+        if (lang === 'es' && esBlocks[key]) {
+          el.innerHTML = esBlocks[key];
+        } else if (lang === 'en' && enBlocks[key]) {
+          el.innerHTML = enBlocks[key];
+        }
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('#langToggle .lang-opt').forEach(function(opt) {
+        opt.classList.toggle('active', opt.dataset.lang === lang);
+      });
+      localStorage.setItem('sc-lang', lang);
+    }
+
+    var savedLang = localStorage.getItem('sc-lang');
+    var browserEs = navigator.language && navigator.language.toLowerCase().startsWith('es');
+    var initLang = savedLang || (browserEs ? 'es' : 'en');
+    if (initLang === 'es') applyLang('es');
+
+    document.getElementById('langToggle').addEventListener('click', function() {
+      var current = localStorage.getItem('sc-lang') || 'en';
+      applyLang(current === 'es' ? 'en' : 'es');
     });
   })();
 
