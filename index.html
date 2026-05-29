@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sourcecode — AI-ready change intelligence for Java/Spring monoliths</title>
-  <meta name="description" content="Know what breaks before you touch it. sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds." />
-  <meta property="og:title" content="sourcecode — AI-ready change intelligence for Java/Spring monoliths" />
-  <meta property="og:description" content="Know what breaks before you touch it. sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds." />
+  <title>sourcecode — Persistent structural context for AI coding agents</title>
+  <meta name="description" content="sourcecode maintains a persistent structural cache of your Java/Spring repo. Cold scan once; sub-second on every subsequent agent session. No re-parsing. Local, offline, no API keys." />
+  <meta property="og:title" content="sourcecode — Persistent structural context for AI coding agents" />
+  <meta property="og:description" content="sourcecode maintains a persistent structural cache of your Java/Spring repo. Cold scan once; sub-second on every subsequent agent session. No re-parsing. Local, offline, no API keys." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://github.com/HarounDominique/sourcecode" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="sourcecode — AI-ready change intelligence for Java/Spring monoliths" />
-  <meta name="twitter:description" content="Know what breaks before you touch it. sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds." />
-  <meta name="keywords" content="Java Spring blast radius analysis, AI coding agents, impact analysis, Spring Boot, enterprise Java, codebase context, developer tooling, LLM infrastructure" />
+  <meta name="twitter:title" content="sourcecode — Persistent structural context for AI coding agents" />
+  <meta name="twitter:description" content="sourcecode maintains a persistent structural cache of your Java/Spring repo. Cold scan once; sub-second on every subsequent agent session. No re-parsing. Local, offline, no API keys." />
+  <meta name="keywords" content="Java Spring AI coding agents, persistent cache, sub-second context, impact analysis, Spring Boot, enterprise Java, codebase context, developer tooling, LLM infrastructure, agent workflow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -1092,6 +1092,7 @@
   <ul class="nav-links">
     <li><a href="#problem">Problem</a></li>
     <li><a href="#quickstart">Quickstart</a></li>
+    <li><a href="#cache">Cache</a></li>
     <li><a href="#commands">Commands</a></li>
     <li><a href="#benchmarks">Benchmarks</a></li>
     <li><a href="#why">Why</a></li>
@@ -1106,10 +1107,10 @@
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-badge">
-      <span>v1.31.32</span> · Java/Spring · Python 3.10+
+      <span>v1.33.0</span> · Java/Spring · Python 3.10+
     </div>
-    <h1>Know what breaks<br>before you <em>touch it.</em></h1>
-    <p class="hero-sub">sourcecode traverses your Spring dependency graph and returns every endpoint, transactional boundary, and downstream module affected by a change — in seconds. Deterministic, local, no API keys required.</p>
+    <h1>Persistent structural context<br>for AI agent <em>workflows.</em></h1>
+    <p class="hero-sub">sourcecode builds and caches a structural model of your Java/Spring repository. Cold scan: 2–10s. Every subsequent call: sub-second. At 0.3s per call, it becomes constant infrastructure inside agent loops — not an occasional analysis tool.</p>
     <div class="hero-ctas">
       <a href="#quickstart" class="btn-primary">Get started →</a>
       <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-secondary">
@@ -1135,7 +1136,7 @@
 
           <!-- command line -->
           <div><span class="t-prompt">❯</span> <span class="t-cmd">sourcecode impact <span class="t-key">OrderService</span> .</span></div>
-          <div class="t-done"><span class="t-val">✓</span> done (3.0s)</div>
+          <div class="t-done"><span class="t-val">✓</span> done (0.4s · cache hit)</div>
 
           <!-- ── summary ── -->
           <details class="t-sec" open>
@@ -1381,8 +1382,13 @@
 <section id="problem">
   <div class="container fade-in">
     <p class="section-label">the problem</p>
-    <h2>Enterprise Java monoliths resist change.</h2>
+    <h2>Enterprise codebases slow AI agents down.</h2>
     <div class="problem-grid">
+      <div class="problem-item">
+        <div class="problem-icon">ERR_COLD_START</div>
+        <h3>Agents re-parse on every session</h3>
+        <p>For a large Java or TypeScript monolith, cold context acquisition takes 5–15 seconds per invocation. Multiply by dozens of agent turns per hour — that's your iteration bottleneck, not the model.</p>
+      </div>
       <div class="problem-item">
         <div class="problem-icon">ERR_CHANGE_BLINDNESS</div>
         <h3>Spring DI hides real callers</h3>
@@ -1395,18 +1401,13 @@
       </div>
       <div class="problem-item">
         <div class="problem-icon">ERR_ONBOARD_DEBT</div>
-        <h3>Monoliths are opaque</h3>
-        <p>New engineers and AI agents face the same wall: no orientation, no entry points, no architecture map. Onboarding a large Spring codebase takes weeks.</p>
+        <h3>Monoliths are opaque to new agents</h3>
+        <p>No orientation, no entry points, no architecture map. Every new agent session starts cold against the same codebase it already analyzed yesterday.</p>
       </div>
       <div class="problem-item">
         <div class="problem-icon">ERR_PR_BLIND</div>
         <h3>PR reviews miss blast radius</h3>
         <p>Reviewers see diffs, not transitive dependencies. A one-line change to a core service can silently break 11 endpoints and 2 transactional boundaries.</p>
-      </div>
-      <div class="problem-item">
-        <div class="problem-icon">ERR_AI_NO_CONTEXT</div>
-        <h3>AI agents start from nothing</h3>
-        <p>Claude and GPT-4 can write Spring code fluently — but without structured context about <em>your</em> codebase, they hallucinate class names, paths, and architectural decisions.</p>
       </div>
     </div>
   </div>
@@ -1427,7 +1428,7 @@
         <li><strong>What breaks if I change X?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact ClassName /repo</code> traverses the reverse dependency graph and returns every HTTP endpoint, transactional boundary, and downstream module in the blast cone</li>
         <li><strong>What does this codebase do?</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode onboard /repo</code> produces a bounded, AI-ready context bundle: entry points, architecture, key files, confidence, and gaps. Feed directly to Claude or GPT-4</li>
         <li><strong>Spring DI-aware traversal</strong> — understands interface injection patterns. Targets interfaces, not impls. Returns real blast radius where grep returns zero</li>
-        <li><strong>Content-hash cache</strong> — second run on unchanged repo is 13–33× faster. Safe for CI pipelines</li>
+        <li><strong>Persistent structural cache</strong> — second run is ~9–17× faster. At 0.3s per call, sourcecode becomes constant infrastructure inside agent loops, not an occasional tool</li>
         <li><strong>Bounded token output</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> is 2,500–4,000 tokens; <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> is 4,500–5,500. Never blows your context window</li>
         <li><strong>Confidence-aware</strong> — every analysis includes detection quality and gap list. Agents know what they don't know before they act</li>
       </ul>
@@ -1452,7 +1453,7 @@
           <div><span class="comment"># or pip / pipx</span></div>
           <div><span class="prompt">$</span> <span class="cmd">pip install sourcecode</span></div>
           <div><span class="prompt">$</span> <span class="cmd">sourcecode version</span></div>
-          <div><span class="comment"># sourcecode 1.31.24</span></div>
+          <div><span class="comment"># sourcecode 1.33.0</span></div>
         </div>
       </div>
       <div class="qs-step">
@@ -1486,9 +1487,70 @@
   </div>
 </section>
 
+<!-- CACHE SYSTEM -->
+<div class="divider"></div>
+<section id="cache" style="background: var(--bg-1);">
+  <div class="container fade-in">
+    <p class="section-label">cache system</p>
+    <h2>The cache is not a performance optimization.<br>It is what makes sourcecode infrastructure.</h2>
+    <p style="max-width:620px; margin-top:0.5rem;">At 2.7s per call, you use sourcecode occasionally. At 0.3s, you call it before every edit, before every PR review, before every test run — without batching manually. Sub-second context retrieval changes the cost model for agent workflows.</p>
+
+    <div style="margin-top:3.5rem; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
+      <div>
+        <h3 style="margin-bottom:1.25rem; font-size:1rem; font-weight:600;">Two cache layers</h3>
+        <ul class="solution-list">
+          <li><strong>L1 — core cache:</strong> analysis result keyed by <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">(git_sha, analysis_flags)</code>. Survives format changes — regenerate <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> or <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> views from the same core without re-scanning.</li>
+          <li><strong>L2 — view cache:</strong> rendered output keyed by <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">(core_hash, view_flags)</code>. Exact output match — zero recomputation on hit.</li>
+          <li><strong>Invalidation:</strong> keyed on git commit SHA. Any commit invalidates the core for that repo. Uncommitted changes are not cached.</li>
+          <li><strong>Lookup order:</strong> L2 exact hit → L1 hit + view rebuild → full cold scan.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:1.25rem; font-size:1rem; font-weight:600;">Cache commands</h3>
+        <div class="code-block">
+          <div><span class="comment"># Inspect cache state</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode cache status</span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># Warm ahead of an agent session</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode cache warm</span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># Clear cache for a repo</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode cache clear --yes</span></div>
+          <div>&nbsp;</div>
+          <div><span class="comment"># Force fresh scan (CI, verification)</span></div>
+          <div><span class="prompt">$</span> <span class="cmd">sourcecode . <span class="flag">--compact</span> <span class="flag">--no-cache</span></span></div>
+        </div>
+        <p style="margin-top:1rem; font-size:0.825rem; color:var(--text-secondary);">Cache stored at <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent)">.sourcecode-cache/</code> inside each repo. Cache hits are silent — use <code style="font-family:var(--font-mono);font-size:0.85em;color:var(--accent)">cache status</code> to inspect size, hit keys, and last-warmed timestamp.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem; background:var(--bg-2); border:1px solid var(--border-active); border-radius:10px; padding:2rem 2.5rem;">
+      <p style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.5rem;">what changes at 0.3s vs 2.7s</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; margin-bottom:2rem;">
+        <div>
+          <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-secondary); margin-bottom:0.6rem;">At 2.7s per call</p>
+          <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.7;">You use sourcecode to occasionally inspect a repo. One call at session start, maybe once more mid-session. You batch calls and avoid redundant ones.</p>
+        </div>
+        <div>
+          <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--accent); opacity:0.85; margin-bottom:0.6rem;">At 0.3s per call</p>
+          <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.7;">You call sourcecode before every edit, every PR review, every test run. It becomes <strong style="color:var(--text-primary);">constant infrastructure</strong> inside agent loops — not a tool you batch around.</p>
+        </div>
+      </div>
+      <div class="code-block" style="background:var(--bg-3);">
+        <div><span class="comment"># agent loop at 0.3s/call — feasible as constant infrastructure</span></div>
+        <div><span class="cmd">agent loop iteration:</span></div>
+        <div><span class="cmd">  1. sourcecode . <span class="flag">--compact</span>                        <span class="comment"># 0.3s — instant structural context</span></span></div>
+        <div><span class="cmd">  2. sourcecode impact PaymentService . <span class="flag">--depth 1</span>   <span class="comment"># 0.4s — blast radius check</span></span></div>
+        <div><span class="cmd">  3. agent makes targeted change</span></div>
+        <div><span class="cmd">  4. repeat</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- USE CASES -->
 <div class="divider"></div>
-<section id="usecases" style="background: var(--bg-1);">
+<section id="usecases" style="background: var(--bg-0);">
   <div class="container fade-in">
     <p class="section-label">use cases</p>
     <h2>Fits every stage of the engineering lifecycle.</h2>
@@ -1511,12 +1573,12 @@
       <div class="card">
         <div class="card-tag">claude · gpt-4</div>
         <h3>AI agent context injection</h3>
-        <p>Start every agent session with bounded, accurate context. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> outputs fit in 2,500–5,500 tokens. No hallucinated class names.</p>
+        <p>Start every agent session with bounded, accurate context. After the first cold scan, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> return in ~0.3s from cache — cheap enough to call before every edit, not just once per session.</p>
       </div>
       <div class="card">
         <div class="card-tag">ci / cd</div>
         <h3>CI/CD integration</h3>
-        <p>Content-hash cache makes reruns 13–33× faster. Parse <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">test_coverage_risk</code> fields for automated PR gates with zero extra tooling.</p>
+        <p>Content-hash cache makes reruns ~9–17× faster. Parse <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> and <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">test_coverage_risk</code> fields for automated PR gates with zero extra tooling.</p>
       </div>
       <div class="card">
         <div class="card-tag">onboarding</div>
@@ -1593,8 +1655,8 @@
 <section id="benchmarks">
   <div class="container fade-in">
     <p class="section-label">benchmarks</p>
-    <h2>Measured on real enterprise Java repos.</h2>
-    <p style="max-width:520px; margin-top:0.5rem;">Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on file content hashes — invalidated only when source changes.</p>
+    <h2>Cache performance — measured on real repos.</h2>
+    <p style="max-width:520px; margin-top:0.5rem;">Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on content hashes — invalidated only when source changes. On repeated agent sessions against the same codebase, nearly every invocation is a cache hit.</p>
 
     <div style="margin-top:3.5rem; display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:10px; overflow:hidden;">
       <!-- Header row -->
@@ -1610,18 +1672,18 @@
       <div style="display:grid; grid-template-columns:1.4fr 0.8fr 1.1fr 0.8fr 1fr 1.1fr; gap:0; background:var(--bg-1); padding:1rem 1.5rem; transition:background 0.15s;" onmouseenter="this.style.background='var(--bg-2)'" onmouseleave="this.style.background='var(--bg-1)'">
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-primary);">BroadleafCommerce</span>
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">2,985</span>
-        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">2.9s</span>
-        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">0.20s</span>
-        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">~13×</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">2.7s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">0.3s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">~9×</span>
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">130</span>
       </div>
       <!-- Keycloak -->
       <div style="display:grid; grid-template-columns:1.4fr 0.8fr 1.1fr 0.8fr 1fr 1.1fr; gap:0; background:var(--bg-1); padding:1rem 1.5rem; transition:background 0.15s;" onmouseenter="this.style.background='var(--bg-2)'" onmouseleave="this.style.background='var(--bg-1)'">
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-primary);">Keycloak</span>
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">7,885</span>
-        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">9.0s</span>
-        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">0.27s</span>
-        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">~33×</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">10.5s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">0.6s</span>
+        <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">~17×</span>
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">693</span>
       </div>
     </div>
@@ -1754,7 +1816,7 @@
           <span class="oss-stat-label">license · free for commercial use</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">v1.31.32</span>
+          <span class="oss-stat-val">v1.33.0</span>
           <span class="oss-stat-label">pip install sourcecode · brew install sourcecode</span>
         </div>
         <div class="oss-stat">
@@ -1784,8 +1846,8 @@
       </div>
       <div class="principle-item">
         <div class="principle-key">sub-second at 7,000+ files</div>
-        <h3>Cached in 0.17s. No other tool does this.</h3>
-        <p>Content-hash cache. Cold scan: 9s for Keycloak (7,885 Java files). Cache hit: 0.17s. Safe to run in CI on every commit.</p>
+        <h3>0.3s on Broadleaf. 0.6s on Keycloak.</h3>
+        <p>Content-hash cache. Cold scan: 10.5s for Keycloak (7,885 Java files), 2.7s for BroadleafCommerce (2,985 files). Cache hit: 0.6s and 0.3s respectively. Safe to run in CI on every commit.</p>
       </div>
       <div class="principle-item">
         <div class="principle-key">token-bounded output</div>
@@ -1838,7 +1900,7 @@
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode onboard</code> — codebase orientation</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode endpoints</code> — REST surface mapping</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--compact</code> &amp; <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--agent</code> — AI-ready context modes</li>
-          <li>Content-hash cache (13–33× faster repeat runs)</li>
+          <li>Persistent content-hash cache (~9–17× faster repeat runs)</li>
           <li>No account, no API keys, no usage limits</li>
           <li>Runs fully offline</li>
           <li>Apache 2.0 — commercial use allowed</li>
