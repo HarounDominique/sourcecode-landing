@@ -1186,6 +1186,7 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      flex-shrink: 0;
     }
 
     .nav-hamburger {
@@ -1221,7 +1222,11 @@
       margin-bottom: 2rem;
     }
 
-    @media (max-width: 768px) {
+    /* broad safety net — prevents any text node from overflowing its container */
+    * { box-sizing: border-box; }
+    p, h1, h2, h3, li, span, a, div { overflow-wrap: break-word; word-break: break-word; }
+
+    @media (max-width: 960px) {
       .nav-hamburger { display: grid; }
       nav .nav-links {
         display: none;
@@ -1243,8 +1248,11 @@
       nav .nav-links a { display: block; padding: 0.75rem 1.5rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
       nav .nav-links li:last-child a { border-bottom: none; }
       nav .nav-links .nav-badge { display: inline-flex; margin: 0.5rem 1.5rem; border-bottom: none; }
+    }
+
+    @media (max-width: 768px) {
       .solution-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .oss-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .oss-inner { grid-template-columns: 1fr; gap: 2rem; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       h1 { font-size: 2.2rem; }
@@ -1252,6 +1260,13 @@
       .cache-compare { grid-template-columns: 1fr; gap: 1.5rem; }
       .bench-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
       .bench-table { min-width: 580px; }
+      /* oss-stat: long monospace strings → allow wrap */
+      .oss-stat { flex-wrap: wrap; row-gap: 0.25rem; font-size: 0.75rem; }
+      .oss-stat-label { font-size: 0.72rem; }
+      /* privacy row: reduce large lateral padding */
+      .privacy-row { padding: 0.85rem 1rem; }
+      /* card/feature/principle inner padding */
+      .problem-item, .card, .feature-item, .principle-item { padding: 1.5rem; }
     }
 
     @media (max-width: 520px) {
@@ -1263,11 +1278,10 @@
       .t-risk-row { flex-direction: column; }
       .t-stats-grid { grid-template-columns: repeat(2, 1fr); }
       .terminal-body { font-size: 0.72rem; padding: 1rem 1rem 1.25rem; }
-      .code-block { font-size: 0.75rem; }
-      .t-cmd, .t-key, .t-val, .t-str { word-break: break-all; }
+      .code-block { font-size: 0.75rem; padding: 0.85rem 1rem; }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 380px) {
       nav { padding: 0 1rem; }
       .nav-end { gap: 0.4rem; }
     }
@@ -1278,6 +1292,16 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">sourcecode</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#problem" data-i18n="nav.problem">Problem</a></li>
+    <li><a href="#quickstart" data-i18n="nav.quickstart">Quickstart</a></li>
+    <li><a href="#cache" data-i18n="nav.cache">Cache</a></li>
+    <li><a href="#commands" data-i18n="nav.commands">Commands</a></li>
+    <li><a href="#benchmarks" data-i18n="nav.benchmarks">Benchmarks</a></li>
+    <li><a href="#why" data-i18n="nav.why">Why</a></li>
+    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
+    <li><a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
+  </ul>
   <div class="nav-end">
     <button class="lang-toggle" id="langToggle" aria-label="Switch language">
       <span class="lang-opt" data-lang="es">ES</span>
@@ -1293,16 +1317,6 @@
       <svg class="ham-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
   </div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#problem" data-i18n="nav.problem">Problem</a></li>
-    <li><a href="#quickstart" data-i18n="nav.quickstart">Quickstart</a></li>
-    <li><a href="#cache" data-i18n="nav.cache">Cache</a></li>
-    <li><a href="#commands" data-i18n="nav.commands">Commands</a></li>
-    <li><a href="#benchmarks" data-i18n="nav.benchmarks">Benchmarks</a></li>
-    <li><a href="#why" data-i18n="nav.why">Why</a></li>
-    <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
-    <li><a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
-  </ul>
 </nav>
 
 <!-- HERO -->
