@@ -1181,18 +1181,88 @@
     .pricing-features li.feat-pro { color: var(--text-primary); }
 
     /* RESPONSIVE */
+    .nav-end {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-hamburger {
+      display: none;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0;
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .nav-hamburger:hover { border-color: var(--border-hover); color: var(--text-primary); }
+    .nav-hamburger .ham-close { display: none; }
+    .nav-hamburger.open .ham-open { display: none; }
+    .nav-hamburger.open .ham-close { display: block; }
+
+    .cache-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3.5rem;
+    }
+    .cache-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
     @media (max-width: 768px) {
-      nav .nav-links { display: none; }
+      .nav-hamburger { display: grid; }
+      nav .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        position: absolute;
+        top: 60px; left: 0; right: 0;
+        background: rgba(10,10,10,0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 0;
+        gap: 0;
+        z-index: 99;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      [data-theme="light"] nav .nav-links { background: rgba(250,250,250,0.98); }
+      nav .nav-links.open { display: flex; }
+      nav .nav-links li { width: 100%; }
+      nav .nav-links a { display: block; padding: 0.75rem 1.5rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+      nav .nav-links li:last-child a { border-bottom: none; }
+      nav .nav-links .nav-badge { display: inline-flex; margin: 0.5rem 1.5rem; border-bottom: none; }
       .solution-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .oss-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       h1 { font-size: 2.2rem; }
+      .cache-split { grid-template-columns: 1fr; gap: 2rem; }
+      .cache-compare { grid-template-columns: 1fr; gap: 1.5rem; }
+      .bench-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .bench-table { min-width: 580px; }
     }
 
     @media (max-width: 520px) {
       section { padding: 5rem 1.25rem; }
       .hero { padding: 8rem 1.25rem 4rem; }
+      h1 { font-size: 1.85rem; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-secondary { width: 100%; justify-content: center; }
+      .t-risk-row { flex-direction: column; }
+      .t-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .terminal-body { font-size: 0.72rem; padding: 1rem 1rem 1.25rem; }
+      .code-block { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -1201,7 +1271,22 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">sourcecode</a>
-  <ul class="nav-links">
+  <div class="nav-end">
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+      <span class="lang-opt" data-lang="es">ES</span>
+      <span class="lang-sep">/</span>
+      <span class="lang-opt active" data-lang="en">EN</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+      <svg class="ham-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="ham-close" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#problem" data-i18n="nav.problem">Problem</a></li>
     <li><a href="#quickstart" data-i18n="nav.quickstart">Quickstart</a></li>
     <li><a href="#cache" data-i18n="nav.cache">Cache</a></li>
@@ -1210,19 +1295,6 @@
     <li><a href="#why" data-i18n="nav.why">Why</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
     <li><a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="nav-badge">GitHub ↗</a></li>
-    <li>
-      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
-        <span class="lang-opt" data-lang="es">ES</span>
-        <span class="lang-sep">/</span>
-        <span class="lang-opt active" data-lang="en">EN</span>
-      </button>
-    </li>
-    <li>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </li>
   </ul>
 </nav>
 
@@ -1620,7 +1692,7 @@
     <h2 data-i18n="cache.h2">The cache is not a performance optimization.<br>It is what makes sourcecode infrastructure.</h2>
     <p style="max-width:620px; margin-top:0.5rem;" data-i18n="cache.p">At 2.7s per call, you use sourcecode occasionally. At 0.3s, you call it before every edit, before every PR review, before every test run — without batching manually. Sub-second context retrieval changes the cost model for agent workflows.</p>
 
-    <div style="margin-top:3.5rem; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
+    <div class="cache-split">
       <div>
         <h3 style="margin-bottom:1.25rem; font-size:1rem; font-weight:600;" data-i18n="cache.layers.h3">Two cache layers</h3>
         <ul class="solution-list">
@@ -1651,7 +1723,7 @@
 
     <div style="margin-top:3rem; background:var(--bg-2); border:1px solid var(--border-active); border-radius:10px; padding:2rem 2.5rem;">
       <p style="font-family:var(--font-mono); font-size:0.65rem; color:var(--text-muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.5rem;">what changes at 0.3s vs 2.7s</p>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; margin-bottom:2rem;">
+      <div class="cache-compare">
         <div>
           <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-secondary); margin-bottom:0.6rem;">At 2.7s per call</p>
           <p style="font-size:0.875rem; color:var(--text-secondary); line-height:1.7;">You use sourcecode to occasionally inspect a repo. One call at session start, maybe once more mid-session. You batch calls and avoid redundant ones.</p>
@@ -1783,7 +1855,8 @@
     <h2 data-i18n="benchmarks.h2">Cache performance — measured on real repos.</h2>
     <p style="max-width:520px; margin-top:0.5rem;" data-i18n="benchmarks.p">Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on content hashes — invalidated only when source changes. On repeated agent sessions against the same codebase, nearly every invocation is a cache hit.</p>
 
-    <div style="margin-top:3.5rem; display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:10px; overflow:hidden;">
+    <div class="bench-scroll" style="margin-top:3.5rem;">
+    <div class="bench-table" style="display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:10px; overflow:hidden;">
       <!-- Header row -->
       <div style="display:grid; grid-template-columns:1.4fr 0.8fr 1.1fr 0.8fr 1fr 1.1fr; gap:0; background:var(--bg-2); padding:0.75rem 1.5rem;">
         <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;">Repo</span>
@@ -1811,6 +1884,7 @@
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--accent-green);">~17×</span>
         <span style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-secondary);">693</span>
       </div>
+    </div>
     </div>
 
     <div style="margin-top:2.5rem; display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:1px; background:var(--border); border-radius:10px; overflow:hidden;">
@@ -2251,6 +2325,23 @@
     document.getElementById('langToggle').addEventListener('click', function() {
       var current = localStorage.getItem('sc-lang') || 'en';
       applyLang(current === 'es' ? 'en' : 'es');
+    });
+  })();
+
+  (function() {
+    var btn = document.getElementById('navHamburger');
+    var menu = document.getElementById('navLinks');
+    btn.addEventListener('click', function() {
+      var isOpen = menu.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen);
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
     });
   })();
 
