@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sourcecode — Persistent structural context for AI coding agents</title>
-  <meta name="description" content="sourcecode maintains a persistent structural cache of your Java/Spring repo. Cold scan once; sub-second on every subsequent agent session. No re-parsing. Local, offline, no API keys." />
-  <meta property="og:title" content="sourcecode — Persistent structural context for AI coding agents" />
-  <meta property="og:description" content="sourcecode maintains a persistent structural cache of your Java/Spring repo. Cold scan once; sub-second on every subsequent agent session. No re-parsing. Local, offline, no API keys." />
+  <meta name="description" content="sourcecode detects Spring TX anomalies, traces systemic impact chains with security enrichment, and maps event topology — locally, statically, no API keys. Sub-second from cache." />
+  <meta property="og:title" content="sourcecode — Spring semantic analysis and impact intelligence for AI agents" />
+  <meta property="og:description" content="sourcecode detects Spring TX anomalies, traces systemic impact chains with security enrichment, and maps event topology — locally, statically, no API keys. Sub-second from cache." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://github.com/HarounDominique/sourcecode" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -1325,10 +1325,10 @@
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-badge">
-      <span>v1.33.0</span> · Java/Spring · Python 3.10+
+      <span>v1.35.4</span> · Java/Spring · Python 3.10+
     </div>
-    <h1 data-i18n="hero.h1">Persistent structural context<br>for AI agent <em>workflows.</em></h1>
-    <p class="hero-sub" data-i18n="hero.sub">sourcecode builds and caches a structural model of your Java/Spring repository. Cold scan: 2–10s. Every subsequent call: sub-second. At 0.3s per call, it becomes constant infrastructure inside agent loops — not an occasional analysis tool.</p>
+    <h1 data-i18n="hero.h1">Spring semantic analysis<br>and impact intelligence for <em>AI agents.</em></h1>
+    <p class="hero-sub" data-i18n="hero.sub">sourcecode builds a deterministic semantic model of your Java/Spring repository. Detects TX anomalies, traces systemic blast radius with security enrichment, maps event topology — locally, statically, no API keys. Sub-second from cache.</p>
     <div class="hero-ctas">
       <a href="#quickstart" class="btn-primary" data-i18n="hero.cta">Get started →</a>
       <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-secondary">
@@ -1627,6 +1627,11 @@
         <h3>PR reviews miss blast radius</h3>
         <p>Reviewers see diffs, not transitive dependencies. A one-line change to a core service can silently break 11 endpoints and 2 transactional boundaries.</p>
       </div>
+      <div class="problem-item" data-i18n-block="problem.tx">
+        <div class="problem-icon">ERR_TX_ANOMALY</div>
+        <h3>TX anomalies survive code review</h3>
+        <p><code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">@Transactional</code> on a private method. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">readOnly=true</code> boundary reaching a write. Exception swallowing silencing rollbacks. These don't appear in stack traces until production breaks.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1649,6 +1654,8 @@
         <li data-i18n-block="solution.li4"><strong>Persistent structural cache</strong> — second run is ~9–17× faster. At 0.3s per call, sourcecode becomes constant infrastructure inside agent loops, not an occasional tool</li>
         <li data-i18n-block="solution.li5"><strong>Bounded token output</strong> — <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--compact</code> is 2,500–4,000 tokens; <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--agent</code> is 4,500–5,500. Never blows your context window</li>
         <li data-i18n-block="solution.li6"><strong>Confidence-aware</strong> — every analysis includes detection quality and gap list. Agents know what they don't know before they act</li>
+        <li data-i18n-block="solution.li7"><strong>Spring semantic audit</strong> — detects TX propagation bugs (TX-001..005) and security surface anomalies (SEC-001..003) that survive code review and only surface in production. Free.</li>
+        <li data-i18n-block="solution.li8"><strong>Event topology mapping</strong> — traces Spring ApplicationEvent publisher→consumer chains with transaction phase context. Reveals hidden AFTER_COMMIT dependencies and event-driven blast radius.</li>
       </ul>
     </div>
   </div>
@@ -1671,7 +1678,7 @@
           <div><span class="comment"># or pip / pipx</span></div>
           <div><span class="prompt">$</span> <span class="cmd">pip install sourcecode</span></div>
           <div><span class="prompt">$</span> <span class="cmd">sourcecode version</span></div>
-          <div><span class="comment"># sourcecode 1.33.0</span></div>
+          <div><span class="comment"># sourcecode 1.35.4</span></div>
         </div>
       </div>
       <div class="qs-step">
@@ -1817,8 +1824,18 @@
 <section id="commands">
   <div class="container fade-in">
     <p class="section-label" data-i18n="label.commands">commands</p>
-    <h2 data-i18n="commands.h2">Eight commands. Each answers a specific engineering question.</h2>
+    <h2 data-i18n="commands.h2">Ten commands. Each answers a specific engineering question.</h2>
     <div class="feature-grid">
+      <div class="feature-item" data-i18n-block="cmd.springaudit">
+        <span class="feature-field">sourcecode spring-audit</span>
+        <h3>Spring semantic audit <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3>
+        <p>Detects TX-001..005 (proxy bypass, nested transactions, readOnly propagation, exception swallowing) and SEC-001..003 (unsecured endpoints, CVE-2025-41248 @PreAuthorize inheritance, @Transactional on controllers). Structured findings with severity, evidence, and fix hints. Java/Spring only.</p>
+      </div>
+      <div class="feature-item" data-i18n-block="cmd.impactchain">
+        <span class="feature-field">sourcecode impact-chain</span>
+        <h3>Impact chain + event topology <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3>
+        <p>Systemic blast radius enriched with TX boundary (propagation/isolation/readOnly), security surfaces (per-endpoint policy + SEC finding IDs), and TX/SEC findings at every hop. Add <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--type events</code> to map publisher → event → consumer chains with AFTER_COMMIT/BEFORE_COMMIT TX phase context.</p>
+      </div>
       <div class="feature-item" data-i18n-block="cmd.impact">
         <span class="feature-field">sourcecode impact</span>
         <h3>Blast-radius analysis <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
@@ -2024,7 +2041,7 @@
       <div>
         <h2 data-i18n="oss.h2">Built in the open. Owned by the community.</h2>
         <p style="margin-top: 1rem;" data-i18n="oss.p1">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
-        <p style="margin-top: 0.75rem;" data-i18n="oss.p2">The OSS core — onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds impact analysis, PR review, bug triage, modernization planning, and MCP integration. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
+        <p style="margin-top: 0.75rem;" data-i18n="oss.p2">The OSS core — onboarding context, endpoint surface, Spring semantic audit, impact chain, event topology, and AI agent modes — stays free forever. Pro adds full blast-radius intelligence, PR review, bug triage, and modernization planning. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
         <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary" data-i18n="oss.cta1">View on GitHub →</a>
           <a href="https://github.com/HarounDominique/sourcecode/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary" data-i18n="oss.cta2">Contributing guide</a>
@@ -2036,7 +2053,7 @@
           <span class="oss-stat-label" data-i18n="oss.stat1">license · free for commercial use</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">v1.33.0</span>
+          <span class="oss-stat-val">v1.35.4</span>
           <span class="oss-stat-label">pip install sourcecode · brew install sourcecode</span>
         </div>
         <div class="oss-stat">
@@ -2207,8 +2224,8 @@
       'nav.benchmarks': { en: 'Benchmarks', es: 'Benchmarks' },
       'nav.why': { en: 'Why', es: 'Por qué' },
       'nav.pricing': { en: 'Pricing', es: 'Precios' },
-      'hero.h1': { en: 'Persistent structural context<br>for AI agent <em>workflows.</em>', es: 'Contexto estructural persistente<br>para <em>workflows</em> de agentes IA.' },
-      'hero.sub': { en: 'sourcecode builds and caches a structural model of your Java/Spring repository. Cold scan: 2–10s. Every subsequent call: sub-second. At 0.3s per call, it becomes constant infrastructure inside agent loops — not an occasional analysis tool.', es: 'sourcecode construye y cachea un modelo estructural de tu repositorio Java/Spring. Análisis en frío: 2–10s. Cada llamada posterior: sub-segundo. A 0.3s por llamada, se convierte en infraestructura constante dentro de bucles de agentes — no una herramienta de análisis ocasional.' },
+      'hero.h1': { en: 'Spring semantic analysis<br>and impact intelligence for <em>AI agents.</em>', es: 'Análisis semántico Spring<br>e inteligencia de impacto para <em>agentes IA.</em>' },
+      'hero.sub': { en: 'sourcecode builds a deterministic semantic model of your Java/Spring repository. Detects TX anomalies, traces systemic blast radius with security enrichment, maps event topology — locally, statically, no API keys. Sub-second from cache.', es: 'sourcecode construye un modelo semántico determinista de tu repositorio Java/Spring. Detecta anomalías TX, traza el blast radius sistémico con enriquecimiento de seguridad, mapea topología de eventos — localmente, estáticamente, sin API keys. Sub-segundo desde caché.' },
       'hero.cta': { en: 'Get started →', es: 'Comenzar →' },
       'terminal.sub': { en: '↳ structured interpretation of real CLI output — as understood by an agent', es: '↳ interpretación estructurada de salida CLI real — tal como la entiende un agente' },
       'label.problem': { en: 'the problem', es: 'el problema' },
@@ -2253,7 +2270,7 @@
       'why.h2': { en: 'What nothing else gives you.', es: 'Lo que nada más te ofrece.' },
       'label.pricing': { en: 'pricing', es: 'precios' },
       'pricing.h2': { en: 'Start free. Upgrade when the blast radius matters.', es: 'Empieza gratis. Actualiza cuando el blast radius importa.' },
-      'pricing.p': { en: 'sourcecode is open source and free for onboarding, endpoint mapping, and AI context. Pro adds impact analysis, PR review, bug triage, modernization, and MCP integration.', es: 'sourcecode es open source y gratuito para onboarding, mapeo de endpoints y contexto IA. Pro añade análisis de impacto, revisión de PR, triaje de bugs, modernización e integración MCP.' },
+      'pricing.p': { en: 'sourcecode is open source and free for onboarding, endpoint mapping, Spring semantic audit, impact chain, event topology, and AI context. Pro adds full blast-radius intelligence, PR review, bug triage, and modernization planning.', es: 'sourcecode es open source y gratuito para onboarding, mapeo de endpoints, auditoría semántica Spring, impact chain, topología de eventos y contexto IA. Pro añade inteligencia completa de blast radius, revisión de PR, triaje de bugs y planificación de modernización.' },
       'pricing.free.tagline': { en: 'local analysis &amp; AI context', es: 'análisis local y contexto IA' },
       'pricing.free.period': { en: ' / forever', es: ' / siempre' },
       'pricing.free.desc': { en: 'Onboard to any Java/Spring codebase, map its API surface, and feed structured context to AI agents — deterministic, offline, no lock-in.', es: 'Haz onboarding a cualquier codebase Java/Spring, mapea su superficie de API e inyecta contexto estructurado a agentes IA — determinista, offline, sin lock-in.' },
