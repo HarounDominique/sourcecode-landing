@@ -1704,7 +1704,7 @@
           <div><span class="comment"># pipe directly into Claude / GPT-4</span></div>
           <div><span class="prompt">$</span> <span class="cmd">sourcecode /repo <span class="flag">--agent</span> <span class="pipe">|</span> claude -p <span class="flag">"Review the architecture"</span></span></div>
           <div>&nbsp;</div>
-          <div><span class="comment"># PR review risk + blast radius [Pro]</span></div>
+          <div><span class="comment"># PR review risk + blast radius (free up to 500 Java files)</span></div>
           <div><span class="prompt">$</span> <span class="cmd">sourcecode review-pr /repo <span class="flag">--since main</span></span></div>
         </div>
       </div>
@@ -1782,18 +1782,18 @@
     <div class="cards-grid">
       <div class="card" data-i18n-block="card.prerefactor">
         <div class="card-tag">pre-refactor</div>
-        <h3>Before touching a class <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3>
+        <h3>Before touching a class <span style="color:var(--accent);font-size:0.7em">[free ≤500 Java files]</span></h3>
         <p>Run <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode impact OrderService /repo</code> before any refactor. Know exactly how many endpoints, transactional boundaries, and modules are in the blast cone — before writing a line.</p>
       </div>
       <div class="card" data-i18n-block="card.pr">
         <div class="card-tag">pr review</div>
         <h3>Risk-aware PR reviews</h3>
-        <p>Generate a structured risk summary for every PR: changed modules, test coverage gaps, blast radius of changed classes, and a CI decision field for automated gates. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>
+        <p>Generate a structured risk summary for every PR: changed modules, test coverage gaps, blast radius of changed classes, and a CI decision field for automated gates. <span style="color:var(--accent);font-size:0.75em">[free ≤500 Java files]</span></p>
       </div>
       <div class="card" data-i18n-block="card.bug">
         <div class="card-tag">bug triage</div>
         <h3>Symptom-driven bug triage</h3>
-        <p>Feed a symptom string and get a risk-ranked file list correlated by keyword, path, content, and git history. Cut triage time from hours to minutes. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>
+        <p>Feed a symptom string and get a risk-ranked file list correlated by keyword, path, content, and git history. Cut triage time from hours to minutes. <span style="color:var(--accent);font-size:0.75em">[free ≤500 Java files]</span></p>
       </div>
       <div class="card" data-i18n-block="card.agent">
         <div class="card-tag">claude · gpt-4</div>
@@ -1812,7 +1812,7 @@
       </div>
       <div class="card" data-i18n-block="card.mcp">
         <div class="card-tag">mcp · cursor · claude</div>
-        <h3>Live agent context server <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3>
+        <h3>Live agent context server <span style="color:var(--accent-green);font-size:0.75em">[Free]</span></h3>
         <p>Run <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode mcp init</code> once. Claude Desktop and Cursor get live access to impact analysis, endpoint surface, and codebase context without manual CLI calls.</p>
       </div>
     </div>
@@ -1838,7 +1838,7 @@
       </div>
       <div class="feature-item" data-i18n-block="cmd.impact">
         <span class="feature-field">sourcecode impact</span>
-        <h3>Blast-radius analysis <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <h3>Blast-radius analysis <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3>
         <p>Traverse the reverse dependency graph for any class. Returns direct callers, transitive callers, affected HTTP endpoints, transactional boundaries, cross-module impact, and a 0–100 risk score. Always target the interface in Spring Boot — not the implementation.</p>
       </div>
       <div class="feature-item" data-i18n-block="cmd.onboard">
@@ -1853,17 +1853,17 @@
       </div>
       <div class="feature-item" data-i18n-block="cmd.reviewpr">
         <span class="feature-field">sourcecode review-pr</span>
-        <h3>PR risk assessment <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <h3>PR risk assessment <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3>
         <p>Changed files, risk ranking, test coverage gaps, affected modules, and blast radius of changed classes. Returns a <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">ci_decision</code> field for CI/CD gates.</p>
       </div>
       <div class="feature-item" data-i18n-block="cmd.fixbug">
         <span class="feature-field">sourcecode fix-bug</span>
-        <h3>Bug triage context <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <h3>Bug triage context <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3>
         <p>Feed a symptom string, get a risk-ranked file list correlated by keyword extraction, path matching, content analysis, and git commit correlation. Full evidence chain in <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">symptom_explain</code>.</p>
       </div>
       <div class="feature-item" data-i18n-block="cmd.modernize">
         <span class="feature-field">sourcecode modernize</span>
-        <h3>Modernization planning <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <h3>Modernization planning <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3>
         <p>Identifies high-coupling nodes (risky to change), dead zone candidates (safe to remove), and subsystem tangles. Quantified by fan-in degree across the symbol graph.</p>
       </div>
       <div class="feature-item" data-i18n-block="cmd.context">
@@ -1878,7 +1878,7 @@
       </div>
       <div class="feature-item" data-i18n-block="cmd.mcp">
         <span class="feature-field">sourcecode mcp</span>
-        <h3>MCP server integration <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3>
+        <h3>MCP server integration <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3>
         <p>Run sourcecode as a live MCP server for Claude Desktop and Cursor. AI agents can query impact, endpoints, and context through the protocol — no manual CLI calls, no token-stuffing. <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">sourcecode mcp init</code> to set up.</p>
       </div>
     </div>
@@ -2041,7 +2041,7 @@
       <div>
         <h2 data-i18n="oss.h2">Built in the open. Owned by the community.</h2>
         <p style="margin-top: 1rem;" data-i18n="oss.p1">sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.</p>
-        <p style="margin-top: 0.75rem;" data-i18n="oss.p2">The OSS core — onboarding context, endpoint surface, Spring semantic audit, impact chain, event topology, and AI agent modes — stays free forever. Pro adds full blast-radius intelligence, PR review, bug triage, and modernization planning. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
+        <p style="margin-top: 0.75rem;" data-i18n="oss.p2">The full toolkit — impact, PR review, bug triage, modernization, Spring audit, local MCP — is free on repos up to 500 Java files, forever. Pro unlocks the same commands on enterprise-scale monoliths and in CI/CD. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.</p>
         <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-primary" data-i18n="oss.cta1">View on GitHub →</a>
           <a href="https://github.com/HarounDominique/sourcecode/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn-secondary" data-i18n="oss.cta2">Contributing guide</a>
@@ -2115,8 +2115,8 @@
 <section id="pricing">
   <div class="container fade-in">
     <p class="section-label" data-i18n="label.pricing">pricing</p>
-    <h2 data-i18n="pricing.h2">Start free. Upgrade when the blast radius matters.</h2>
-    <p style="max-width:560px; margin-top:0.5rem;" data-i18n="pricing.p">sourcecode is open source and free for onboarding, endpoint mapping, and AI context. Pro adds impact analysis, PR review, bug triage, modernization, and MCP integration.</p>
+    <h2 data-i18n="pricing.h2">Free on every command. Pro when the monolith is big.</h2>
+    <p style="max-width:620px; margin-top:0.5rem;" data-i18n="pricing.p">Every command runs at full power for free on repos up to 500 Java files — impact, fix-bug, review-pr, modernize, all of it. Pro unlocks the same commands on enterprise-scale monoliths and in CI/CD automation. Non-Java repos are free at any size.</p>
     <div class="pricing-grid">
 
       <!-- FREE -->
@@ -2124,23 +2124,23 @@
         <div class="pricing-plan-row">
           <span class="pricing-plan">Free</span>
         </div>
-        <p class="pricing-tagline" data-i18n="pricing.free.tagline">local analysis &amp; AI context</p>
+        <p class="pricing-tagline" data-i18n="pricing.free.tagline">every command, small &amp; mid-size repos</p>
         <div class="pricing-price">
           <span class="pricing-amount">€0</span>
           <span class="pricing-period" data-i18n="pricing.free.period"> / forever</span>
         </div>
-        <p class="pricing-desc" data-i18n="pricing.free.desc">Onboard to any Java/Spring codebase, map its API surface, and feed structured context to AI agents — deterministic, offline, no lock-in.</p>
+        <p class="pricing-desc" data-i18n="pricing.free.desc">The full toolkit on any repo up to 500 Java files — blast radius, PR review, bug triage, modernization. Deterministic, offline, no account, no lock-in.</p>
         <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-secondary pricing-cta">
           pip install sourcecode
         </a>
         <ul class="pricing-features" data-i18n-block="pricing.free.features">
-          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode onboard</code> — codebase orientation</li>
-          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">sourcecode endpoints</code> — REST surface mapping</li>
+          <li><strong>Every command</strong>, full output, on repos ≤ 500 Java files</li>
+          <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">impact</code>, <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">fix-bug</code>, <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">review-pr</code>, <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">modernize</code> — included</li>
           <li><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--compact</code> &amp; <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">--agent</code> — AI-ready context modes</li>
+          <li>Local MCP server (<code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">mcp serve</code>) — Claude, Cursor, Copilot</li>
+          <li><strong>Non-Java repos free at any size</strong></li>
           <li>Persistent content-hash cache (~9–17× faster repeat runs)</li>
-          <li>No account, no API keys, no usage limits</li>
-          <li>Runs fully offline</li>
-          <li>Apache 2.0 — commercial use allowed</li>
+          <li>Offline, no API keys · Apache 2.0 — commercial use allowed</li>
         </ul>
       </div>
 
@@ -2149,25 +2149,24 @@
         <div class="pricing-plan-row">
           <span class="pricing-plan">Pro</span>
         </div>
-        <p class="pricing-tagline" data-i18n="pricing.pro.tagline">blast-radius &amp; workflow intelligence</p>
+        <p class="pricing-tagline" data-i18n="pricing.pro.tagline">enterprise monoliths &amp; CI/CD automation</p>
         <div class="pricing-price">
-          <span class="pricing-amount pricing-amount-pro">€29.99</span>
-          <span class="pricing-period" data-i18n="pricing.pro.period"> / month</span>
+          <span class="pricing-amount pricing-amount-pro">€19</span>
+          <span class="pricing-period" data-i18n="pricing.pro.period"> / month per dev</span>
         </div>
-        <p class="pricing-early-note" data-i18n="pricing.pro.early">Early-access pricing locked in at launch.</p>
-        <p class="pricing-desc" data-i18n="pricing.pro.desc">Impact analysis, PR review, bug triage, and MCP integration for Java/Spring monoliths.</p>
+        <p class="pricing-early-note" data-i18n="pricing.pro.early">or €190/year — save ~2 months.</p>
+        <p class="pricing-desc" data-i18n="pricing.pro.desc">The same commands, unlocked on Java monoliths above 500 files and in CI/CD. For engineers who live in large enterprise codebases.</p>
         <a href="https://sourcecodecli.lemonsqueezy.com/checkout/buy/99c8675f-b0e4-410e-b849-cf0f0c97f009" class="btn-primary pricing-cta" id="pro-checkout-btn" data-i18n="pricing.pro.cta">
           Upgrade to Pro →
         </a>
         <ul class="pricing-features" data-i18n-block="pricing.pro.features">
-          <li>Everything in Free</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">impact</code> — blast-radius analysis</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">review-pr</code> — PR risk ranking &amp; test gap detection</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">fix-bug</code> — symptom-driven bug triage</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">modernize</code> — coupling &amp; dead-zone detection</li>
-          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">generate-tests</code> — test gap analysis</li>
+          <li>Everything in Free, with no size limit</li>
+          <li class="feat-pro"><strong>All commands on monoliths &gt; 500 Java files</strong></li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">impact</code> / <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">fix-bug</code> / <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">review-pr</code> / <code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">modernize</code> — full output at scale</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">delta</code> — unlimited CI/CD automation</li>
+          <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">generate-tests</code> — test gap analysis at scale</li>
           <li class="feat-pro"><code style="font-family:var(--font-mono);font-size:0.8em;color:var(--accent)">ci_decision</code> — CI/CD merge gating</li>
-          <li class="feat-pro">MCP server — live agent integration (Claude Desktop, Cursor)</li>
+          <li class="feat-pro">Uncapped graph &amp; semantic output</li>
           <li class="feat-pro">Priority support</li>
         </ul>
       </div>
@@ -2261,7 +2260,7 @@
       'label.oss': { en: 'open source', es: 'código abierto' },
       'oss.h2': { en: 'Built in the open. Owned by the community.', es: 'Construido en abierto. Propiedad de la comunidad.' },
       'oss.p1': { en: 'sourcecode is Apache 2.0 licensed. Use it in commercial projects, fork it, extend it, build on top of it. No restrictions, no CLAs, no gotchas.', es: 'sourcecode tiene licencia Apache 2.0. Úsalo en proyectos comerciales, haz fork, extiéndelo, construye sobre él. Sin restricciones, sin CLAs, sin trampas.' },
-      'oss.p2': { en: 'The OSS core — onboarding context, endpoint surface, and AI agent modes — stays free forever. Pro adds impact analysis, PR review, bug triage, modernization planning, and MCP integration. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.', es: 'El núcleo OSS — contexto de onboarding, superficie de endpoints y modos de agente IA — permanece gratuito para siempre. Pro añade análisis de impacto, revisión de PR, triaje de bugs, planificación de modernización e integración MCP. Ver <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Precios</a>.' },
+      'oss.p2': { en: 'The full toolkit — impact, PR review, bug triage, modernization, Spring audit, local MCP — is free on repos up to 500 Java files, forever. Pro unlocks the same commands on enterprise-scale monoliths and in CI/CD. See <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Pricing</a>.', es: 'El kit completo — impact, revisión de PR, triaje de bugs, modernización, auditoría Spring, MCP local — es gratis en repos de hasta 500 ficheros Java, para siempre. Pro desbloquea los mismos comandos en monolitos a escala enterprise y en CI/CD. Ver <a href="#pricing" style="color:var(--accent);opacity:0.8;text-decoration:none;">Precios</a>.' },
       'oss.cta1': { en: 'View on GitHub →', es: 'Ver en GitHub →' },
       'oss.cta2': { en: 'Contributing guide', es: 'Guía de contribución' },
       'oss.stat1': { en: 'license · free for commercial use', es: 'licencia · gratis para uso comercial' },
@@ -2269,15 +2268,15 @@
       'label.why': { en: "why it's different", es: 'por qué es diferente' },
       'why.h2': { en: 'What nothing else gives you.', es: 'Lo que nada más te ofrece.' },
       'label.pricing': { en: 'pricing', es: 'precios' },
-      'pricing.h2': { en: 'Start free. Upgrade when the blast radius matters.', es: 'Empieza gratis. Actualiza cuando el blast radius importa.' },
-      'pricing.p': { en: 'sourcecode is open source and free for onboarding, endpoint mapping, Spring semantic audit, impact chain, event topology, and AI context. Pro adds full blast-radius intelligence, PR review, bug triage, and modernization planning.', es: 'sourcecode es open source y gratuito para onboarding, mapeo de endpoints, auditoría semántica Spring, impact chain, topología de eventos y contexto IA. Pro añade inteligencia completa de blast radius, revisión de PR, triaje de bugs y planificación de modernización.' },
-      'pricing.free.tagline': { en: 'local analysis &amp; AI context', es: 'análisis local y contexto IA' },
+      'pricing.h2': { en: 'Free on every command. Pro when the monolith is big.', es: 'Gratis en todos los comandos. Pro cuando el monolito es grande.' },
+      'pricing.p': { en: 'Every command runs at full power for free on repos up to 500 Java files — impact, fix-bug, review-pr, modernize, all of it. Pro unlocks the same commands on enterprise-scale monoliths and in CI/CD automation. Non-Java repos are free at any size.', es: 'Todos los comandos a plena potencia, gratis, en repos de hasta 500 ficheros Java — impact, fix-bug, review-pr, modernize, todo. Pro desbloquea los mismos comandos en monolitos a escala enterprise y en automatización CI/CD. Los repos no-Java son gratis a cualquier tamaño.' },
+      'pricing.free.tagline': { en: 'every command, small &amp; mid-size repos', es: 'todos los comandos, repos pequeños y medianos' },
       'pricing.free.period': { en: ' / forever', es: ' / siempre' },
-      'pricing.free.desc': { en: 'Onboard to any Java/Spring codebase, map its API surface, and feed structured context to AI agents — deterministic, offline, no lock-in.', es: 'Haz onboarding a cualquier codebase Java/Spring, mapea su superficie de API e inyecta contexto estructurado a agentes IA — determinista, offline, sin lock-in.' },
-      'pricing.pro.tagline': { en: 'blast-radius &amp; workflow intelligence', es: 'inteligencia de blast-radius y workflow' },
-      'pricing.pro.period': { en: ' / month', es: ' / mes' },
-      'pricing.pro.early': { en: 'Early-access pricing locked in at launch.', es: 'Precio de acceso anticipado bloqueado en el lanzamiento.' },
-      'pricing.pro.desc': { en: 'Impact analysis, PR review, bug triage, and MCP integration for Java/Spring monoliths.', es: 'Análisis de impacto, revisión de PR, triaje de bugs e integración MCP para monolitos Java/Spring.' },
+      'pricing.free.desc': { en: 'The full toolkit on any repo up to 500 Java files — blast radius, PR review, bug triage, modernization. Deterministic, offline, no account, no lock-in.', es: 'El kit completo en cualquier repo de hasta 500 ficheros Java — blast radius, revisión de PR, triaje de bugs, modernización. Determinista, offline, sin cuenta, sin lock-in.' },
+      'pricing.pro.tagline': { en: 'enterprise monoliths &amp; CI/CD automation', es: 'monolitos enterprise y automatización CI/CD' },
+      'pricing.pro.period': { en: ' / month per dev', es: ' / mes por dev' },
+      'pricing.pro.early': { en: 'or €190/year — save ~2 months.', es: 'o €190/año — ahorra ~2 meses.' },
+      'pricing.pro.desc': { en: 'The same commands, unlocked on Java monoliths above 500 files and in CI/CD. For engineers who live in large enterprise codebases.', es: 'Los mismos comandos, desbloqueados en monolitos Java de más de 500 ficheros y en CI/CD. Para ingenieros que viven en grandes codebases enterprise.' },
       'pricing.pro.cta': { en: 'Upgrade to Pro →', es: 'Actualizar a Pro →' },
       'footer.privacy': { en: 'Privacy', es: 'Privacidad' }
     };
@@ -2298,22 +2297,22 @@
       'cache.li2': '<strong>L2 — caché de vista:</strong> salida renderizada indexada por <code ' + CS + '>(core_hash, view_flags)</code>. Coincidencia exacta de salida — cero recomputación en cache hit.',
       'cache.li3': '<strong>Invalidación:</strong> indexada por git commit SHA. Cualquier commit invalida el core de ese repo. Los cambios sin commit no se cachean.',
       'cache.li4': '<strong>Orden de búsqueda:</strong> L2 hit exacto → L1 hit + reconstrucción de vista → análisis en frío completo.',
-      'card.prerefactor': '<div class="card-tag">pre-refactor</div><h3>Antes de tocar una clase <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3><p>Ejecuta <code ' + CS + '>sourcecode impact OrderService /repo</code> antes de cualquier refactor. Conoce exactamente cuántos endpoints, límites transaccionales y módulos están en el cono de impacto — antes de escribir una línea.</p>',
-      'card.pr': '<div class="card-tag">pr review</div><h3>Revisiones de PR con conciencia de riesgo</h3><p>Genera un resumen de riesgo estructurado para cada PR: módulos modificados, gaps de cobertura de tests, blast radius de las clases cambiadas, y un campo de decisión CI para gates automatizados. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>',
-      'card.bug': '<div class="card-tag">bug triage</div><h3>Triaje de bugs guiado por síntomas</h3><p>Proporciona una cadena de síntoma y obtén una lista de archivos ordenada por riesgo, correlacionada por keyword, ruta, contenido e historial git. Reduce el tiempo de triaje de horas a minutos. <span style="color:var(--accent);font-size:0.8em">[Pro]</span></p>',
+      'card.prerefactor': '<div class="card-tag">pre-refactor</div><h3>Antes de tocar una clase <span style="color:var(--accent-green);font-size:0.7em">[gratis ≤500 Java]</span></h3><p>Ejecuta <code ' + CS + '>sourcecode impact OrderService /repo</code> antes de cualquier refactor. Conoce exactamente cuántos endpoints, límites transaccionales y módulos están en el cono de impacto — antes de escribir una línea.</p>',
+      'card.pr': '<div class="card-tag">pr review</div><h3>Revisiones de PR con conciencia de riesgo</h3><p>Genera un resumen de riesgo estructurado para cada PR: módulos modificados, gaps de cobertura de tests, blast radius de las clases cambiadas, y un campo de decisión CI para gates automatizados. <span style="color:var(--accent-green);font-size:0.75em">[gratis ≤500 Java]</span></p>',
+      'card.bug': '<div class="card-tag">bug triage</div><h3>Triaje de bugs guiado por síntomas</h3><p>Proporciona una cadena de síntoma y obtén una lista de archivos ordenada por riesgo, correlacionada por keyword, ruta, contenido e historial git. Reduce el tiempo de triaje de horas a minutos. <span style="color:var(--accent-green);font-size:0.75em">[gratis ≤500 Java]</span></p>',
       'card.agent': '<div class="card-tag">claude · gpt-4</div><h3>Inyección de contexto para agentes IA</h3><p>Inicia cada sesión de agente con contexto acotado y preciso. Tras el primer análisis en frío, <code ' + CS + '>--compact</code> y <code ' + CS + '>--agent</code> retornan en ~0.3s desde caché — suficientemente barato para llamar antes de cada edición, no solo una vez por sesión.</p>',
       'card.ci': '<div class="card-tag">ci / cd</div><h3>Integración con CI/CD</h3><p>La caché por hash de contenido hace que las re-ejecuciones sean ~9–17× más rápidas. Parsea los campos <code ' + CS + '>ci_decision</code> y <code ' + CS + '>test_coverage_risk</code> para gates automatizados de PR sin herramientas adicionales.</p>',
       'card.onboard': '<div class="card-tag">onboarding</div><h3>Onboarding de codebase</h3><p>Los nuevos ingenieros y agentes IA obtienen puntos de entrada, resumen de arquitectura, archivos clave y lista de gaps en un comando. <code ' + CS + '>sourcecode onboard /repo</code> — luego pregunta lo que quieras. Gratis.</p>',
-      'card.mcp': '<div class="card-tag">mcp · cursor · claude</div><h3>Servidor de contexto en vivo <span style="color:var(--accent);font-size:0.75em">[Pro]</span></h3><p>Ejecuta <code ' + CS + '>sourcecode mcp init</code> una vez. Claude Desktop y Cursor obtienen acceso en vivo al análisis de impacto, superficie de endpoints y contexto del codebase sin llamadas CLI manuales.</p>',
-      'cmd.impact': '<span class="feature-field">sourcecode impact</span><h3>Análisis de blast-radius <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Recorre el grafo de dependencias inverso para cualquier clase. Devuelve callers directos, callers transitivos, endpoints HTTP afectados, límites transaccionales, impacto cross-módulo y una puntuación de riesgo de 0–100. Apunta siempre a la interfaz en Spring Boot — no a la implementación.</p>',
+      'card.mcp': '<div class="card-tag">mcp · cursor · claude</div><h3>Servidor de contexto en vivo <span style="color:var(--accent-green);font-size:0.75em">[Free]</span></h3><p>Ejecuta <code ' + CS + '>sourcecode mcp init</code> una vez. Claude Desktop y Cursor obtienen acceso en vivo al análisis de impacto, superficie de endpoints y contexto del codebase sin llamadas CLI manuales.</p>',
+      'cmd.impact': '<span class="feature-field">sourcecode impact</span><h3>Análisis de blast-radius <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Recorre el grafo de dependencias inverso para cualquier clase. Devuelve callers directos, callers transitivos, endpoints HTTP afectados, límites transaccionales, impacto cross-módulo y una puntuación de riesgo de 0–100. Apunta siempre a la interfaz en Spring Boot — no a la implementación.</p>',
       'cmd.onboard': '<span class="feature-field">sourcecode onboard</span><h3>Orientación de codebase <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3><p>Bundle de contexto acotado listo para IA: puntos de entrada, resumen de arquitectura, archivos clave, nivel de confianza y gaps. Diseñado para inyección como system prompt de agente al inicio de sesión.</p>',
       'cmd.endpoints': '<span class="feature-field">sourcecode endpoints</span><h3>Superficie de API REST</h3><p>Extrae todos los métodos de endpoint de Spring MVC y JAX-RS. Devuelve método HTTP, ruta, controlador y handler. Útil para auditar la superficie de API antes de migraciones o revisiones de seguridad.</p>',
-      'cmd.reviewpr': '<span class="feature-field">sourcecode review-pr</span><h3>Evaluación de riesgo de PR <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Archivos modificados, ranking de riesgo, gaps de cobertura de tests, módulos afectados y blast radius de clases modificadas. Devuelve un campo <code ' + CS + '>ci_decision</code> para gates de CI/CD.</p>',
-      'cmd.fixbug': '<span class="feature-field">sourcecode fix-bug</span><h3>Contexto para triaje de bugs <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Proporciona una cadena de síntoma, obtén una lista de archivos ordenada por riesgo correlacionada por extracción de keywords, coincidencia de rutas, análisis de contenido y correlación de commits git. Cadena de evidencia completa en <code ' + CS + '>symptom_explain</code>.</p>',
-      'cmd.modernize': '<span class="feature-field">sourcecode modernize</span><h3>Planificación de modernización <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Identifica nodos de alto acoplamiento (arriesgados de cambiar), candidatos a zona muerta (seguros de eliminar) y enredos de subsistemas. Cuantificado por grado de fan-in en el grafo de símbolos.</p>',
+      'cmd.reviewpr': '<span class="feature-field">sourcecode review-pr</span><h3>Evaluación de riesgo de PR <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Archivos modificados, ranking de riesgo, gaps de cobertura de tests, módulos afectados y blast radius de clases modificadas. Devuelve un campo <code ' + CS + '>ci_decision</code> para gates de CI/CD.</p>',
+      'cmd.fixbug': '<span class="feature-field">sourcecode fix-bug</span><h3>Contexto para triaje de bugs <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Proporciona una cadena de síntoma, obtén una lista de archivos ordenada por riesgo correlacionada por extracción de keywords, coincidencia de rutas, análisis de contenido y correlación de commits git. Cadena de evidencia completa en <code ' + CS + '>symptom_explain</code>.</p>',
+      'cmd.modernize': '<span class="feature-field">sourcecode modernize</span><h3>Planificación de modernización <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Identifica nodos de alto acoplamiento (arriesgados de cambiar), candidatos a zona muerta (seguros de eliminar) y enredos de subsistemas. Cuantificado por grado de fan-in en el grafo de símbolos.</p>',
       'cmd.context': '<span class="feature-field">--compact / --agent</span><h3>Modos de contexto IA</h3><p><code ' + CS + '>--compact</code> genera un resumen de 2.500–4.000 tokens con <code ' + CS + '>transactional_boundaries</code> para Spring. <code ' + CS + '>--agent</code> añade relevancia de archivos y detalle de arquitectura a 4.500–5.500 tokens.</p>',
       'cmd.repoIR': '<span class="feature-field">sourcecode repo-ir</span><h3>IR a nivel de símbolos</h3><p>Grafo de símbolos determinista: clases, métodos, aristas de importación/inyección, roles Spring, subsistemas. Usa <code ' + CS + '>--summary-only</code> (~20K tokens) a menos que necesites el grafo completo para herramientas downstream.</p>',
-      'cmd.mcp': '<span class="feature-field">sourcecode mcp</span><h3>Integración con servidor MCP <span style="font-size:0.75em;color:var(--accent)">[Pro]</span></h3><p>Ejecuta sourcecode como servidor MCP en vivo para Claude Desktop y Cursor. Los agentes IA pueden consultar impacto, endpoints y contexto mediante el protocolo — sin llamadas CLI manuales, sin relleno de tokens. <code ' + CS + '>sourcecode mcp init</code> para configurar.</p>',
+      'cmd.mcp': '<span class="feature-field">sourcecode mcp</span><h3>Integración con servidor MCP <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3><p>Ejecuta sourcecode como servidor MCP en vivo para Claude Desktop y Cursor. Los agentes IA pueden consultar impacto, endpoints y contexto mediante el protocolo — sin llamadas CLI manuales, sin relleno de tokens. <code ' + CS + '>sourcecode mcp init</code> para configurar.</p>',
       'principle.determinism': '<div class="principle-key">determinismo sobre aproximación</div><h3>Mismo repo, misma salida.</h3><p>Cada ejecución sobre el mismo repositorio produce salida idéntica. Agentes, pipelines y equipos pueden cachearla, diferenciarla y depender de ella.</p>',
       'principle.di': '<div class="principle-key">traversal con conocimiento de interfaces</div><h3>Spring DI no es una caja negra.</h3><p>El grafo de dependencias entiende los patrones de inyección de interfaces. Consulta <code ' + CS + '>OrderService</code> (interfaz), no <code ' + CS + '>OrderServiceImpl</code>. Blast radius real, no resultados de grep.</p>',
       'principle.bounded': '<div class="principle-key">acotado por defecto</div><h3>La salida cabe en una ventana de contexto.</h3><p>Cada modo de salida orientado a IA (<code ' + CS + '>--compact</code>, <code ' + CS + '>--agent</code>, <code ' + CS + '>onboard</code>) está acotado en tamaño. Sin desbordamiento silencioso de ventana de contexto.</p>',
@@ -2326,8 +2325,8 @@
       'why.local': '<div class="principle-key">sin cloud, sin clave API</div><h3>Completamente local. El código fuente nunca sale.</h3><p><code ' + CS + '>pip install sourcecode</code> y funciona offline. Sin cuentas, sin límites de uso, sin llamadas de red durante el análisis. Requisitos de privacidad empresarial satisfechos por defecto.</p>',
       'why.confidence': '<div class="principle-key">señales de confianza honestas</div><h3>Cada salida dice lo que no sabe.</h3><p>Cada análisis incluye una <code ' + CS + '>confidence_summary</code> y lista <code ' + CS + '>analysis_gaps</code>. Los patrones JAX-RS, arquitecturas SPI y seguridad programática se marcan — no son silenciosamente incorrectos.</p>',
       'why.evidence': '<div class="principle-key">cadena de evidencia, no heurísticas</div><h3>Cada ranking de archivos muestra su evidencia.</h3><p>El triaje de bugs devuelve una cadena de evidencia completa por archivo: coincidencia de keyword → coincidencia de ruta → coincidencia de contenido → correlación de commit git. Puedes auditar por qué cada archivo tiene puntuación alta — no es una puntuación de caja negra.</p>',
-      'pricing.free.features': '<li><code ' + CP + '>sourcecode onboard</code> — orientación del codebase</li><li><code ' + CP + '>sourcecode endpoints</code> — mapeo de superficie REST</li><li><code ' + CP + '>--compact</code> &amp; <code ' + CP + '>--agent</code> — modos de contexto para IA</li><li>Caché persistente por hash de contenido (~9–17× más rápido)</li><li>Sin cuenta, sin claves API, sin límites de uso</li><li>Se ejecuta completamente offline</li><li>Apache 2.0 — uso comercial permitido</li>',
-      'pricing.pro.features': '<li>Todo lo de Free</li><li class="feat-pro"><code ' + CP + '>impact</code> — análisis de blast-radius</li><li class="feat-pro"><code ' + CP + '>review-pr</code> — ranking de riesgo de PR y detección de gaps de tests</li><li class="feat-pro"><code ' + CP + '>fix-bug</code> — triaje de bugs guiado por síntomas</li><li class="feat-pro"><code ' + CP + '>modernize</code> — detección de acoplamiento y zonas muertas</li><li class="feat-pro"><code ' + CP + '>generate-tests</code> — análisis de gaps de tests</li><li class="feat-pro"><code ' + CP + '>ci_decision</code> — gating de merges en CI/CD</li><li class="feat-pro">Servidor MCP — integración de agentes en vivo (Claude Desktop, Cursor)</li><li class="feat-pro">Soporte prioritario</li>'
+      'pricing.free.features': '<li><strong>Todos los comandos</strong>, salida completa, en repos ≤ 500 ficheros Java</li><li><code ' + CP + '>impact</code>, <code ' + CP + '>fix-bug</code>, <code ' + CP + '>review-pr</code>, <code ' + CP + '>modernize</code> — incluidos</li><li><code ' + CP + '>--compact</code> &amp; <code ' + CP + '>--agent</code> — modos de contexto para IA</li><li>Servidor MCP local (<code ' + CP + '>mcp serve</code>) — Claude, Cursor, Copilot</li><li><strong>Repos no-Java gratis a cualquier tamaño</strong></li><li>Caché persistente por hash de contenido (~9–17× más rápido)</li><li>Offline, sin claves API · Apache 2.0 — uso comercial permitido</li>',
+      'pricing.pro.features': '<li>Todo lo de Free, sin límite de tamaño</li><li class="feat-pro"><strong>Todos los comandos en monolitos &gt; 500 ficheros Java</strong></li><li class="feat-pro"><code ' + CP + '>impact</code> / <code ' + CP + '>fix-bug</code> / <code ' + CP + '>review-pr</code> / <code ' + CP + '>modernize</code> — salida completa a escala</li><li class="feat-pro"><code ' + CP + '>delta</code> — automatización CI/CD ilimitada</li><li class="feat-pro"><code ' + CP + '>generate-tests</code> — análisis de gaps de tests a escala</li><li class="feat-pro"><code ' + CP + '>ci_decision</code> — gating de merges en CI/CD</li><li class="feat-pro">Salida de grafo y semántica sin tope</li><li class="feat-pro">Soporte prioritario</li>'
     };
 
     var enBlocks = {};
