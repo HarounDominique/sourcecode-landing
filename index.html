@@ -569,6 +569,72 @@
       line-height: 1.5; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.08) transparent;
     }
 
+    /* ── OUTPUT SHOWCASE (3 panels) ──────────────────────────────── */
+    .t-panels { display: flex; flex-direction: column; gap: 2.6rem; margin-top: 3rem; }
+    .t-panel-cap {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.01em;
+      margin-bottom: 0.85rem;
+      display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap;
+    }
+    .t-panel-cap b { color: var(--text-primary); font-weight: 600; }
+    .t-panel-cap .q { color: var(--text-muted); font-weight: 400; }
+    .t-panel-cap::before {
+      content: ''; flex-shrink: 0; align-self: center;
+      width: 1.4rem; height: 1px; background: var(--accent); opacity: 0.55;
+    }
+
+    /* schema / status tag */
+    .t-tag {
+      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.03em;
+      padding: 0.1rem 0.45rem; border-radius: 4px;
+      background: rgba(110,231,247,0.08); color: var(--accent);
+      border: 1px solid rgba(110,231,247,0.2);
+    }
+
+    /* summary badges — amber (caution) + green (clean) alongside existing red */
+    .t-badge-mid, .t-badge-ok {
+      margin-left: auto; font-size: 0.6rem; font-weight: 700;
+      padding: 0.1rem 0.5rem; border-radius: 4px; letter-spacing: 0.03em; border: 1px solid;
+    }
+    .t-badge-mid { background: rgba(252,211,77,0.1); color: #fcd34d; border-color: rgba(252,211,77,0.22); }
+    .t-badge-ok  { background: rgba(61,214,140,0.1); color: #3dd68c; border-color: rgba(61,214,140,0.2); }
+
+    /* readiness / generic score block (amber variant of risk block) */
+    .t-score {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(252,211,77,0.08); border: 1px solid rgba(252,211,77,0.18);
+      border-radius: 8px; padding: 0.7rem 1.1rem; min-width: 84px; flex-shrink: 0;
+    }
+    .t-score-num { font-size: 2.1rem; font-weight: 700; color: #fcd34d; line-height: 1; }
+    .t-score-den { font-size: 0.8rem; font-weight: 600; color: rgba(252,211,77,0.5); }
+    .t-score-sub { font-size: 0.56rem; color: rgba(252,211,77,0.55); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+    /* finding rows (migrate-check, spring-audit) */
+    .t-find-list { display: flex; flex-direction: column; }
+    .t-find-row {
+      display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 0.6rem;
+      align-items: start; padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .t-find-row:last-child { border-bottom: none; }
+    .t-sev {
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.13rem 0.34rem; border-radius: 3px; border: 1px solid; text-align: center;
+      min-width: 58px; flex-shrink: 0;
+    }
+    .t-sev-critical { color: #ff5f57; background: rgba(255,95,87,0.1);  border-color: rgba(255,95,87,0.22); }
+    .t-sev-high     { color: #ff9e64; background: rgba(255,158,100,0.1); border-color: rgba(255,158,100,0.22); }
+    .t-sev-medium   { color: #fcd34d; background: rgba(252,211,77,0.1);  border-color: rgba(252,211,77,0.22); }
+    .t-sev-low      { color: var(--text-muted); background: var(--bg-2);  border-color: var(--border); }
+    .t-find-main { min-width: 0; }
+    .t-find-rule { font-size: 0.6rem; color: var(--accent); font-weight: 600; margin-right: 0.4rem; }
+    .t-find-title { color: var(--text-primary); font-size: 0.72rem; line-height: 1.5; }
+    .t-find-file { color: var(--text-muted); font-size: 0.63rem; margin-top: 0.2rem; word-break: break-all; }
+    .t-find-fix { color: var(--accent-green); font-size: 0.64rem; margin-top: 0.25rem; line-height: 1.55; }
+    .t-find-fix::before { content: 'fix · '; color: var(--text-muted); }
+
     /* SECTIONS */
     section { padding: 7rem 2rem; }
 
@@ -1347,6 +1413,7 @@
     <li><a href="#quickstart" data-i18n="nav.quickstart">Quickstart</a></li>
     <li><a href="#cache" data-i18n="nav.cache">Cache</a></li>
     <li><a href="#commands" data-i18n="nav.commands">Commands</a></li>
+    <li><a href="#output" data-i18n="nav.output">Output</a></li>
     <li><a href="#benchmarks" data-i18n="nav.benchmarks">Benchmarks</a></li>
     <li><a href="#why" data-i18n="nav.why">Why</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
@@ -1945,6 +2012,241 @@
   </div>
 </section>
 
+<!-- OUTPUT SHOWCASE -->
+<div class="divider"></div>
+<section id="output" style="background: var(--bg-1);">
+  <div class="container fade-in">
+    <p class="section-label" data-i18n="label.output">output</p>
+    <h2 data-i18n="output.h2">Three questions an enterprise team actually asks. Three deterministic answers.</h2>
+    <p style="max-width:640px; margin-top:0.5rem;" data-i18n="output.p">Not a demo repo — these are real runs against BroadleafCommerce (2,762 files), the same monolith above. Every number is computed statically from source: no LLM, no guessing, reproducible on your machine.</p>
+
+    <div class="t-panels">
+
+      <!-- ░░ PANEL 1 — migrate-check ░░ -->
+      <div>
+        <p class="t-panel-cap"><span class="q">“Can we move to Spring Boot 3 yet — and what will it cost?”</span> <b>sourcecode migrate-check</b></p>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot"></div><div class="terminal-dot"></div><div class="terminal-dot"></div>
+            <span class="terminal-title">bash · ~/projects/broadleaf-commerce</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">❯</span> <span class="t-cmd">sourcecode migrate-check <span class="t-key">.</span></span></div>
+            <div class="t-done"><span class="t-val">✓</span> done (0.6s · cache hit)</div>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">summary</span><span class="t-badge-mid">NOT READY · 0/100</span></summary>
+              <div class="t-sec-body">
+                <div class="t-kv"><span class="t-k">spring_boot_2</span><span class="t-v-yellow">detected</span></div>
+                <div class="t-kv"><span class="t-k">blocking</span><span class="t-v-red">2 hard blockers</span></div>
+                <div class="t-kv"><span class="t-k">effort</span><span class="t-v"><span class="t-v-accent">10.4</span> dev-days (estimated)</span></div>
+                <div class="t-explain">Spring Boot 2 detected. 171 migration findings across 168 files — 2 are hard blockers that stop a Boot 3 build. Readiness 0/100: not a refactor you start blind.</div>
+              </div>
+            </details>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">readiness_assessment</span><span class="t-count">171 findings</span></summary>
+              <div class="t-sec-body">
+                <div class="t-risk-row">
+                  <div class="t-score">
+                    <span class="t-score-num">0<span class="t-score-den">/100</span></span>
+                    <span class="t-score-sub">readiness</span>
+                  </div>
+                  <div class="t-stats-grid">
+                    <div class="t-stat"><span class="t-stat-v t-v-red">2</span><span class="t-stat-k">blocking</span></div>
+                    <div class="t-stat"><span class="t-stat-v t-v-accent">10.4d</span><span class="t-stat-k">est. effort</span></div>
+                    <div class="t-stat"><span class="t-stat-v t-v-blue">168</span><span class="t-stat-k">files</span></div>
+                    <div class="t-stat"><span class="t-stat-v t-v-red">1</span><span class="t-stat-k">critical</span></div>
+                    <div class="t-stat"><span class="t-stat-v t-v-yellow">1</span><span class="t-stat-k">high</span></div>
+                    <div class="t-stat"><span class="t-stat-v t-v-yellow">25</span><span class="t-stat-k">medium</span></div>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">findings_by_rule</span><span class="t-count">4 rules</span></summary>
+              <div class="t-sec-body">
+                <div class="t-mod-list">
+                  <div class="t-mod-row">
+                    <div class="t-mod-header"><span class="t-mod-name">MIG-016 · legacy date/time API</span><span class="t-mod-count">144</span></div>
+                    <div class="t-mod-bar-track"><div class="t-mod-bar-fill" style="width:100%"></div></div>
+                  </div>
+                  <div class="t-mod-row">
+                    <div class="t-mod-header"><span class="t-mod-name">MIG-014 · setAccessible() on Java 9+</span><span class="t-mod-count">25</span></div>
+                    <div class="t-mod-bar-track"><div class="t-mod-bar-fill" style="width:17.4%"></div></div>
+                  </div>
+                  <div class="t-mod-row">
+                    <div class="t-mod-header"><span class="t-mod-name">MIG-010 · SecurityManager (JEP 411)</span><span class="t-mod-count">1</span></div>
+                    <div class="t-mod-bar-track"><div class="t-mod-bar-fill" style="width:1%"></div></div>
+                  </div>
+                  <div class="t-mod-row">
+                    <div class="t-mod-header"><span class="t-mod-name">MIG-031 · Spring Security XML ≤5</span><span class="t-mod-count">1</span></div>
+                    <div class="t-mod-bar-track"><div class="t-mod-bar-fill" style="width:1%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">blocking_findings</span><span class="t-count">2</span></summary>
+              <div class="t-sec-body">
+                <div class="t-find-list">
+                  <div class="t-find-row">
+                    <span class="t-sev t-sev-critical">critical</span>
+                    <div class="t-find-main">
+                      <div><span class="t-find-rule">MIG-010</span><span class="t-find-title">SecurityManager / AccessController — removed in Java 17 (JEP 411)</span></div>
+                      <div class="t-find-file"><span class="t-pkg">common/…/web/boot/support/</span>SpringBootBootstrappingServletContextListener.java:128</div>
+                      <div class="t-find-fix">Remove SecurityManager install + AccessController.doPrivileged(); move to module-based access control.</div>
+                    </div>
+                  </div>
+                  <div class="t-find-row">
+                    <span class="t-sev t-sev-high">high</span>
+                    <div class="t-find-main">
+                      <div><span class="t-find-rule">MIG-031</span><span class="t-find-title">Spring Security XML — old-style &lt;http auto-config&gt; or schema ≤5</span></div>
+                      <div class="t-find-file"><span class="t-pkg">integration/…/resources/</span>bl-applicationContext-test-security.xml:28</div>
+                      <div class="t-find-fix">Migrate XML config to Java @Configuration with a SecurityFilterChain @Bean.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="t-note">Each finding carries file:line, explanation, and a fix hint. Use --output for the full report.</div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ░░ PANEL 2 — spring-audit ░░ -->
+      <div>
+        <p class="t-panel-cap"><span class="q">“Could a transaction silently fail to roll back in prod?”</span> <b>sourcecode spring-audit</b></p>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot"></div><div class="terminal-dot"></div><div class="terminal-dot"></div>
+            <span class="terminal-title">bash · ~/projects/broadleaf-commerce</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">❯</span> <span class="t-cmd">sourcecode spring-audit <span class="t-key">.</span></span></div>
+            <div class="t-done"><span class="t-val">✓</span> done (0.5s · cache hit)</div>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">summary</span><span class="t-badge-ok">CONFIDENCE · HIGH</span></summary>
+              <div class="t-sec-body">
+                <div class="t-kv"><span class="t-k">findings</span><span class="t-v-yellow">4</span></div>
+                <div class="t-kv"><span class="t-k">category</span><span class="t-v">transactional (TX) · 4</span></div>
+                <div class="t-kv"><span class="t-k">severity</span><span class="t-v">medium · 4</span></div>
+                <div class="t-explain">Four methods swallow an exception inside an @Transactional boundary (TX-005) — the catch suppresses the rollback Spring would otherwise trigger. Silent data-integrity risk that no diff review surfaces.</div>
+              </div>
+            </details>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">findings</span><span class="t-count">4 · TX-005</span></summary>
+              <div class="t-sec-body">
+                <div class="t-find-list">
+                  <div class="t-find-row">
+                    <span class="t-sev t-sev-medium">medium</span>
+                    <div class="t-find-main">
+                      <div><span class="t-find-rule">TX-005</span><span class="t-find-title">Exception swallowed inside @Transactional — rollback suppressed</span></div>
+                      <div class="t-find-file"><span class="t-pkg">common/…/id/dao/</span>IdGenerationDaoImpl.java</div>
+                      <div class="t-find-fix">Rethrow, or mark the catch with rollbackFor / TransactionAspectSupport.setRollbackOnly().</div>
+                    </div>
+                  </div>
+                  <div class="t-find-row">
+                    <span class="t-sev t-sev-medium">medium</span>
+                    <div class="t-find-main">
+                      <div><span class="t-find-rule">TX-005</span><span class="t-find-title">Exception swallowed inside @Transactional — rollback suppressed</span></div>
+                      <div class="t-find-file"><span class="t-pkg">core/broadleaf-framework/…/order/service/</span>OrderServiceImpl.java</div>
+                    </div>
+                  </div>
+                  <div class="t-find-row">
+                    <span class="t-sev t-sev-medium">medium</span>
+                    <div class="t-find-main">
+                      <div><span class="t-find-rule">TX-005</span><span class="t-find-title">Exception swallowed inside @Transactional — rollback suppressed</span></div>
+                      <div class="t-find-file"><span class="t-pkg">core/broadleaf-framework/…/order/service/</span>OrderServiceImpl.java</div>
+                    </div>
+                  </div>
+                  <div class="t-find-row">
+                    <span class="t-sev t-sev-medium">medium</span>
+                    <div class="t-find-main">
+                      <div><span class="t-find-rule">TX-005</span><span class="t-find-title">Exception swallowed inside @Transactional — rollback suppressed</span></div>
+                      <div class="t-find-file"><span class="t-pkg">core/broadleaf-framework/…/order/service/</span>OrderServiceImpl.java</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="t-note">Also audits TX-001..004 (proxy bypass, nested TX, readOnly propagation) and SEC-001..003. Clean repo → zero findings, exit 0.</div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ░░ PANEL 3 — export --c4 ░░ -->
+      <div>
+        <p class="t-panel-cap"><span class="q">“What does this monolith’s architecture actually look like?”</span> <b>sourcecode export --c4</b></p>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot"></div><div class="terminal-dot"></div><div class="terminal-dot"></div>
+            <span class="terminal-title">bash · ~/projects/broadleaf-commerce</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">❯</span> <span class="t-cmd">sourcecode export <span class="t-key">--c4</span> .</span></div>
+            <div class="t-done"><span class="t-val">✓</span> done (0.7s · cache hit)</div>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">summary</span><span class="t-tag" style="margin-left:auto">schema c4-v1</span></summary>
+              <div class="t-sec-body">
+                <div class="t-kv"><span class="t-k">system</span><span class="t-v">broadleaf-fieldtest</span></div>
+                <div class="t-kv"><span class="t-k">files</span><span class="t-v-accent">2762</span></div>
+                <div class="t-kv"><span class="t-k">levels</span><span class="t-v">context · container · component · code</span></div>
+                <div class="t-explain">A tool-agnostic C4 model in the open <span class="t-v-accent">c4-v1</span> schema — not a proprietary format. Feeds any C4/diagram renderer; a manifest of per-directory hashes makes re-exports incremental.</div>
+              </div>
+            </details>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">model</span><span class="t-count">mapped to C4</span></summary>
+              <div class="t-sec-body">
+                <div class="t-stats-grid">
+                  <div class="t-stat"><span class="t-stat-v t-v-accent">13</span><span class="t-stat-k">containers</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-blue">446</span><span class="t-stat-k">components</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-yellow">2429</span><span class="t-stat-k">edges</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-accent">25</span><span class="t-stat-k">controllers</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-green">224</span><span class="t-stat-k">endpoints</span></div>
+                  <div class="t-stat"><span class="t-stat-v t-v-blue">11</span><span class="t-stat-k">integrations</span></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">containers</span><span class="t-count">13 maven modules</span></summary>
+              <div class="t-sec-body">
+                <div class="t-caller-list">
+                  <span class="t-fqn">core <span class="t-pkg">· org.broadleafcommerce.core · pom.xml</span></span>
+                  <span class="t-fqn">common <span class="t-pkg">· org.broadleafcommerce.common · pom.xml</span></span>
+                  <span class="t-fqn">admin/broadleaf-admin-module <span class="t-pkg">· pom.xml</span></span>
+                  <span class="t-fqn">admin/broadleaf-open-admin-platform <span class="t-pkg">· pom.xml</span></span>
+                  <span class="t-fqn">admin/broadleaf-contentmanagement-module <span class="t-pkg">· pom.xml</span></span>
+                </div>
+                <div class="t-note">Showing 5/13 containers. Component view rolls 446 leaf packages to module roots (layered vs flat detected).</div>
+              </div>
+            </details>
+
+            <details class="t-sec" open>
+              <summary><span class="t-caret">›</span><span class="t-sec-label">external_integrations</span><span class="t-count">11</span></summary>
+              <div class="t-sec-body">
+                <div class="t-ep-list">
+                  <div class="t-ep-row"><span class="t-http t-http-POST">JMS</span><div class="t-ep-info"><div class="t-ep-path">JmsTemplate · archived-page publisher</div><div class="t-ep-handler">cms/page/message/jms/JMSArchivedPagePublisher.java:44</div></div></div>
+                  <div class="t-ep-row"><span class="t-http t-http-POST">JMS</span><div class="t-ep-info"><div class="t-ep-path">JmsTemplate · structure-content publisher</div><div class="t-ep-handler">cms/structure/message/jms/…Publisher.java</div></div></div>
+                </div>
+                <div class="t-note">Outbound integrations detected by client (JmsTemplate ×11). --integrations also maps RestTemplate / WebClient / Feign / LDAP.</div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- BENCHMARKS -->
 <div class="divider"></div>
 <section id="benchmarks">
@@ -2286,6 +2588,7 @@
       'nav.quickstart': { en: 'Quickstart', es: 'Inicio rápido' },
       'nav.cache': { en: 'Cache', es: 'Caché' },
       'nav.commands': { en: 'Commands', es: 'Comandos' },
+      'nav.output': { en: 'Output', es: 'Salida' },
       'nav.benchmarks': { en: 'Benchmarks', es: 'Benchmarks' },
       'nav.why': { en: 'Why', es: 'Por qué' },
       'nav.pricing': { en: 'Pricing', es: 'Precios' },
@@ -2310,6 +2613,9 @@
       'usecases.h2': { en: 'Fits every stage of the engineering lifecycle.', es: 'Se adapta a cada fase del ciclo de vida de ingeniería.' },
       'label.commands': { en: 'commands', es: 'comandos' },
       'commands.h2': { en: 'One toolkit. Each command answers a specific engineering question.', es: 'Un solo kit. Cada comando responde una pregunta de ingeniería específica.' },
+      'label.output': { en: 'output', es: 'salida' },
+      'output.h2': { en: 'Three questions an enterprise team actually asks. Three deterministic answers.', es: 'Tres preguntas que un equipo enterprise se hace de verdad. Tres respuestas deterministas.' },
+      'output.p': { en: 'Not a demo repo — these are real runs against BroadleafCommerce (2,762 files), the same monolith above. Every number is computed statically from source: no LLM, no guessing, reproducible on your machine.', es: 'No es un repo de demo — son ejecuciones reales sobre BroadleafCommerce (2.762 ficheros), el mismo monolito de arriba. Cada número se calcula estáticamente desde el código: sin LLM, sin adivinar, reproducible en tu máquina.' },
       'label.benchmarks': { en: 'benchmarks', es: 'benchmarks' },
       'benchmarks.h2': { en: 'Cache performance — measured on real repos.', es: 'Rendimiento de caché — medido en repos reales.' },
       'benchmarks.p': { en: 'Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on content hashes — invalidated only when source changes. On repeated agent sessions against the same codebase, nearly every invocation is a cache hit.', es: 'Tiempos de análisis en frío y caché contra monolitos Spring de escala productiva open-source. Caché indexada por hashes de contenido — solo se invalida cuando cambia el código. En sesiones de agente repetidas contra el mismo codebase, prácticamente cada invocación es un cache hit.' },
