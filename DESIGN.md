@@ -2,9 +2,9 @@
 
 ## Theme
 
-Warm, editorial-technical. A calm paper-and-ink surface (Anthropic's intellectual warmth) wrapping an honest dark terminal (Anomaly Innovations' developer candor). Dual-identity: light and dark are both first-class, sharing one clay accent and a serif-display / grotesque-body / mono-code type system. The signature is contrast: a warm light page with a dark terminal artifact at its center.
+Warm, editorial-technical. A calm paper-and-ink surface (Anthropic's intellectual warmth, but NOT its clay color) wrapping an honest dark terminal (Anomaly Innovations' developer candor). Dual-identity: light and dark are both first-class, sharing one muted **sage/chalk-green** accent and a serif-display / grotesque-body / mono-code type system. The signature is contrast: a warm light page with a dark terminal artifact at its center. Warm paper keeps the calm; the green accent nods to Spring/Java identity while staying distinct from Anthropic's terracotta — a deliberately desaturated sage, never the neon Spring logo green (#6DB33F).
 
-Color strategy: **Restrained-with-conviction.** Tinted warm neutrals carry the surface; a single clay accent (≈10%) carries links, the accent word, wayfinding ticks, and live states. The terminal keeps a classic dark syntax palette — authentic, not decorative.
+Color strategy: **Restrained-with-conviction.** Tinted warm neutrals carry the surface; a single chalk-green accent (≈10%) carries links, the accent word, wayfinding ticks, and live states. Brand green and the "safe/positive" green share one family. The terminal keeps a classic dark syntax palette — authentic, not decorative.
 
 ## Color (OKLCH)
 
@@ -16,9 +16,9 @@ Color strategy: **Restrained-with-conviction.** Tinted warm neutrals carry the s
 - `--text-primary` warm ink `oklch(0.26 0.012 55)`
 - `--text-secondary` `oklch(0.44 0.012 50)` (~7:1 on paper)
 - `--text-muted` `oklch(0.55 0.012 50)` (labels/large only)
-- `--accent` clay `oklch(0.55 0.14 42)` (~5:1 on paper)
-- `--accent-strong` `oklch(0.47 0.14 40)`
-- `--accent-green` `oklch(0.52 0.12 150)`
+- `--accent` chalk-green `oklch(0.45 0.11 150)` (~5:1 on paper)
+- `--accent-strong` `oklch(0.40 0.11 148)`
+- `--accent-green` (safe) `oklch(0.48 0.13 146)`
 
 ### Dark (warm black)
 - `--bg-0` `oklch(0.175 0.006 65)` (never pure #000)
@@ -28,12 +28,12 @@ Color strategy: **Restrained-with-conviction.** Tinted warm neutrals carry the s
 - `--text-primary` warm off-white `oklch(0.93 0.008 82)`
 - `--text-secondary` `oklch(0.72 0.01 78)`
 - `--text-muted` `oklch(0.54 0.01 72)`
-- `--accent` clay-amber `oklch(0.74 0.13 55)`
-- `--accent-strong` `oklch(0.80 0.12 58)`
-- `--accent-green` `oklch(0.74 0.13 155)`
+- `--accent` chalk-green `oklch(0.74 0.11 152)`
+- `--accent-strong` `oklch(0.80 0.10 150)`
+- `--accent-green` (safe) `oklch(0.80 0.13 146)`
 
 ### Terminal (always dark, both themes)
-Deep warm black, warm-off-white ink, clay prompt glyph, classic syntax: blue keys, amber strings, green values, red for HIGH risk. Kept literal to the product.
+Deep warm black, warm-off-white ink, sage-green prompt glyph + cursor, classic syntax: blue keys, amber strings, green values, red for HIGH risk. Kept literal to the product.
 
 ## Typography
 
@@ -59,7 +59,8 @@ Restrained, deterministic. Staggered `fadeUp` on hero load; `IntersectionObserve
 
 ## Bans (project-specific, on top of skill bans)
 
-- No gradient text. Emphasis via clay color + serif weight.
+- No gradient text. Emphasis via chalk-green color + serif weight.
+- No neon Spring logo green (#6DB33F). The accent is a desaturated sage.
 - No side-stripe (`border-left`/`right` >1px) accents.
 - No neon-cyan cyber-terminal revival.
 - No uppercase tracked kicker pill repeated per section.

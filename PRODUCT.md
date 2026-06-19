@@ -28,7 +28,7 @@ Precise, grounded, quietly confident. Three words: **deterministic, considered, 
 2. **Warmth earns trust; the terminal proves competence.** A calm paper-and-ink page wrapping an honest dark terminal — the contrast is the brand.
 3. **Determinism is the feeling.** Exact numbers, stable layout, no gratuitous motion. Nothing should feel guessed.
 4. **Lowercase, mechanical voice.** The wordmark and wayfinding speak quietly and precisely, never shout.
-5. **Restraint with a point of view.** One committed accent (clay), generous space, no decoration that isn't carrying meaning.
+5. **Restraint with a point of view.** One committed accent (chalk-green — Spring identity without the neon logo green), generous space, no decoration that isn't carrying meaning.
 
 ## Accessibility & Inclusion
 
