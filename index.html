@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sourcecode — Persistent structural context for AI coding agents</title>
-  <meta name="description" content="sourcecode detects Spring TX anomalies, traces systemic impact chains with security enrichment, and maps event topology — locally, statically, no API keys. Sub-second from cache." />
+  <meta name="description" content="sourcecode builds a deterministic semantic model of your Java/Spring repo — blast-radius impact, migration readiness (javax→jakarta), Spring TX/security audits, event topology, and C4 architecture export. Locally, statically, no API keys. Sub-second from cache." />
   <meta property="og:title" content="sourcecode — Spring semantic analysis and impact intelligence for AI agents" />
-  <meta property="og:description" content="sourcecode detects Spring TX anomalies, traces systemic impact chains with security enrichment, and maps event topology — locally, statically, no API keys. Sub-second from cache." />
+  <meta property="og:description" content="sourcecode builds a deterministic semantic model of your Java/Spring repo — blast-radius impact, migration readiness (javax→jakarta), Spring TX/security audits, event topology, and C4 architecture export. Locally, statically, no API keys. Sub-second from cache." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://github.com/HarounDominique/sourcecode" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -1040,6 +1040,43 @@
     /* PRICING */
     #pricing { background: var(--bg-0); }
 
+    .pricing-open-banner {
+      margin-top: 2rem;
+      max-width: 760px;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border-active);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      background: var(--accent-dim);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .pricing-open-banner strong { color: var(--accent); }
+
+    .pricing-amount-was {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      opacity: 0.6;
+      margin-right: 0.5rem;
+      font-weight: 600;
+    }
+    .pricing-free-now {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--border-active);
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1325,10 +1362,10 @@
   <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-badge">
-      <span>v1.35.4</span> · Java/Spring · Python 3.10+
+      <span>v1.57.0</span> · Java/Spring · Python 3.10+
     </div>
     <h1 data-i18n="hero.h1">Spring semantic analysis<br>and impact intelligence for <em>AI agents.</em></h1>
-    <p class="hero-sub" data-i18n="hero.sub">sourcecode builds a deterministic semantic model of your Java/Spring repository. Detects TX anomalies, traces systemic blast radius with security enrichment, maps event topology — locally, statically, no API keys. Sub-second from cache.</p>
+    <p class="hero-sub" data-i18n="hero.sub">sourcecode builds a deterministic semantic model of your Java/Spring repository. Traces systemic blast radius with security enrichment, scores migration readiness, audits TX/security anomalies, and exports C4 architecture — locally, statically, no API keys. Sub-second from cache.</p>
     <div class="hero-ctas">
       <a href="#quickstart" class="btn-primary" data-i18n="hero.cta">Get started →</a>
       <a href="https://github.com/HarounDominique/sourcecode" target="_blank" rel="noopener" class="btn-secondary">
@@ -1678,7 +1715,7 @@
           <div><span class="comment"># or pip / pipx</span></div>
           <div><span class="prompt">$</span> <span class="cmd">pip install sourcecode</span></div>
           <div><span class="prompt">$</span> <span class="cmd">sourcecode version</span></div>
-          <div><span class="comment"># sourcecode 1.35.4</span></div>
+          <div><span class="comment"># sourcecode 1.57.0</span></div>
         </div>
       </div>
       <div class="qs-step">
@@ -1824,7 +1861,7 @@
 <section id="commands">
   <div class="container fade-in">
     <p class="section-label" data-i18n="label.commands">commands</p>
-    <h2 data-i18n="commands.h2">Ten commands. Each answers a specific engineering question.</h2>
+    <h2 data-i18n="commands.h2">One toolkit. Each command answers a specific engineering question.</h2>
     <div class="feature-grid">
       <div class="feature-item" data-i18n-block="cmd.springaudit">
         <span class="feature-field">sourcecode spring-audit</span>
@@ -1849,7 +1886,17 @@
       <div class="feature-item" data-i18n-block="cmd.endpoints">
         <span class="feature-field">sourcecode endpoints</span>
         <h3>REST API surface</h3>
-        <p>Extracts all Spring MVC and JAX-RS endpoint methods. Returns HTTP method, path, controller, and handler. Useful for auditing API surface before migrations or security reviews.</p>
+        <p>Extracts all Spring MVC and JAX-RS endpoint methods. Returns HTTP method, path, controller, and handler. Useful for auditing API surface before migrations or security reviews. Add <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--by-controller</code> to group by controller.</p>
+      </div>
+      <div class="feature-item" data-i18n-block="cmd.migrate">
+        <span class="feature-field">sourcecode migrate-check</span>
+        <h3>Migration readiness <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3>
+        <p>javax → jakarta and framework-upgrade readiness: counts blocking references, blast radius of the change, a 0–100 readiness score, and a decisive go / hold signal. Honest under-migrated vs already-migrated scoring (low-severity capping).</p>
+      </div>
+      <div class="feature-item" data-i18n-block="cmd.exportc4">
+        <span class="feature-field">sourcecode export --c4</span>
+        <h3>C4 architecture export</h3>
+        <p>Tool-agnostic architecture model in the open <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">c4-v1</code> schema — container/component view with module-root rollup (layered vs flat DDD detection), plus <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--by-directory</code>, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--module-graph</code>, <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent)">--integrations</code>. Feeds any C4/diagram renderer.</p>
       </div>
       <div class="feature-item" data-i18n-block="cmd.reviewpr">
         <span class="feature-field">sourcecode review-pr</span>
@@ -2053,7 +2100,7 @@
           <span class="oss-stat-label" data-i18n="oss.stat1">license · free for commercial use</span>
         </div>
         <div class="oss-stat">
-          <span class="oss-stat-val">v1.35.4</span>
+          <span class="oss-stat-val">v1.57.0</span>
           <span class="oss-stat-label">pip install sourcecode · brew install sourcecode</span>
         </div>
         <div class="oss-stat">
@@ -2115,8 +2162,13 @@
 <section id="pricing">
   <div class="container fade-in">
     <p class="section-label" data-i18n="label.pricing">pricing</p>
-    <h2 data-i18n="pricing.h2">Free on every command. Pro when the monolith is big.</h2>
+    <h2 data-i18n="pricing.h2">Open to everyone right now — no payment.</h2>
     <p style="max-width:620px; margin-top:0.5rem;" data-i18n="pricing.p">Every command runs at full power for free on repos up to 500 Java files — impact, fix-bug, review-pr, modernize, all of it. Pro unlocks the same commands on enterprise-scale monoliths and in CI/CD automation. Non-Java repos are free at any size.</p>
+
+    <div class="pricing-open-banner" data-i18n="pricing.openBanner">
+      <strong>Right now, sourcecode is fully open at no cost.</strong> Every install runs with all capabilities unlocked — no payment, no license key, no size limit. The plans below describe the model the project will return to later.
+    </div>
+
     <div class="pricing-grid">
 
       <!-- FREE -->
@@ -2151,13 +2203,14 @@
         </div>
         <p class="pricing-tagline" data-i18n="pricing.pro.tagline">enterprise monoliths &amp; CI/CD automation</p>
         <div class="pricing-price">
-          <span class="pricing-amount pricing-amount-pro">€19</span>
-          <span class="pricing-period" data-i18n="pricing.pro.period"> / month per dev</span>
+          <span class="pricing-amount-was">€19</span>
+          <span class="pricing-amount pricing-amount-pro">€0</span>
+          <span class="pricing-free-now" data-i18n="pricing.pro.freeNow">free for now</span>
         </div>
-        <p class="pricing-early-note" data-i18n="pricing.pro.early">or €190/year — save ~2 months.</p>
-        <p class="pricing-desc" data-i18n="pricing.pro.desc">The same commands, unlocked on Java monoliths above 500 files and in CI/CD. For engineers who live in large enterprise codebases.</p>
-        <a href="https://sourcecodecli.lemonsqueezy.com/checkout/buy/99c8675f-b0e4-410e-b849-cf0f0c97f009" class="btn-primary pricing-cta" id="pro-checkout-btn" data-i18n="pricing.pro.cta">
-          Upgrade to Pro →
+        <p class="pricing-early-note" data-i18n="pricing.pro.early">Temporarily no payment — normally €19/mo · €190/yr per dev.</p>
+        <p class="pricing-desc" data-i18n="pricing.pro.desc">The same commands, unlocked on Java monoliths above 500 files and in CI/CD. For engineers who live in large enterprise codebases. Right now every install gets this — no key required.</p>
+        <a href="https://pypi.org/project/sourcecode/" target="_blank" rel="noopener" class="btn-primary pricing-cta" id="pro-checkout-btn" data-i18n="pricing.pro.cta">
+          pip install sourcecode
         </a>
         <ul class="pricing-features" data-i18n-block="pricing.pro.features">
           <li>Everything in Free, with no size limit</li>
@@ -2224,7 +2277,7 @@
       'nav.why': { en: 'Why', es: 'Por qué' },
       'nav.pricing': { en: 'Pricing', es: 'Precios' },
       'hero.h1': { en: 'Spring semantic analysis<br>and impact intelligence for <em>AI agents.</em>', es: 'Análisis semántico Spring<br>e inteligencia de impacto para <em>agentes IA.</em>' },
-      'hero.sub': { en: 'sourcecode builds a deterministic semantic model of your Java/Spring repository. Detects TX anomalies, traces systemic blast radius with security enrichment, maps event topology — locally, statically, no API keys. Sub-second from cache.', es: 'sourcecode construye un modelo semántico determinista de tu repositorio Java/Spring. Detecta anomalías TX, traza el blast radius sistémico con enriquecimiento de seguridad, mapea topología de eventos — localmente, estáticamente, sin API keys. Sub-segundo desde caché.' },
+      'hero.sub': { en: 'sourcecode builds a deterministic semantic model of your Java/Spring repository. Traces systemic blast radius with security enrichment, scores migration readiness, audits TX/security anomalies, and exports C4 architecture — locally, statically, no API keys. Sub-second from cache.', es: 'sourcecode construye un modelo semántico determinista de tu repositorio Java/Spring. Traza el blast radius sistémico con enriquecimiento de seguridad, puntúa la preparación para migración, audita anomalías TX/seguridad y exporta arquitectura C4 — localmente, estáticamente, sin API keys. Sub-segundo desde caché.' },
       'hero.cta': { en: 'Get started →', es: 'Comenzar →' },
       'terminal.sub': { en: '↳ structured interpretation of real CLI output — as understood by an agent', es: '↳ interpretación estructurada de salida CLI real — tal como la entiende un agente' },
       'label.problem': { en: 'the problem', es: 'el problema' },
@@ -2243,7 +2296,7 @@
       'label.usecases': { en: 'use cases', es: 'casos de uso' },
       'usecases.h2': { en: 'Fits every stage of the engineering lifecycle.', es: 'Se adapta a cada fase del ciclo de vida de ingeniería.' },
       'label.commands': { en: 'commands', es: 'comandos' },
-      'commands.h2': { en: 'Eight commands. Each answers a specific engineering question.', es: 'Ocho comandos. Cada uno responde una pregunta de ingeniería específica.' },
+      'commands.h2': { en: 'One toolkit. Each command answers a specific engineering question.', es: 'Un solo kit. Cada comando responde una pregunta de ingeniería específica.' },
       'label.benchmarks': { en: 'benchmarks', es: 'benchmarks' },
       'benchmarks.h2': { en: 'Cache performance — measured on real repos.', es: 'Rendimiento de caché — medido en repos reales.' },
       'benchmarks.p': { en: 'Cold scan and cache timings against open-source production-scale Spring monoliths. Cache keyed on content hashes — invalidated only when source changes. On repeated agent sessions against the same codebase, nearly every invocation is a cache hit.', es: 'Tiempos de análisis en frío y caché contra monolitos Spring de escala productiva open-source. Caché indexada por hashes de contenido — solo se invalida cuando cambia el código. En sesiones de agente repetidas contra el mismo codebase, prácticamente cada invocación es un cache hit.' },
@@ -2268,16 +2321,18 @@
       'label.why': { en: "why it's different", es: 'por qué es diferente' },
       'why.h2': { en: 'What nothing else gives you.', es: 'Lo que nada más te ofrece.' },
       'label.pricing': { en: 'pricing', es: 'precios' },
-      'pricing.h2': { en: 'Free on every command. Pro when the monolith is big.', es: 'Gratis en todos los comandos. Pro cuando el monolito es grande.' },
+      'pricing.h2': { en: 'Open to everyone right now — no payment.', es: 'Abierto para todos ahora mismo — sin pago.' },
       'pricing.p': { en: 'Every command runs at full power for free on repos up to 500 Java files — impact, fix-bug, review-pr, modernize, all of it. Pro unlocks the same commands on enterprise-scale monoliths and in CI/CD automation. Non-Java repos are free at any size.', es: 'Todos los comandos a plena potencia, gratis, en repos de hasta 500 ficheros Java — impact, fix-bug, review-pr, modernize, todo. Pro desbloquea los mismos comandos en monolitos a escala enterprise y en automatización CI/CD. Los repos no-Java son gratis a cualquier tamaño.' },
       'pricing.free.tagline': { en: 'every command, small &amp; mid-size repos', es: 'todos los comandos, repos pequeños y medianos' },
       'pricing.free.period': { en: ' / forever', es: ' / siempre' },
       'pricing.free.desc': { en: 'The full toolkit on any repo up to 500 Java files — blast radius, PR review, bug triage, modernization. Deterministic, offline, no account, no lock-in.', es: 'El kit completo en cualquier repo de hasta 500 ficheros Java — blast radius, revisión de PR, triaje de bugs, modernización. Determinista, offline, sin cuenta, sin lock-in.' },
       'pricing.pro.tagline': { en: 'enterprise monoliths &amp; CI/CD automation', es: 'monolitos enterprise y automatización CI/CD' },
       'pricing.pro.period': { en: ' / month per dev', es: ' / mes por dev' },
-      'pricing.pro.early': { en: 'or €190/year — save ~2 months.', es: 'o €190/año — ahorra ~2 meses.' },
-      'pricing.pro.desc': { en: 'The same commands, unlocked on Java monoliths above 500 files and in CI/CD. For engineers who live in large enterprise codebases.', es: 'Los mismos comandos, desbloqueados en monolitos Java de más de 500 ficheros y en CI/CD. Para ingenieros que viven en grandes codebases enterprise.' },
-      'pricing.pro.cta': { en: 'Upgrade to Pro →', es: 'Actualizar a Pro →' },
+      'pricing.openBanner': { en: '<strong>Right now, sourcecode is fully open at no cost.</strong> Every install runs with all capabilities unlocked — no payment, no license key, no size limit. The plans below describe the model the project will return to later.', es: '<strong>Ahora mismo, sourcecode está totalmente abierto sin coste.</strong> Cada instalación corre con todas las capacidades desbloqueadas — sin pago, sin clave de licencia, sin límite de tamaño. Los planes de abajo describen el modelo al que el proyecto volverá más adelante.' },
+      'pricing.pro.early': { en: 'Temporarily no payment — normally €19/mo · €190/yr per dev.', es: 'Temporalmente sin pago — normalmente €19/mes · €190/año por dev.' },
+      'pricing.pro.freeNow': { en: 'free for now', es: 'gratis por ahora' },
+      'pricing.pro.desc': { en: 'The same commands, unlocked on Java monoliths above 500 files and in CI/CD. For engineers who live in large enterprise codebases. Right now every install gets this — no key required.', es: 'Los mismos comandos, desbloqueados en monolitos Java de más de 500 ficheros y en CI/CD. Para ingenieros que viven en grandes codebases enterprise. Ahora mismo cada instalación lo obtiene — sin clave.' },
+      'pricing.pro.cta': { en: 'pip install sourcecode', es: 'pip install sourcecode' },
       'footer.privacy': { en: 'Privacy', es: 'Privacidad' }
     };
 
@@ -2306,7 +2361,9 @@
       'card.mcp': '<div class="card-tag">mcp · cursor · claude</div><h3>Servidor de contexto en vivo <span style="color:var(--accent-green);font-size:0.75em">[Free]</span></h3><p>Ejecuta <code ' + CS + '>sourcecode mcp init</code> una vez. Claude Desktop y Cursor obtienen acceso en vivo al análisis de impacto, superficie de endpoints y contexto del codebase sin llamadas CLI manuales.</p>',
       'cmd.impact': '<span class="feature-field">sourcecode impact</span><h3>Análisis de blast-radius <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Recorre el grafo de dependencias inverso para cualquier clase. Devuelve callers directos, callers transitivos, endpoints HTTP afectados, límites transaccionales, impacto cross-módulo y una puntuación de riesgo de 0–100. Apunta siempre a la interfaz en Spring Boot — no a la implementación.</p>',
       'cmd.onboard': '<span class="feature-field">sourcecode onboard</span><h3>Orientación de codebase <span style="font-size:0.75em;color:var(--accent-green)">[Free]</span></h3><p>Bundle de contexto acotado listo para IA: puntos de entrada, resumen de arquitectura, archivos clave, nivel de confianza y gaps. Diseñado para inyección como system prompt de agente al inicio de sesión.</p>',
-      'cmd.endpoints': '<span class="feature-field">sourcecode endpoints</span><h3>Superficie de API REST</h3><p>Extrae todos los métodos de endpoint de Spring MVC y JAX-RS. Devuelve método HTTP, ruta, controlador y handler. Útil para auditar la superficie de API antes de migraciones o revisiones de seguridad.</p>',
+      'cmd.endpoints': '<span class="feature-field">sourcecode endpoints</span><h3>Superficie de API REST</h3><p>Extrae todos los métodos de endpoint de Spring MVC y JAX-RS. Devuelve método HTTP, ruta, controlador y handler. Útil para auditar la superficie de API antes de migraciones o revisiones de seguridad. Añade <code ' + CS + '>--by-controller</code> para agrupar por controlador.</p>',
+      'cmd.migrate': '<span class="feature-field">sourcecode migrate-check</span><h3>Preparación para migración <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Preparación para javax → jakarta y upgrades de framework: cuenta referencias bloqueantes, blast radius del cambio, una puntuación de preparación 0–100 y una señal decisiva de continuar / esperar. Scoring honesto entre repos sin migrar y ya migrados (capping de baja severidad).</p>',
+      'cmd.exportc4': '<span class="feature-field">sourcecode export --c4</span><h3>Exportación de arquitectura C4</h3><p>Modelo de arquitectura agnóstico en el esquema abierto <code ' + CS + '>c4-v1</code> — vista de contenedor/componente con rollup por raíz de módulo (detección DDD por capas vs plano), además de <code ' + CS + '>--by-directory</code>, <code ' + CS + '>--module-graph</code>, <code ' + CS + '>--integrations</code>. Alimenta cualquier renderizador C4/diagramas.</p>',
       'cmd.reviewpr': '<span class="feature-field">sourcecode review-pr</span><h3>Evaluación de riesgo de PR <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Archivos modificados, ranking de riesgo, gaps de cobertura de tests, módulos afectados y blast radius de clases modificadas. Devuelve un campo <code ' + CS + '>ci_decision</code> para gates de CI/CD.</p>',
       'cmd.fixbug': '<span class="feature-field">sourcecode fix-bug</span><h3>Contexto para triaje de bugs <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Proporciona una cadena de síntoma, obtén una lista de archivos ordenada por riesgo correlacionada por extracción de keywords, coincidencia de rutas, análisis de contenido y correlación de commits git. Cadena de evidencia completa en <code ' + CS + '>symptom_explain</code>.</p>',
       'cmd.modernize': '<span class="feature-field">sourcecode modernize</span><h3>Planificación de modernización <span style="font-size:0.75em;color:var(--accent-green)">[Free ≤500 Java]</span></h3><p>Identifica nodos de alto acoplamiento (arriesgados de cambiar), candidatos a zona muerta (seguros de eliminar) y enredos de subsistemas. Cuantificado por grado de fan-in en el grafo de símbolos.</p>',
