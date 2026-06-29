@@ -2360,7 +2360,7 @@
   <div class="container fade-in">
     <p class="section-label" data-i18n="label.privacy">privacy &amp; telemetry</p>
     <h2 data-i18n="privacy.h2">Transparent by default.</h2>
-    <p style="max-width: 520px; margin-top: 0.5rem;" data-i18n="privacy.p">Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Runs fully offline.</p>
+    <p style="max-width: 520px; margin-top: 0.5rem;" data-i18n="privacy.p">Anonymous telemetry is on by default and can be turned off any time with one command. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Analysis runs fully offline.</p>
     <div class="privacy-box">
       <div class="privacy-header">
         <div class="dot"></div>
@@ -2380,17 +2380,17 @@
           <span class="privacy-text" data-i18n="privacy.row3">Repository names, paths, or directory structures</span>
         </div>
         <div class="privacy-row">
-          <span class="privacy-status status-optout">OPT-IN</span>
+          <span class="privacy-status status-optout">OPT-OUT</span>
           <span class="privacy-text" data-i18n="privacy.row4">Anonymous usage metrics (invocation count, flags used, error types)</span>
         </div>
         <div class="privacy-row">
-          <span class="privacy-status status-optout">OPT-IN</span>
+          <span class="privacy-status status-optout">OPT-OUT</span>
           <span class="privacy-text" data-i18n="privacy.row5">Aggregated performance telemetry (run duration, output size buckets)</span>
         </div>
       </div>
     </div>
     <p style="margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">
-      Manage with: <span style="color: var(--accent); opacity: 0.8;">sourcecode telemetry status</span> · <span style="color: var(--accent); opacity: 0.8;">sourcecode telemetry enable</span> · <span style="color: var(--accent); opacity: 0.8;">sourcecode telemetry disable</span>
+      Turn off any time: <span style="color: var(--accent); opacity: 0.8;">sourcecode telemetry disable</span> · <span style="color: var(--accent); opacity: 0.8;">SOURCECODE_TELEMETRY=0</span> · <span style="color: var(--accent); opacity: 0.8;">DO_NOT_TRACK=1</span>
     </p>
   </div>
 </section>
@@ -2624,7 +2624,7 @@
       'principles.h2': { en: 'Built on opinions. Held accountable to them.', es: 'Construido sobre principios. Responsable de ellos.' },
       'label.privacy': { en: 'privacy &amp; telemetry', es: 'privacidad y telemetría' },
       'privacy.h2': { en: 'Transparent by default.', es: 'Transparente por defecto.' },
-      'privacy.p': { en: 'Telemetry is opt-in only and disabled by default. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Runs fully offline.', es: 'La telemetría es solo opt-in y está desactivada por defecto. Solo se recopilan metadatos de uso anónimos — nunca código fuente, rutas ni contenido de salida. Se ejecuta completamente offline.' },
+      'privacy.p': { en: 'Anonymous telemetry is on by default and can be turned off any time with one command. Only anonymous usage metadata is ever collected — never source code, paths, or output content. Analysis runs fully offline.', es: 'La telemetría anónima está activada por defecto y puede desactivarse en cualquier momento con un solo comando. Solo se recopilan metadatos de uso anónimos — nunca código fuente, rutas ni contenido de salida. El análisis se ejecuta completamente offline.' },
       'privacy.row1': { en: 'Source code contents, file bodies, or repository data', es: 'Contenidos de código fuente, cuerpos de archivo o datos del repositorio' },
       'privacy.row2': { en: 'Credentials, API keys, tokens, or secrets', es: 'Credenciales, claves API, tokens o secretos' },
       'privacy.row3': { en: 'Repository names, paths, or directory structures', es: 'Nombres de repositorio, rutas o estructuras de directorios' },
